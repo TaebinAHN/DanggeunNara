@@ -66,12 +66,12 @@
 	                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAA1ElEQVRIie2TsQ3CMBBF/zkLpMQLQO9zmV2IBBINJZQZgDAAVRAj0FBlhrRZwV1GwDQGhUhJnFQg+Xdn371nyzIQEvJfYeZMa50DEDPGBTOfmTn7Wuw0xdbaIzMXEyXCzRwAxO2NqF0YY0op5YKItlLKVZIk97qurQf8CiAFcKuqag/gMxN1u40xDydJm6ZZjkje8LWDbwA8e28wUTIK7xV4SLzgg4IBCfnCAYCGBK3TFnCP6NZSH7ivAABIKXUhop2rveBTI7TWuVLqhHkfMSTkV/MCeGNw/fvNnQwAAAAASUVORK5CYII="
 	                                />
 	                                <ul class="drop__container">
-	                                    <li><a href="TBmyPage.do?mId=${sessionScope.mId}">마이페이지</a></li>
-	                                    <li><a href="#">관심목록</a></li>
-	                                    <li><a href="#">판매내역</a></li>
-	                                    <li><a href="#">구매내역</a></li>
-	                                    <li><a href="#">나눔내역</a></li>
-	                                    <li><a href="TBLogout.do">로그아웃</a></li>
+	                                    <a href="TBmyPage.do?mId=${sessionScope.mId}"><li>마이페이지</li></a>
+	                                    <a href="#"><li>관심내역</li></a>
+	                                    <a href="#"><li>판매내역</li></a>
+	                                    <a href="#"><li>구매내역</li></a>
+	                                    <a href="TBLogout.do"><li>로그아웃</li></a>
+
 	                                    
 	                                </ul>
 	                            </li>

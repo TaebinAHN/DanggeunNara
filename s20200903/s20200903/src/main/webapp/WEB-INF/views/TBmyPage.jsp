@@ -69,6 +69,7 @@
         <!-- 섹션 시작 -->
         <!-- 각 input의 value값을 DB에서 가져올 값으로 수정해주세요 -->
         <section class="section">
+        	<form action="userInfoUpdate">
             <div class="mypage">
                 <div class="mypage__head">
                     <h1 class="mypage__title">회원정보 수정</h1>
@@ -1624,16 +1625,19 @@
                             class="mypage__leave"
                             type="button"
                             value="탈퇴하기"
+                            onclick="location.href='TBuserLeave.do'"
                         />
                         <input
                             class="mypage__update"
-                            type="button"
+                            type="submit"
                             value="회원정보수정"
                         />
                     </div>
                 </div>
             </div>
+        </form>
         </section>
+
 		<%@ include file="footer.jsp" %>
     </body>
 </html>
