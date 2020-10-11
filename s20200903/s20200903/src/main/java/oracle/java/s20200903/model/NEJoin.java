@@ -1,6 +1,8 @@
 package oracle.java.s20200903.model;
 
-public class NEPost {
+import org.springframework.web.multipart.MultipartFile;
+
+public class NEJoin {
 	
 	private int bid;
 	private int pnum;
@@ -19,6 +21,15 @@ public class NEPost {
 	private String pimg4;
 	private String pimg5;
 	
+	private MultipartFile[] img;
+	
+	public MultipartFile[] getImg() {
+		return img;
+	}
+	public void setImg(MultipartFile[] img) {
+		this.img = img;
+	}
+	
 	private String mnick;
 	private String maddr;
 	private String msweet;
@@ -30,54 +41,44 @@ public class NEPost {
 	private String pageNum;  
 	private int start; 		 
 	private int end;
+	private int rn;
 	
-	
-	
-	
-	public String getMsweet() {
-		return msweet;
-	}
-	public void setMsweet(String msweet) {
-		this.msweet = msweet;
-	}
-	public String getCtkinds() {
-		return ctkinds;
-	}
-	public void setCtkinds(String ctkinds) {
-		this.ctkinds = ctkinds;
-	}
-	public String getSearch() {
-		return search;
-	}
-	public void setSearch(String search) {
-		this.search = search;
-	}
-	public String getKeyword() {
-		return keyword;
-	}
-	public void setKeyword(String keyword) {
-		this.keyword = keyword;
-	}
-	public String getPageNum() {
-		return pageNum;
-	}
-	public void setPageNum(String pageNum) {
-		this.pageNum = pageNum;
-	}
-	public int getStart() {
-		return start;
-	}
-	public void setStart(int start) {
-		this.start = start;
-	}
-	public int getEnd() {
-		return end;
-	}
-	public void setEnd(int end) {
-		this.end = end;
-	}
 
+	private String sword;
+	private int scnt;
+	private String lsearch;
 	
+	//검색결과 리스트용
+	private int sTotal;
+	private int sSaleTotal;
+	private int sShareTotal;
+	private int sBuyTotal;
+	
+	public int getsTotal() {
+		return sTotal;
+	}
+	public void setsTotal(int sTotal) {
+		this.sTotal = sTotal;
+	}
+	
+	public int getsSaleTotal() {
+		return sSaleTotal;
+	}
+	public void setsSaleTotal(int sSaleTotal) {
+		this.sSaleTotal = sSaleTotal;
+	}
+	public int getsShareTotal() {
+		return sShareTotal;
+	}
+	public void setsShareTotal(int sShareTotal) {
+		this.sShareTotal = sShareTotal;
+	}
+	public int getsBuyTotal() {
+		return sBuyTotal;
+	}
+	public void setsBuyTotal(int sBuyTotal) {
+		this.sBuyTotal = sBuyTotal;
+	}
 	public int getBid() {
 		return bid;
 	}
@@ -174,7 +175,6 @@ public class NEPost {
 	public void setPimg5(String pimg5) {
 		this.pimg5 = pimg5;
 	}
-	
 	public String getMnick() {
 		return mnick;
 	}
@@ -187,5 +187,75 @@ public class NEPost {
 	public void setMaddr(String maddr) {
 		this.maddr = maddr;
 	}
+	public String getMsweet() {
+		return msweet;
+	}
+	public void setMsweet(String msweet) {
+		this.msweet = msweet;
+	}
+	public String getCtkinds() {
+		return ctkinds;
+	}
+	public void setCtkinds(String ctkinds) {
+		this.ctkinds = ctkinds;
+	}
+	public String getSearch() {
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	public String getPageNum() {
+		return pageNum;
+	}
+	public void setPageNum(String pageNum) {
+		this.pageNum = pageNum;
+	}
+	public int getStart() {
+		return start;
+	}
+	public void setStart(int start) {
+		this.start = start;
+	}
+	public int getEnd() {
+		return end;
+	}
+	public void setEnd(int end) {
+		this.end = end;
+	}
+	public String getSword() {
+		return sword;
+	}
+	public void setSword(String sword) {
+		this.sword = sword;
+	}
+	public int getScnt() {
+		return scnt;
+	}
+	public void setScnt(int scnt) {
+		this.scnt = scnt;
+	}
+	public String getLsearch() {
+		return lsearch;
+	}
+	public void setLsearch(String lsearch) {
+		this.lsearch = lsearch;
+	}
+	
+	public int getRn() {
+		return rn;
+	}
+	public void setRn(int rn) {
+		this.rn = rn;
+	}
+	
+	
+	
 	
 }
