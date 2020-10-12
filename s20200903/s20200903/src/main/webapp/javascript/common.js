@@ -297,11 +297,11 @@ if (userLeaveCancleBtn != null) {
 	});
 }
 
-if (loginJoin != null) {
+/*if (loginJoin != null) {
 	loginJoin.addEventListener("click", () => {
 		location.href = "TBjoinForm.do";
 	});
-}
+}*/
 
 if (userLeaveBtn != null) {
 	userLeaveBtn.addEventListener("click", () => {
@@ -1256,8 +1256,8 @@ if (sweetBarContainer != null) {
 //
 
 // 별점
-$(".sweet-rating a").click(function () {
+/*$(".sweet-rating a").click(function () {
 	$(this).parent().children("a").removeClass("on");
 	$(this).addClass("on").prevAll("a").addClass("on");
 	return false;
-});
+});*/

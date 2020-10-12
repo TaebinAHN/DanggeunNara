@@ -41,8 +41,6 @@ public class TBDaoImpl implements TBDao {
 			if(result > 0) {
 				System.out.println("result 값: " + result);
 			}
-
-			
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

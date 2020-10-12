@@ -39,17 +39,11 @@ public class NEController {
 	private NEService ns;
 	
 	
-	
-	// 메인 페이지로 이동
-	@RequestMapping(value="main")
-	public String main(HttpServletRequest request, Model model) {
-		return "main";
-	}
-
-	
+		
 	// 검색어를 입력받은 후 결과 출력
 	@RequestMapping(value="search", method=RequestMethod.POST)
 	public String search(HttpServletRequest request, Model model, String currentPage, NEJoin neJoin) {
+		System.out.println("요기로 왔지롱...");
 		System.out.println("search start...");
 		/*HttpSession session = request.getSession();
 		if(session.getAttribute("mid") != null) {

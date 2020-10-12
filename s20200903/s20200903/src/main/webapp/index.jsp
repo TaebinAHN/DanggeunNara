@@ -10,5 +10,5 @@
 <%  
  	response.sendRedirect("main.do"); 
 %>  
-</body> 
+</body>  
 </html> 
