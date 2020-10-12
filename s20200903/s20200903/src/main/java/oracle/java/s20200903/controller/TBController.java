@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import oracle.java.s20200903.model.TBMember;
 import oracle.java.s20200903.service.TBService;
-import oracle.java.s20200903.service.Paging;
+import oracle.java.s20200903.service.TBPaging;
 
 @Controller
 public class TBController {
@@ -60,24 +60,24 @@ public class TBController {
 	@RequestMapping (value="main")
 	public String main(Model model) {
 		
-		return "Main2";
+		return "main";
 	}
 	
 	@RequestMapping (value="TBlogin")
 	public String login(TBMember tbm, Model model) {
-		
+		System.out.println("로그인 페이지로 간다~~~~");
 		return "TBlogin";
 	}
 	
-	@RequestMapping(value="mainLogin", method=RequestMethod.POST) 
+/*	@RequestMapping(value="mainLogin", method=RequestMethod.POST) 
 	public String mainLogin(Model model) {
 		
 		return "mainLogin";
-	}
+	}*/
 	
 	@RequestMapping (value="TBjoinForm")
 	public String joinForm(Model model) {
-
+		System.out.println("회원가입 페이지로 간다...");
 		return "TBjoinForm";
 		
 	}
@@ -105,11 +105,11 @@ public class TBController {
 		return "TBfindPwUpdate";
 	}
 	
-	@RequestMapping (value="TBLogout")
+	@RequestMapping (value="TBLogout.do")
 	public String TBLogout (HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		session.invalidate();
-		return "Main2";
+		return "main";
 	}
 	
 	@RequestMapping(value="TBmyPage")
@@ -139,42 +139,32 @@ public class TBController {
 	// 기능부분
 	
 	
-	@RequestMapping (value="joinMember", method=RequestMethod.POST)
+	@RequestMapping (value="joinMember.do", method=RequestMethod.POST)
 	public String joinMember(TBMember tbm ,Model model) {
 		System.out.println("joinMember() start,..");
 		int result = ts.joinMember(tbm);
 		System.out.println("TBController joinMember start..." + result);
 		if(result > 0) {
+			System.out.println("값 있다....");
+			System.out.println(result);
 			System.out.println("joinMember result 값 : " + result);
 		} else {
 			model.addAttribute("msg", "");
 		}
-		if(tbm.getmSms() != null) {
-			tbm.setmSms("동의");
-		} else if (tbm.getmSms() == null){
-			tbm.setmSms("비동의");
-		}
-		
-		if(tbm.getmTel() != null) {
-			tbm.setmTel("동의");
-		} else if(tbm.getmTel() == null) {
-			tbm.setmTel("비동의");
-		}
-		
-		return "redirect:TBlogin.do";
+		return "forward:TBlogin.do";
 	}
 	
 	@RequestMapping (value="loginMember", method=RequestMethod.POST)
-	public String loginMember(HttpServletRequest request, HttpServletResponse response ,TBMember tbm, Model model) throws ServletException, IOException {
-
-		
+	public String loginMember(HttpServletRequest request, HttpServletResponse response ,TBMember tbm, Model model) throws ServletException, IOException {	
 		System.out.println("tbm.getmLevel()=>"+tbm.getmLevel());
 		int result = ts.loginMember(tbm);
-		response.setContentType("text/html charset=UTF-8");
+		response.setContentType("text/html charset=UTF-8"); 
 		PrintWriter pw = response.getWriter();
 		if(result > 0) {
 			pw.println("<script>alert('어서오세요 환영합니다~');</script>");
 			pw.flush();
+			System.out.println(tbm.getmId());
+			System.out.println(tbm.getmPw());
 			HttpSession session = request.getSession();
 			session.setAttribute("mId", tbm.getmId());
 			if(tbm.getmLevel() == 3) {
@@ -186,7 +176,7 @@ public class TBController {
 		} else {
 			pw.println("<script>alert('아이디와 비밀번호를 확인해주세요.');</script>");
 			pw.flush();
-			return "TBlogin";
+			return "TBlogin.do";
 		} 
 	}
 	

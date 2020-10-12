@@ -9,6 +9,11 @@
         <title>당신 근처의 당근나라</title>
         <link rel="stylesheet" href="css/common.css" />
         <script src="javascript/common.js" defer></script>
+        <script
+            src="https://kit.fontawesome.com/797af710b1.js"
+            crossorigin="anonymous"
+            defer
+        ></script>
         <link
             rel="shortcut icon"
             type="image/x-icon"
@@ -21,6 +26,22 @@
     </head>
 
     <body>
+
+        <!-- 메뉴 목록 리스트 -->
+        <aside class="fixed__list">
+            <ul>
+                <li><a href="../board/noticeBoard.html">공지사항</a></li>
+                <li><a href="../board/blackListBoard.html">검거완료 !</a></li>
+                <li>
+                    <a href="../board/badReviewBoard.html">불량거래 후기</a>
+                </li>
+                <li><a href="../board/toSaleBoard.html">판매중 이에요.</a></li>
+                <li>
+                    <a href="../board/toSharingBoard.html">나눔중 이에요.</a>
+                </li>
+                <li><a href="../board/toBuyBoard.html">구매합니다 ~!</a></li>
+            </ul>
+        </aside>
         <!-- 섹션 시작 -->
         <section class="main__section section-1">
             <div class="main__section-container">
@@ -127,107 +148,183 @@
                 </div>
             </div>
         </section>
-        <!-- 홈 버튼 -->
-        <div class="scroll-btn"></div>
-        <!-- 하단 카피라이트 -->
-        <footer class="footer">
-            <div class="footer-container">
-                <div class="footer-top">
-                    <div class="footer-top-logo"></div>
-                    <ul class="footer-top-list">
-                        <li class="footer-top-list-content">
-                            <a href="https://www.daangn.com/trust"
-                                >믿을 수 있는 중고거래</a
-                            >
-                        </li>
-                        <li class="footer-top-list-content">
-                            <a href="https://www.daangn.com/wv/faqs">
-                                자주 묻는 질문</a
-                            >
-                        </li>
-                    </ul>
-                    <ul class="footer-top-list">
-                        <li class="footer-top-list-content">
-                            <a
-                                href="https://www.notion.so/3d0197c137ec43d18ff739b5b254a3c8/"
-                            >
-                                회사 소개
+        <!-- 실시간 채팅 아이콘 -->
+        <div class="chat-container">
+            <div class="chat-container__relative">
+                <div class="chat-container__icon">
+                    <!-- 새로운 메세지 있을때만 -->
+                    <div class="chat-container__icon--new">N</div>
+                </div>
+                <div class="chat-container__items">
+                    <div class="chat-container__header">chat</div>
+                    <ul class="chat-container__list">
+                        <li class="chat-container__item">
+                            <a class="chat-container__link" href="#none">
+                                <div class="chat-container__text">
+                                    <strong class="chat-container__nick"
+                                        >닉네임</strong
+                                    >
+                                    <p class="chat-container__summary">
+                                        채팅창 메세지채팅창 메세지채팅창
+                                        메세지채팅창 메세지채팅창 메세지채팅창
+                                        메세지채팅창 메세지채팅창 메세지채팅창
+                                        메세지
+                                    </p>
+                                </div>
+                                <div class="chat-container__info">
+                                    <p class="chat-container__date">
+                                        2020.10.06
+                                    </p>
+                                </div>
                             </a>
-                        </li>
-                        <li class="footer-top-list-content">
-                            <a href="https://ad.daangn.com/"> 광고주센터 </a>
-                        </li>
-                        <li class="footer-top-list-content">
-                            <a href="https://town.daangn.com/"> 동네가게 </a>
-                        </li>
-                    </ul>
-                    <ul class="footer-top-list">
-                        <li class="footer-top-list-content">
-                            <a href="https://www.daangn.com/policy/terms">
-                                이용약관
-                            </a>
-                        </li>
-                        <li class="footer-top-list-content">
-                            <a href="https://www.daangn.com/policy/privacy">
-                                개인정보 취급방침
-                            </a>
-                        </li>
-                        <li class="footer-top-list-content">
-                            <a href="https://www.daangn.com/policy/location">
-                                위치기반서비스 이용약관
-                            </a>
+                            <div class="chat-container__delete">
+                                나가기
+                                <img
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABmJLR0QA/wD/AP+gvaeTAAACnElEQVR4nO3dv27TUABG8dMIJoYWMTPwEjwBCwNigJYKCnRB8HRI7IzsMMLUFTGlCDFAKQwu0D/XECfXvZ/q85O8VIl95RO7SnzjADwDvgI/J7bsA9uEWQO+AFdaD6SROXANOGw9kN/W6F4tU3aVLkyEWesB6KRLhb/doDu/XkTrwF7rQfxLKcicoEO4svjTs6esMAYJY5AwBgljkDAGCWOQMAYJY5AwBgljkDAGCWOQMAYJY5AwBglTukB1kc3p5hHE8ggJY5AwBgljkDAGCWOQMAYJY5DhrgOvgNfArTE2cHqa/sYYG7lAXvJ3X30HNmtvwCDDvOHk/qoexSDD3KaLcDrKVq0NGGS4e8A3Tu63A2CnxsoNspz7nD1SqkQxyPJGiWKQ1VSPYpDVbVKO8niZlRmkjmpRDFLPFuUoT4asxCB1rRzFIPU9oBzl6SJPNsg4SlF+sEAUg4xnm+7IGBTFIOPqi7Lb9wSDjG+XLsLx/XwIvCg92CDnY+EorYLsAJ8K25/acub01SLIZaZ507S+5YCjm6m1uqY+OxqIClocIQAPgY+F7U9tiThlTVHfP/Xnpx9okPGVYvS+FzHIuAa/WzfIePzoJMjSn/gapL6+GAtdEzFIXV6gCtIXY9B1dYPU4SSHIH0xlpqbZZDVOFEuiFNJgzjZOkjf1xEe1Vi5QYa5i1/YifKBszH8SltD7xgxBhhkqJvAW+A9cGeMDRgkiDcOCGOQMAYJY5AwBgljkDAGCTO1IBuEv++aWpB4BgljkDAGCWOQMAYJY5AwBgljkDAGCWOQMAYJY5AwBgljkDAGCVP6YckNwn98cQXrrQfwP6Uge+c+Cv3hKSvMDNhvPYiG5sDn1oM4bkZ3z78pRpnT3RrpsPVAjvsFW3N9LhOsh0kAAAAASUVORK5CYII="
+                                />
+                            </div>
+                            <div class="chat-container__new">N</div>
                         </li>
                     </ul>
                 </div>
-                <div class="footer-bottom">
-                    <div class="footer-bottom-copyright">
-                        <ul class="footer-bottom-list-container">
-                            <li class="footer-bottom-list-conent">
-                                <address>고객문의 cs@daangnservice.com</address>
-                                <address>제휴문의 contact@daangn.com</address>
-                            </li>
-                            <li class="footer-bottom-list-conent">
-                                <address>
-                                    사업자 등록번호 : 375-87-000-88
-                                </address>
-                                <address>
-                                    서울특별시 구로구 디지털로 30길 28 609호
-                                </address>
-                            </li>
-                            <li class="footer-bottom-list-conent">
-                                ©Danggeun Market Inc.
-                            </li>
-                        </ul>
+                <!-- 채팅방 -->
+                <div class="chat-container__chat-room">
+                    <div class="chat-container__chat-room--header">
+                        <a class="chat-container__chat-room--back" href="#none"
+                            ><i class="fas fa-arrow-left"></i></a
+                        >상대방 닉네임
                     </div>
-                    <div class="footer-bottom-sns">
-                        <ul class="footer-bottom-sns-container">
-                            <li class="sns-icon">
-                                <a href="https://www.facebook.com/daangn">
-                                    <img
-                                        src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/footer/icon-facebook-0563f4a93852d073b41f13b8bcabb03d47af3bb3a6755cdfedd8a73686c7f18c.svg"
-                                    />
-                                </a>
-                            </li>
-                            <li class="sns-icon">
-                                <a
-                                    href="https://www.instagram.com/daangnmarket/"
-                                >
-                                    <img
-                                        src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/footer/icon-instagram-2f6c88a461597907c114b7ce28eab053fcae791ed26417915fefb6f7c9f95756.svg"
-                                    />
-                                </a>
-                            </li>
-                            <li class="sns-icon">
-                                <a href="https://blog.naver.com/daangn">
-                                    <img
-                                        src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/footer/icon-blog-e1b0d512d1766a6962ec5bbb5b0803d2a6a9c55ad97db5ba9eebb76013caceba.svg"
-                                    />
-                                </a>
-                            </li>
-                        </ul>
+                    <ul class="chat-container__chat-room__list">
+                        <li class="chat-container__chat-room__received">
+                            <div class="message__img">
+                                <i class="fas fa-carrot"></i>
+                            </div>
+                            <div class="message__container">
+                                <div class="message__author">
+                                    <a href="../member/userDetail.html"
+                                        >상대방아이디</a
+                                    ><span class="message__container--date"
+                                        >2020.10.06 16:04</span
+                                    >
+                                </div>
+                                <div class="message__content-received">
+                                    Congrats XD <br />
+                                    Congrats XD <br />
+                                    Congrats XD <br />
+                                    Congrats XD <br />
+                                </div>
+                            </div>
+                        </li>
+                        <li class="chat-container__chat-room__sent">
+                            <div class="message__container-sent">
+                                <div class="message__author">
+                                    <span class="message__container--date"
+                                        >2020.10.06 16:08</span
+                                    >
+                                </div>
+                                <div class="message__content-sent">
+                                    Congrats XD <br />
+                                    Congrats XD <br />
+                                </div>
+                            </div>
+                        </li>
+                        <li class="chat-container__chat-room__received">
+                            <div class="message__img">
+                                <i class="fas fa-carrot"></i>
+                            </div>
+                            <div class="message__container">
+                                <div class="message__author">
+                                    <a href="../member/userDetail.html"
+                                        >상대방아이디</a
+                                    ><span class="message__container--date"
+                                        >2020.10.06 16:04</span
+                                    >
+                                </div>
+                                <div class="message__content-received">
+                                    Congrats XD <br />
+                                    Congrats XD <br />
+                                </div>
+                            </div>
+                        </li>
+                        <li class="chat-container__chat-room__sent">
+                            <div class="message__container-sent">
+                                <div class="message__author">
+                                    <span class="message__container--date"
+                                        >2020.10.06 16:08</span
+                                    >
+                                </div>
+                                <div class="message__content-sent">
+                                    Congrats XD <br />
+                                    Congrats XD <br />
+                                </div>
+                            </div>
+                        </li>
+                        <li class="chat-container__chat-room__sent">
+                            <div class="message__container-sent">
+                                <div class="message__author">
+                                    <span class="message__container--date"
+                                        >2020.10.06 16:08</span
+                                    >
+                                </div>
+                                <div class="message__content-sent">
+                                    Congrats XD <br />
+                                    Congrats XD <br />
+                                </div>
+                            </div>
+                        </li>
+                        <li class="chat-container__chat-room__sent">
+                            <div class="message__container-sent">
+                                <div class="message__author">
+                                    <span class="message__container--date"
+                                        >2020.10.06 16:08</span
+                                    >
+                                </div>
+                                <div class="message__content-sent">
+                                    Congrats XD <br />
+                                    Congrats XD <br />
+                                </div>
+                            </div>
+                        </li>
+                        <li class="chat-container__chat-room__sent">
+                            <div class="message__container-sent">
+                                <div class="message__author">
+                                    <span class="message__container--date"
+                                        >2020.10.06 16:08</span
+                                    >
+                                </div>
+                                <div class="message__content-sent">
+                                    Congrats XD <br />
+                                    Congrats XD <br />
+                                </div>
+                            </div>
+                        </li>
+                        <li class="chat-container__chat-room__sent">
+                            <div class="message__container-sent">
+                                <div class="message__author">
+                                    <span class="message__container--date"
+                                        >2020.10.06 16:08</span
+                                    >
+                                </div>
+                                <div class="message__content-sent">
+                                    Congrats XD <br />
+                                    Congrats XD <br />
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="chat-container__chat-room__footer">
+                        <input
+                            class="chat-container__chat-room__footer--input"
+                            type="text"
+                            placeholder="Send message"
+                        />
                     </div>
                 </div>
             </div>
-        </footer>
+        </div>
+        <!-- 홈 버튼 -->
+        <div class="scroll-btn"></div>
+        <!-- 하단 카피라이트 -->
+        <%@ include file="footer.jsp" %>
     </body>
 </html>

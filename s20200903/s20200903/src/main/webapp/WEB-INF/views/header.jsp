@@ -42,7 +42,7 @@
                 </section>
                 <section class="header__fixed-bar-search section-search">
                     <div class="header__fixed-bar-search-container">
-                    <form action="search.do" method="post">
+                    <form action="loginMember.do" method="post">
                         <input
                             class="search-input"
                             type="text"
@@ -54,6 +54,7 @@
                             class="search-icon"
                             src="https://img.icons8.com/ios-glyphs/30/000000/search.png"
                         />
+                    </form>
                     </div>
                 </section>
                 <section class="header__fixed-bar-nav section-nav">
@@ -85,7 +86,7 @@
                     	<c:when test="${sessionScope.mId == null}">
 	                        <ul class="header__fixed-bar-nav-list nav-list">
 	                            <li class="nav-list-content">
-	                                <a href="joinForm.do">회원가입</a>
+	                                <a href="TBjoinForm.do">회원가입</a>
 	                            </li>
 	                            <li class="nav-list-content">
 	                                <a href="TBlogin.do">로그인</a>
@@ -112,8 +113,7 @@
                             <li class="nav-list-content">
                                 <a href="#">지도로 보기</a>
                             </li> 
-                        </ul>                  		
-                    	
+                        </ul>
                     	</c:when>
                     </c:choose>
                     </nav>

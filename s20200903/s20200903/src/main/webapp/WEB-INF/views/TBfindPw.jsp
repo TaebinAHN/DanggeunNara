@@ -7,8 +7,8 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>비밀번호찾기 :: 당근나라</title>
-        <link rel="stylesheet" href="../css/common.css" />
-        <script src="../javascript/common.js" defer></script>
+        <!-- <link rel="stylesheet" href="/css/common.css" />
+        <script src="/javascript/common.js" defer></script> -->
         <script
             src="https://kit.fontawesome.com/797af710b1.js"
             crossorigin="anonymous"
@@ -31,7 +31,7 @@
 
     <body>
         <!-- 섹션 시작 -->
-        <section class="section">
+        <section class="section"> 
         <form action="TBfindPwgo.do" method="post" name="pwrReset">
             <div class="find-pw">
                 <h1 class="find-pw__title">비밀번호찾기</h1>
