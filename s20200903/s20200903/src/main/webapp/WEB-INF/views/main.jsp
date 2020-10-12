@@ -26,22 +26,6 @@
     </head>
 
     <body>
-
-        <!-- 메뉴 목록 리스트 -->
-        <aside class="fixed__list">
-            <ul>
-                <li><a href="../board/noticeBoard.html">공지사항</a></li>
-                <li><a href="../board/blackListBoard.html">검거완료 !</a></li>
-                <li>
-                    <a href="../board/badReviewBoard.html">불량거래 후기</a>
-                </li>
-                <li><a href="../board/toSaleBoard.html">판매중 이에요.</a></li>
-                <li>
-                    <a href="../board/toSharingBoard.html">나눔중 이에요.</a>
-                </li>
-                <li><a href="../board/toBuyBoard.html">구매합니다 ~!</a></li>
-            </ul>
-        </aside>
         <!-- 섹션 시작 -->
         <section class="main__section section-1">
             <div class="main__section-container">
