@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Board">
+	<select id="BoardAll" parameterType="Board" resultType="Board">
+      	 select * 
+      	 from 	(select rownum rn, a.* 
+      	 		 from 	(select * from post where bId = 5 order by pNum desc) a) 
+      	 where 	rn between #{start} and	 #{end}   
+    </select>
+    <select id="blTotal" resultType="int">
+   		select count(*) from post where bId = 5
+   	</select> 
+   	<select id="blackListBoardRead" parameterType="int" resultType="Board">
+   		select * From Post Where pNum = #{pNum} and bId = 5
+   	</select>
+   	<insert id="insert"	parameterType="Board">
+   		insert into post values (#{bId}, #{pNum}, #{mId}, #{ctCode}, #{psCode}, #{pTitle}, #{pPrice}, sysdate, #{pContent}, #{pHit}, #{pPicks}, #{pImg1}, #{pImg2}, #{pImg3}, #{pImg4}, #{pImg5}) 
+   	</insert>
+   	<update id="sjblackListBoardUpdate" parameterType="Board">
+   		update post set  mId = #{mId}, ctCode = #{ctCode}, psCode = #{psCode}, pTitle = #{pTitle}, pPrice = #{pPrice}, pDate = sysdate, pContent = #{pContent}, pHit = #{pHit}, pPicks = #{pPicks}, pImg1 = #{pImg1}, pImg2 = #{pImg2}, pImg3 = #{pImg3}, pImg4 = #{pImg4}, pImg5 = #{pImg5} where pNum = #{pNum} and bId =5
+   	</update>
+</mapper>
