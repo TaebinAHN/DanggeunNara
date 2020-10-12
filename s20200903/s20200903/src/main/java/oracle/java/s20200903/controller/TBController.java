@@ -36,6 +36,9 @@ public class TBController {
 	@Autowired
 	private JavaMailSender mailSender; 
 	
+	
+	// 페이지 호출 부분
+	
 /*	@RequestMapping(value="list")
 	public String list(TBMember tbm, String currentPage, Model model) {
 		int total = ts.total();
@@ -126,6 +129,16 @@ public class TBController {
 		return "TBmyPage";
 	}
 	
+	@RequestMapping(value="TBuserLeave.do")
+	public String TBuserLeave (TBMember tbm, Model model) {
+		
+		return "TBuserLeave.do";
+	}
+	
+	
+	// 기능부분
+	
+	
 	@RequestMapping (value="joinMember", method=RequestMethod.POST)
 	public String joinMember(TBMember tbm ,Model model) {
 		System.out.println("joinMember() start,..");
@@ -153,21 +166,17 @@ public class TBController {
 	
 	@RequestMapping (value="loginMember", method=RequestMethod.POST)
 	public String loginMember(HttpServletRequest request, HttpServletResponse response ,TBMember tbm, Model model) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		session.setAttribute("mId", tbm.getmId());
+
 		
 		System.out.println("tbm.getmLevel()=>"+tbm.getmLevel());
-
-		System.out.println(session.getAttribute("mId"));
-		System.out.println(session.getAttribute("mNick"));
-		System.out.println(session.getAttribute("mName"));
 		int result = ts.loginMember(tbm);
 		response.setContentType("text/html charset=UTF-8");
 		PrintWriter pw = response.getWriter();
 		if(result > 0) {
 			pw.println("<script>alert('어서오세요 환영합니다~');</script>");
 			pw.flush();
-			System.out.println("loginMember result 값 : " + result);
+			HttpSession session = request.getSession();
+			session.setAttribute("mId", tbm.getmId());
 			if(tbm.getmLevel() == 3) {
 				pw.println("<script>alert('관리자님 어서오세요.');</script>");
 				pw.flush();
@@ -282,6 +291,15 @@ public class TBController {
 		
 		return "TBfindPwReset";
 	}
+	
+	@RequestMapping (value="userInfoUpdate")
+	public String userInfoUpdate (TBMember tbm, Model model) {
+		
+		return "userInfoUpdate.do";
+	}
+	
+	
+	// 중복검사 AJAX
 	
 	
 	@RequestMapping(value="checkid", produces = "application/text;charset=UTF-8")
