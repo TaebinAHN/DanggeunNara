@@ -30,7 +30,7 @@
     width: 150px;
 }
 
-.buy-board-update__category--text {
+.buy-board-update__category--text{
     border: none;
     border-bottom: 1px solid var(--color-border);
     display: none;
@@ -40,7 +40,7 @@
 .buy-board-update__info {
     align-items: center;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 .buy-board-update__info div {
@@ -65,6 +65,10 @@
 .buy-board-update__location--input {
     border: none;
     pointer-events: none;
+}
+
+.buy-board-update__price--input {
+    border-bottom: 1px solid var(--color-border) !important;
 }
 
 .buy-board-update__image {
@@ -143,6 +147,7 @@
     width: 100%;
 }
 
+.buy-board-update__price input::placeholder,
 .buy-board-update__title textarea::placeholder,
 .buy-board-update__content textarea::placeholder {
     color: var(--color-input-color);

@@ -1,16 +1,9 @@
-@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
 @import "header.css";
 @import "fixed.css";
 @import "index.css";
-@import "userManageList.css";
-@import "userDetail.css";
 @import "join.css";
 @import "login.css";
 @import "myPage.css";
-@import "picksList.css";
-@import "toSaleList.css";
-@import "toBuyList.css";
-@import "toSharingList.css";
 @import "userLeave.css";
 @import "findPw.css";
 @import "findPwReset.css";
