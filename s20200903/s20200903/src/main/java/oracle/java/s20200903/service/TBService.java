@@ -18,4 +18,7 @@ public interface TBService {
 	int				TBfindPwgo(TBMember tbm);
 	int				passwdUpdate(TBMember tbm);
 	TBMember		TBmyPageUp(String mId);
+	int				userInfoUpdate(TBMember tbm);
+	int				checkMlevel(TBMember tbm);
+	
 }

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.ietf.jgss.Oid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -65,31 +66,17 @@ public class TBController {
 	
 	@RequestMapping (value="TBlogin")
 	public String login(TBMember tbm, Model model) {
-		System.out.println("로그인 페이지로 간다~~~~");
 		return "TBlogin";
 	}
 	
-/*	@RequestMapping(value="mainLogin", method=RequestMethod.POST) 
-	public String mainLogin(Model model) {
-		
-		return "mainLogin";
-	}*/
-	
 	@RequestMapping (value="TBjoinForm")
 	public String joinForm(Model model) {
-		System.out.println("회원가입 페이지로 간다...");
 		return "TBjoinForm";
 		
 	}
 	
-	@RequestMapping (value="TBfindPw", method=RequestMethod.GET)
-	public String TBfindPwGet(Model model) {
-		System.out.println("TBController TBfindPwGet start...");
-		return "TBfindPw";
-	}
 	@RequestMapping (value="TBfindPw", method=RequestMethod.POST)
 	public String TBfindPwPost(Model model) {
-		System.out.println("TBController TBfindPwPost start...");
 		return "TBfindPw";
 	}
 	
@@ -114,16 +101,8 @@ public class TBController {
 	
 	@RequestMapping(value="TBmyPage")
 	public String TBmyPage (HttpServletRequest request, String mId, Model model) {
-		System.out.println("controller TBmyPageUp start...");
 		mId = request.getParameter("mId");
 		TBMember tbm = ts.TBmyPageUp(mId);
-		System.out.println("TBmyPageUp controller"+mId);
-		System.out.println("controller ts.TBmyPageUp after..");
-		if (tbm != null) {
-			System.out.println("값 있음");
-			System.out.println(tbm.getmName());
-			System.out.println(tbm.getmNick());
-		}
 		model.addAttribute("tbm", tbm);
 		
 		return "TBmyPage";
@@ -139,11 +118,23 @@ public class TBController {
 	// 기능부분
 	
 	
+	@RequestMapping(value="userInfoUpdate")
+	public String userInfoUpdate (HttpServletRequest request, HttpServletResponse response, TBMember tbm, Model model) throws IOException {
+		int result = ts.userInfoUpdate(tbm);
+		PrintWriter pw = response.getWriter();
+		response.setContentType("text/html charset=UTF-8");
+		if(result > 0) {
+			System.out.println("수정되었다..");
+			pw.println("<script>alert('회원정보가 수정 되었습니다. 다시 로그인 후 이용 부탁드립니다.');</script>");
+			pw.flush();
+		}
+		
+		return "forward:TBlogin.do";
+	}
+	
 	@RequestMapping (value="joinMember.do", method=RequestMethod.POST)
 	public String joinMember(TBMember tbm ,Model model) {
-		System.out.println("joinMember() start,..");
 		int result = ts.joinMember(tbm);
-		System.out.println("TBController joinMember start..." + result);
 		if(result > 0) {
 			System.out.println("값 있다....");
 			System.out.println(result);
@@ -156,27 +147,31 @@ public class TBController {
 	
 	@RequestMapping (value="loginMember", method=RequestMethod.POST)
 	public String loginMember(HttpServletRequest request, HttpServletResponse response ,TBMember tbm, Model model) throws ServletException, IOException {	
-		System.out.println("tbm.getmLevel()=>"+tbm.getmLevel());
 		int result = ts.loginMember(tbm);
 		response.setContentType("text/html charset=UTF-8"); 
 		PrintWriter pw = response.getWriter();
 		if(result > 0) {
-			pw.println("<script>alert('어서오세요 환영합니다~');</script>");
-			pw.flush();
-			System.out.println(tbm.getmId());
-			System.out.println(tbm.getmPw());
-			HttpSession session = request.getSession();
-			session.setAttribute("mId", tbm.getmId());
-			if(tbm.getmLevel() == 3) {
+			int checklevel = ts.checkMlevel(tbm);
+			if(checklevel == 3) {
+				HttpSession session = request.getSession();
+				session.setAttribute("mId", tbm.getmId());
 				pw.println("<script>alert('관리자님 어서오세요.');</script>");
 				pw.flush();
 				return "forward:main.do";
+			} else if(checklevel == 2) {
+				pw.println("<script>alert('이용정지된 계정입니다.');</script>");
+				pw.flush();
+				return "TBlogin";
 			}
+			pw.println("<script>alert('어서오세요 환영합니다~');</script>");
+			pw.flush();
+			HttpSession session = request.getSession();
+			session.setAttribute("mId", tbm.getmId());
 			return "forward:main.do";
 		} else {
 			pw.println("<script>alert('아이디와 비밀번호를 확인해주세요.');</script>");
 			pw.flush();
-			return "TBlogin.do";
+			return "TBlogin";
 		} 
 	}
 	
@@ -260,7 +255,6 @@ public class TBController {
 		
 		
 		String adminMail = "danggeunnara@gmail.com"; //보내는 사람 메일
-		System.out.println(adminMail);
 		String userMail = (String) session.getAttribute("mId"); // 받는사람 메일
 		String mailTitle = "당근나라 비밀번호 재설정 링크 입니다.";
 		try {
@@ -272,20 +266,11 @@ public class TBController {
 			mailmessageHelper.setText("http://localhost:8186/s20200903/TBfindPwUpdate.do?mId="+tbm.getmId());
 			mailSender.send(mailmessage);
 			model.addAttribute("check", 1);          // 정상 전달
-			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			model.addAttribute("check", 2);			 // 전송 실패
 		}
-		
-		
 		return "TBfindPwReset";
-	}
-	
-	@RequestMapping (value="userInfoUpdate")
-	public String userInfoUpdate (TBMember tbm, Model model) {
-		
-		return "userInfoUpdate.do";
 	}
 	
 	
@@ -295,7 +280,6 @@ public class TBController {
 	@RequestMapping(value="checkid", produces = "application/text;charset=UTF-8")
 	@ResponseBody
 	public String idCheck(String mId, Model model) {
-//		System.out.println("mId => " + mId);
 		String sId = ts.idCheck(mId);
 		if(sId==null) {
 			model.addAttribute("msg", "사용가능한 아이디 입니다.");
@@ -315,7 +299,6 @@ public class TBController {
 		} else {
 			model.addAttribute("msg", "중복된 닉네임 입니다.");
 		}
-		System.out.println("sNick =>" + sNick);
 		return sNick;
 	}
 }

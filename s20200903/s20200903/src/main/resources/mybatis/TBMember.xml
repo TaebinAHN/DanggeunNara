@@ -36,4 +36,7 @@
 	<select id="TBmyPageUp" parameterType="java.lang.String" resultType="TBMember">
 		select * from member where mId=#{mId}
 	</select>
+	<update id="userInfoUpdate" parameterType="TBMember">
+		update member set mNick=#{mNick}, mPw=#{mPw}, mName=#{mName}, mAddr=#{mAddr}, mAddr2=#{mAddr2}, mTel=#{mTel}, mSms=#{mSms}, mMail=#{mMail} where mId=#{mId}
+	</update>
 </mapper>

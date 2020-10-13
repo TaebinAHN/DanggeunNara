@@ -69,7 +69,7 @@
         <!-- 섹션 시작 -->
         <!-- 각 input의 value값을 DB에서 가져올 값으로 수정해주세요 -->
         <section class="section">
-        	<form action="userInfoUpdate">
+        	<form action="userInfoUpdate.do">
             <div class="mypage">
                 <div class="mypage__head">
                     <h1 class="mypage__title">회원정보 수정</h1>
@@ -141,7 +141,6 @@
                             </th>
                             <td>
                                 <input
-                                	name="mPw"
                                     class="mypage--form__input"
                                     type="password"
                                     placeholder="기존의 비밀번호를 입력해주세요"
@@ -158,6 +157,7 @@
                             <td>
                                 <input
                                     id="pw__write"
+                                    name="mPw"
                                     class="mypage--form__input pw__write"
                                     type="password"
                                     placeholder="새 비밀번호를 입력해주세요"
@@ -217,6 +217,7 @@
                                     id="address"
                                     class="mypage--form__input"
                                     type="text"
+                                    name="mAddr"
                                     placeholder="주소를 검색해 주세요"
                                     value="${tbm.mAddr}"
                                     maxlength="16"
@@ -234,6 +235,7 @@
                                 <input
                                     id="sample6_detailAddress"
                                     class="mypage--form__input"
+                                    name="mAddr2"
                                     type="text"
                                     placeholder="상세주소를 입력해 주세요"
                                     value="${tbm.mAddr2}"
@@ -1593,6 +1595,7 @@
                                         <label for="sms"
                                             ><input
                                                 id="sms"
+                                                name="mSms"
                                                 type="checkbox"
                                                 class="agree--select"
                                             />
@@ -1605,6 +1608,7 @@
                                         ><label for="email"
                                             ><input
                                                 id="email"
+                                                name="mMail"
                                                 class="agree--select"
                                                 type="checkbox"
                                             />

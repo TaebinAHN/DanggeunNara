@@ -84,6 +84,20 @@ public class TBServiceImpl implements TBService {
 	}
 
 
+	@Override
+	public int userInfoUpdate(TBMember tbm) {
+		// TODO Auto-generated method stub
+		return td.userInfoUpdate(tbm);
+	}
+
+
+	@Override
+	public int checkMlevel(TBMember tbm) {
+		// TODO Auto-generated method stub
+		return td.checkMlevel(tbm);
+	}
+
+
 
 
 }
