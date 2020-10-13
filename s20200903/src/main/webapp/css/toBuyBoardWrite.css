@@ -28,7 +28,7 @@
 .buy-board-write__info {
     align-items: center;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 .buy-board-write__info div {
@@ -53,6 +53,10 @@
 .buy-board-write__location--input {
     border: none;
     pointer-events: none;
+}
+
+.buy-board-write__price--input {
+    border-bottom: 1px solid var(--color-border) !important;
 }
 
 .buy-board-write__image {
@@ -131,6 +135,7 @@
     width: 100%;
 }
 
+.buy-board-write__price input::placeholder,
 .buy-board-write__title textarea::placeholder,
 .buy-board-write__content textarea::placeholder {
     color: var(--color-input-color);
