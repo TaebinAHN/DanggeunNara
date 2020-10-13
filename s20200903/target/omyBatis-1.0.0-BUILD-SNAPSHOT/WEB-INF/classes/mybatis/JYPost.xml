@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="JYPost">
+
+	<!-- 나눔 글 total -->
+	<select id="total_Sharing" resultType="int">
+		select count(*) from post where bId=3
+	</select>
+	
+	<!-- 공지사항 글 total -->
+	<select id="total_Notice" resultType="int">
+		select count(*) from post where bId=0
+	</select>
+
+	<!-- 나눔 글 목록 출력 -->
+	<select id="selectSharing" parameterType="JYPost" resultType="JYPost">
+    <![CDATA[
+		select * 
+		from 
+			  (  
+			    select rownum rn, a.* 
+			    from   (select * from JYJoin where bid=3 order by pNum desc) a
+			   )
+		where rn >=#{start} and rn <= #{end}
+      ]]>
+        <!--     select * from (select rownum rn, a.* from (select * from JYJoin where bid=3) a) 
+      where rn >= #{start} and rn <= #{end}
+      order by pNum desc -->
+      
+	</select>
+
+	<!-- 나눔 글 상세보기 -->
+	<select id="selectSharingDetail" parameterType="JYPost" resultType="JYPost">
+		select * From JYJoin where bId=#{bId} and pNum=#{pNum}
+	</select>
+
+	<!-- 나눔 글 등록 -->
+	<insert id="insertSharing" parameterType="JYPost">
+ 	<![CDATA[
+		insert into post(bId, pNum, mId, ctCode, psCode, pTitle, pPrice, pDate, pContent, pHit, pPicks, pImg1, pImg2, pImg3, pImg4, pImg5)
+		values(#{bId},SEQ_POST_pNum.nextval,#{mId},#{ctCode},#{psCode},#{pTitle},0,sysdate,#{pContent},0,0,#{pImg1},#{pImg2},#{pImg3},#{pImg4},#{pImg5} )
+	]]>
+	</insert>
+	 
+	<!-- 나눔 글 수정 화면 출력  -->
+	<select id="updateSharingForm" parameterType="JYPost" resultType="JYPost">
+		select * From JYJoin where bId=3 and pNum=#{pNum}
+	</select>
+	
+	<!-- 나눔 글 수정 -->
+	<update id="updateSharing" parameterType="JYPost">
+		update post set pTitle=#{pTitle}, pContent=#{pContent}, ctCode=#{ctCode}, psCode=#{psCode},
+		pImg1=#{pImg1}, pImg2=#{pImg2}, pImg3=#{pImg3}, pImg4=#{pImg4}, pImg5=#{pImg5}
+		where bId=#{bId} and pNum=#{pNum}		
+ 
+	</update>
+	
+	<!-- 나눔글 삭제 -->
+	<delete id="deleteSharing" parameterType="JYPost">
+		delete from post where bId=#{bId} and pNum=#{pNum}
+	</delete>
+	
+
+
+	<!-- 공지사항 글목록 출력 -->
+	<select id="selectNotice" parameterType="JYPost" resultType="JYPost">
+    <![CDATA[
+      select * from (select rownum rn, a.* from (select * from post where bid=0) a) 
+      where rn >= #{start} and rn <= #{end}   	
+      order by pNum desc
+      ]]>
+	</select>
+
+	<!-- 공지사항 글 상세보기 -->
+	<select id="selectNoticeDetail" parameterType="JYPost"
+		resultType="JYPost">
+		select * From post where bId=#{bId} and pNum=#{pNum}
+	</select>
+
+	<!-- 공지사항 등록 -->
+	<insert id="insertNotice" parameterType="JYPost">
+ 	<![CDATA[
+		insert into post(bId, pNum, mId, ctCode, psCode, pTitle, pPrice, pDate, pContent, pHit, pPicks, pImg1, pImg2, pImg3, pImg4, pImg5)
+		values(#{bId},SEQ_POST_pNum.nextval,#{mId},0,0,#{pTitle},0,sysdate,#{pContent},0,0,#{pImg1},#{pImg2},#{pImg3},#{pImg4},#{pImg5} )
+	]]>
+	</insert>
+
+	<!-- 공지사항 수정 화면 출력 -->
+	<select id="updateNoticeForm" parameterType="JYPost" resultType="JYPost">
+		select * From post where bId=#{bId} and pNum=#{pNum}
+	</select>
+
+	<!-- 공지사항 수정 -->
+	<update id="updateNotice" parameterType="JYPost">
+		update post set pTitle=#{pTitle}, pContent=#{pContent},
+		pImg1=#{pImg1}, pImg2=#{pImg2}, pImg3=#{pImg3}, pImg4=#{pImg4}, pImg5=#{pImg5}
+		where bId=#{bId} and pNum=#{pNum}		
+ 
+	</update>
+	
+	<delete id="deleteNotice" parameterType="JYPost">
+		delete from post where bId=#{bId} and pNum=#{pNum}
+	</delete>
+
+
+<!--	조회수 	
+	
+	<update id="updateHit" parameterType="int">
+		update post set pHit = pHit+1
+		where bId=#{bId} and pNum=#{pNum}
+	</update> -->
+
+
+
+
+
+
+</mapper>
