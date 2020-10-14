@@ -26,7 +26,7 @@ import oracle.java.s20200903.service.HBService;
 import oracle.java.s20200903.service.Paging;
 import oracle.java.s20200903.util.FileUtils;
 
-@Controller
+@Controller 
 public class HBController {
 	
 	@Resource(name="hbService")
