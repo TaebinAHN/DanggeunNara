@@ -123,6 +123,20 @@ public class TBDaoImpl implements TBDao {
 			System.out.println(e.getMessage());
 		}
 		return result;
+	}
+
+	@Override
+	public int TBMemberLeave(TBMember tbm) {
+		int result = 0;
+		result = session.update("TBMemberLeave", tbm);
+		return result;
+	}
+
+	@Override
+	public int checkMstatus(TBMember tbm) {
+		int result = 0;
+		result = session.selectOne("checkMstatus", tbm);
+		return result;
 	} 
 
 

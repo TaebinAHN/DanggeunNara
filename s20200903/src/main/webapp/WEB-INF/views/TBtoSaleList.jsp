@@ -25,103 +25,133 @@
             href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
             rel="stylesheet"
         />
-    </head>
+</head>
 
 <body>
     <!-- 섹션 시작 -->
     <!-- 각 input의 value값을 DB에서 가져올 값으로 수정해주세요 -->
     <section class="section">
-        <div class="to-buy-list">
-            <h1 class="list-title">내 구매내역</h1>
-            <div class="to-buy-list__container">
-                <h2 class="to-buy-list__title">거래가능</h1>
+        <div class="to-sale-list">
+            <h1 class="list-title">내 판매내역</h1>
+            <div class="to-sale-list__container">
+                <h2 class="to-sale-list__title">거래가능</h1>
                     <!-- 각 최신글 3개만 띄어주시면 됩니다 -->
-                    <!-- 구매내역 없을때 띄우기 -->
-                    <!-- <div class="to-buy-list__text">
-                        <strong>구매 내역이 없어요 !</strong>
-                        <a href="../board/toBuyBoard.html"
+                    <!-- 판매내역 없을때 띄우기 -->
+                    <!-- <div class="to-sale-list__text">
+                        <strong>판매 내역이 없어요 !</strong>
+                        <a href="../board/toSaleBoard.html"
                             ><p>구경가기</p>
                         </a>
                     </div> -->
-                    <!-- 구매내역 있을때 -->
+                    <!-- 판매내역 있을떄 -->
                     <!-- 각 최신글 3개만 띄어주시면 됩니다 -->
-                    <div class="to-buy-list__content">
+                    <div class="to-sale-list__content">
                         <!-- 태그 안에 있는 더미 데이터들은 틀을 보기 위함이며 실제 작업시엔 해당 데이터를 불러 올 수 있도록 변경 부탁드립니다. -->
-                        <article class="to-buy-list__article">
-                            <a href="../board/toBuyBoardRead.html">
-                                <div class="to-buy-list__content--thumbnail">
+                        <article class="to-sale-list__article">
+                            <a href="../board/toSaleBoardRead.html">
+                                <div class="to-sale-list__content--thumbnail">
                                     <img src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/3c06cb158997b8cd4061052c6b457887e4c60496704b6149d4197a6d791ad261.webp?q=82&s=300x300&t=crop"
                                         alt="thumbnail" />
                                 </div>
-                                <div class="to-buy-list__content--text">
-                                    <h1 class="to-buy-list__content--text__title">
+                                <div class="to-sale-list__content--text">
+                                    <h1 class="to-sale-list__content--text__title">
                                         5단 서랍장 입니다
                                     </h1>
-                                    <p class="to-buy-list__content--text__address">
+                                    <p class="to-sale-list__content--text__address">
                                         서울 송파구 석촌동
                                     </p>
-                                    <div class="to-buy-list__content--text__date">
-                                        <div class="to-buy-list__content--date">
+                                    <div class="to-sale-list__content--text__date">
+                                        <div class="to-sale-list__content--date">
                                             2020.09.26
                                         </div>
-                                        <div class="to-buy-list__content--hit">
+                                        <div class="to-sale-list__content--hit">
                                             조회수 30
+                                        </div>
+                                    </div>
+                                    <div class="to-sale-list__content--text__price">
+                                        <div class="to-sale-list__content--price">
+                                            15,000원
+                                        </div>
+                                        <div class="to-sale-list__content--picks">
+                                            <img src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/like-8111aa74d4b1045d7d5943a901896992574dd94c090cef92c26ae53e8da58260.svg"
+                                                alt="picks" />
+                                            4
                                         </div>
                                     </div>
                                 </div>
                             </a>
                         </article>
                         <!-- 이 아래부턴 삭제 부탁드립니다. -->
-                        <article class="to-buy-list__article">
-                            <a href="../board/toBuyBoardRead.html">
-                                <div class="to-buy-list__content--thumbnail">
+                        <article class="to-sale-list__article">
+                            <a href="../board/toSaleBoardRead.html">
+                                <div class="to-sale-list__content--thumbnail">
                                     <img src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/74ead2897bfdc979dfdc817ea9c966c5dfd876d7479410549c8ceefc29271ebf.webp?q=82&s=300x300&t=crop"
                                         alt="thumbnail" />
                                 </div>
-                                <div class="to-buy-list__content--text">
-                                    <h1 class="to-buy-list__content--text__title">
+                                <div class="to-sale-list__content--text">
+                                    <h1 class="to-sale-list__content--text__title">
                                         스위스크로스 캠핑체어 팝니다.
                                     </h1>
-                                    <p class="to-buy-list__content--text__address">
+                                    <p class="to-sale-list__content--text__address">
                                         서울 송파구 석촌동
                                     </p>
-                                    <div class="to-buy-list__content--text__date">
-                                        <div class="to-buy-list__content--date">
+                                    <div class="to-sale-list__content--text__date">
+                                        <div class="to-sale-list__content--date">
                                             2020.09.25
                                         </div>
-                                        <div class="to-buy-list__content--hit">
+                                        <div class="to-sale-list__content--hit">
                                             조회수 30
+                                        </div>
+                                    </div>
+                                    <div class="to-sale-list__content--text__price">
+                                        <div class="to-sale-list__content--price">
+                                            20,000원
+                                        </div>
+                                        <div class="to-sale-list__content--picks">
+                                            <img src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/like-8111aa74d4b1045d7d5943a901896992574dd94c090cef92c26ae53e8da58260.svg"
+                                                alt="picks" />
+                                            1
                                         </div>
                                     </div>
                                 </div>
                             </a>
                         </article>
-                        <article class="to-buy-list__article">
-                            <a href="../board/toBuyBoardRead.html">
-                                <div class="to-buy-list__content--thumbnail">
+                        <article class="to-sale-list__article">
+                            <a href="../board/toSaleBoardRead.html">
+                                <div class="to-sale-list__content--thumbnail">
                                     <img src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/e109941c1a68f4bef813c0a46f20ab1060b67f92c7510a14c83cdb76ef77ba1d.webp?q=82&s=300x300&t=crop"
                                         alt="thumbnail" />
                                 </div>
-                                <div class="to-buy-list__content--text">
-                                    <h1 class="to-buy-list__content--text__title">
+                                <div class="to-sale-list__content--text">
+                                    <h1 class="to-sale-list__content--text__title">
                                         6단 미니벨로 자전거 짐받이, 싸게팔아요
                                     </h1>
-                                    <p class="to-buy-list__content--text__address">
+                                    <p class="to-sale-list__content--text__address">
                                         서울 송파구 석촌동
                                     </p>
-                                    <div class="to-buy-list__content--text__date">
-                                        <div class="to-buy-list__content--date">
+                                    <div class="to-sale-list__content--text__date">
+                                        <div class="to-sale-list__content--date">
                                             2020.09.22
                                         </div>
-                                        <div class="to-buy-list__content--hit">
+                                        <div class="to-sale-list__content--hit">
                                             조회수 142
+                                        </div>
+                                    </div>
+                                    <div class="to-sale-list__content--text__price">
+                                        <div class="to-sale-list__content--price">
+                                            60,000원
+                                        </div>
+                                        <div class="to-sale-list__content--picks">
+                                            <img src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/like-8111aa74d4b1045d7d5943a901896992574dd94c090cef92c26ae53e8da58260.svg"
+                                                alt="picks" />
+                                            25
                                         </div>
                                     </div>
                                 </div>
                             </a>
                         </article>
                     </div>
-                    <div class="to-buy-list__page-num-container">
+                    <div class="to-sale-list__page-num-container">
                         <ul class="page-num-container">
                             <a href="#">
                                 <li class="page-num-container__left-btn page-num-container__btn">
@@ -153,116 +183,158 @@
                         </ul>
                     </div>
             </div>
-            <div class="to-buy-list__container">
-                <h2 class="to-buy-list__title">거래중</h1>
+            <div class="to-sale-list__container">
+                <h2 class="to-sale-list__title">거래중</h1>
                     <!-- 각 최신글 3개만 띄어주시면 됩니다 -->
-                    <!-- 구매내역 없을때 띄우기 -->
-                    <div class="to-buy-list__text">
-                        <strong>구매 내역이 없어요 !</strong>
-                        <a href="../board/toBuyBoard.html">
+                    <!-- 판매내역 없을때 띄우기 -->
+                    <div class="to-sale-list__text">
+                        <strong>판매 내역이 없어요 !</strong>
+                        <a href="../board/toSaleBoard.html">
                             <p>구경가기</p>
                         </a>
                     </div>
-                    <!-- 구매내역 있을때 -->
-                    <!-- <div class="to-buy-list__content">
-                        <article class="to-buy-list__article">
+                    <!-- 판매내역 있을떄 -->
+                    <!-- <div class="to-sale-list__content">
+                        <article class="to-sale-list__article">
                             <a href="../board/toSharingBoardRead.html">
-                                <div class="to-buy-list__content--thumbnail">
+                                <div class="to-sale-list__content--thumbnail">
                                     <img
                                         src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/3c06cb158997b8cd4061052c6b457887e4c60496704b6149d4197a6d791ad261.webp?q=82&s=300x300&t=crop"
                                         alt="thumbnail"
                                     />
                                 </div>
-                                <div class="to-buy-list__content--text">
+                                <div class="to-sale-list__content--text">
                                     <h1
-                                        class="to-buy-list__content--text__title"
+                                        class="to-sale-list__content--text__title"
                                     >
                                         5단 서랍장 입니다
                                     </h1>
                                     <p
-                                        class="to-buy-list__content--text__address"
+                                        class="to-sale-list__content--text__address"
                                     >
                                         서울 송파구 석촌동
                                     </p>
                                     <div
-                                        class="to-buy-list__content--text__date"
+                                        class="to-sale-list__content--text__date"
                                     >
-                                        <div class="to-buy-list__content--date">
+                                        <div class="to-sale-list__content--date">
                                             2020.09.26
                                         </div>
-                                        <div class="to-buy-list__content--hit">
+                                        <div class="to-sale-list__content--hit">
                                             조회수 30
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="to-sale-list__content--text__price"
+                                    >
+                                        <div class="to-sale-list__content--price">
+                                            무료나눔
+                                        </div>
+                                        <div class="to-sale-list__content--picks">
+                                            <img
+                                                src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/like-8111aa74d4b1045d7d5943a901896992574dd94c090cef92c26ae53e8da58260.svg"
+                                                alt="picks"
+                                            />
+                                            4
                                         </div>
                                     </div>
                                 </div>
                             </a>
                         </article>
-                        <article class="to-buy-list__article">
+                        <article class="to-sale-list__article">
                             <a href="../board/toSharingBoardRead.html">
-                                <div class="to-buy-list__content--thumbnail">
+                                <div class="to-sale-list__content--thumbnail">
                                     <img
                                         src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/74ead2897bfdc979dfdc817ea9c966c5dfd876d7479410549c8ceefc29271ebf.webp?q=82&s=300x300&t=crop"
                                         alt="thumbnail"
                                     />
                                 </div>
-                                <div class="to-buy-list__content--text">
+                                <div class="to-sale-list__content--text">
                                     <h1
-                                        class="to-buy-list__content--text__title"
+                                        class="to-sale-list__content--text__title"
                                     >
                                         스위스크로스 캠핑체어 팝니다.
                                     </h1>
                                     <p
-                                        class="to-buy-list__content--text__address"
+                                        class="to-sale-list__content--text__address"
                                     >
                                         서울 송파구 석촌동
                                     </p>
                                     <div
-                                        class="to-buy-list__content--text__date"
+                                        class="to-sale-list__content--text__date"
                                     >
-                                        <div class="to-buy-list__content--date">
+                                        <div class="to-sale-list__content--date">
                                             2020.09.25
                                         </div>
-                                        <div class="to-buy-list__content--hit">
+                                        <div class="to-sale-list__content--hit">
                                             조회수 30
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="to-sale-list__content--text__price"
+                                    >
+                                        <div class="to-sale-list__content--price">
+                                            무료나눔
+                                        </div>
+                                        <div class="to-sale-list__content--picks">
+                                            <img
+                                                src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/like-8111aa74d4b1045d7d5943a901896992574dd94c090cef92c26ae53e8da58260.svg"
+                                                alt="picks"
+                                            />
+                                            1
                                         </div>
                                     </div>
                                 </div>
                             </a>
                         </article>
-                        <article class="to-buy-list__article">
+                        <article class="to-sale-list__article">
                              <a href="../board/toSharingBoardRead.html">
-                                <div class="to-buy-list__content--thumbnail">
+                                <div class="to-sale-list__content--thumbnail">
                                     <img
                                         src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/e109941c1a68f4bef813c0a46f20ab1060b67f92c7510a14c83cdb76ef77ba1d.webp?q=82&s=300x300&t=crop"
                                         alt="thumbnail"
                                     />
                                 </div>
-                                <div class="to-buy-list__content--text">
+                                <div class="to-sale-list__content--text">
                                     <h1
-                                        class="to-buy-list__content--text__title"
+                                        class="to-sale-list__content--text__title"
                                     >
                                         6단 미니벨로 자전거 짐받이, 싸게팔아요
                                     </h1>
                                     <p
-                                        class="to-buy-list__content--text__address"
+                                        class="to-sale-list__content--text__address"
                                     >
                                         서울 송파구 석촌동
                                     </p>
                                     <div
-                                        class="to-buy-list__content--text__date"
+                                        class="to-sale-list__content--text__date"
                                     >
-                                        <div class="to-buy-list__content--date">
+                                        <div class="to-sale-list__content--date">
                                             2020.09.22
                                         </div>
-                                        <div class="to-buy-list__content--hit">
+                                        <div class="to-sale-list__content--hit">
                                             조회수 142
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="to-sale-list__content--text__price"
+                                    >
+                                        <div class="to-sale-list__content--price">
+                                            무료나눔
+                                        </div>
+                                        <div class="to-sale-list__content--picks">
+                                            <img
+                                                src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/like-8111aa74d4b1045d7d5943a901896992574dd94c090cef92c26ae53e8da58260.svg"
+                                                alt="picks"
+                                            />
+                                            25
                                         </div>
                                     </div>
                                 </div>
                             </a>
                         </article>
                     </div>
-                    <div class="to-buy-list__page-num-container">
+                    <div class="to-sale-list__page-num-container">
                         <ul class="page-num-container">
                             <a href="#">
                                 <li
@@ -296,116 +368,158 @@
                         </ul>
                     </div> -->
             </div>
-            <div class="to-buy-list__container">
-                <h2 class="to-buy-list__title">거래완료</h1>
+            <div class="to-sale-list__container">
+                <h2 class="to-sale-list__title">거래완료</h1>
                     <!-- 각 최신글 3개만 띄어주시면 됩니다 -->
-                    <!-- 구매내역 없을때 띄우기 -->
-                    <div class="to-buy-list__text">
-                        <strong>구매 내역이 없어요 !</strong>
-                        <a href="../board/toBuyBoard.html">
+                    <!-- 판매내역 없을때 띄우기 -->
+                    <div class="to-sale-list__text">
+                        <strong>판매 내역이 없어요 !</strong>
+                        <a href="../board/toSaleBoard.html">
                             <p>구경가기</p>
                         </a>
                     </div>
-                    <!-- 구매내역 있을때 -->
-                    <!-- <div class="to-buy-list__content">
-                        <article class="to-buy-list__article">
+                    <!-- 판매내역 있을떄 -->
+                    <!-- <div class="to-sale-list__content">
+                        <article class="to-sale-list__article">
                             <a href="../board/toSharingBoardRead.html">
-                                <div class="to-buy-list__content--thumbnail">
+                                <div class="to-sale-list__content--thumbnail">
                                     <img
                                         src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/3c06cb158997b8cd4061052c6b457887e4c60496704b6149d4197a6d791ad261.webp?q=82&s=300x300&t=crop"
                                         alt="thumbnail"
                                     />
                                 </div>
-                                <div class="to-buy-list__content--text">
+                                <div class="to-sale-list__content--text">
                                     <h1
-                                        class="to-buy-list__content--text__title"
+                                        class="to-sale-list__content--text__title"
                                     >
                                         5단 서랍장 입니다
                                     </h1>
                                     <p
-                                        class="to-buy-list__content--text__address"
+                                        class="to-sale-list__content--text__address"
                                     >
                                         서울 송파구 석촌동
                                     </p>
                                     <div
-                                        class="to-buy-list__content--text__date"
+                                        class="to-sale-list__content--text__date"
                                     >
-                                        <div class="to-buy-list__content--date">
+                                        <div class="to-sale-list__content--date">
                                             2020.09.26
                                         </div>
-                                        <div class="to-buy-list__content--hit">
+                                        <div class="to-sale-list__content--hit">
                                             조회수 30
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="to-sale-list__content--text__price"
+                                    >
+                                        <div class="to-sale-list__content--price">
+                                            무료나눔
+                                        </div>
+                                        <div class="to-sale-list__content--picks">
+                                            <img
+                                                src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/like-8111aa74d4b1045d7d5943a901896992574dd94c090cef92c26ae53e8da58260.svg"
+                                                alt="picks"
+                                            />
+                                            4
                                         </div>
                                     </div>
                                 </div>
                             </a>
                         </article>
-                        <article class="to-buy-list__article">
+                        <article class="to-sale-list__article">
                             <a href="../board/toSharingBoardRead.html">
-                                <div class="to-buy-list__content--thumbnail">
+                                <div class="to-sale-list__content--thumbnail">
                                     <img
                                         src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/74ead2897bfdc979dfdc817ea9c966c5dfd876d7479410549c8ceefc29271ebf.webp?q=82&s=300x300&t=crop"
                                         alt="thumbnail"
                                     />
                                 </div>
-                                <div class="to-buy-list__content--text">
+                                <div class="to-sale-list__content--text">
                                     <h1
-                                        class="to-buy-list__content--text__title"
+                                        class="to-sale-list__content--text__title"
                                     >
                                         스위스크로스 캠핑체어 팝니다.
                                     </h1>
                                     <p
-                                        class="to-buy-list__content--text__address"
+                                        class="to-sale-list__content--text__address"
                                     >
                                         서울 송파구 석촌동
                                     </p>
                                     <div
-                                        class="to-buy-list__content--text__date"
+                                        class="to-sale-list__content--text__date"
                                     >
-                                        <div class="to-buy-list__content--date">
+                                        <div class="to-sale-list__content--date">
                                             2020.09.25
                                         </div>
-                                        <div class="to-buy-list__content--hit">
+                                        <div class="to-sale-list__content--hit">
                                             조회수 30
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="to-sale-list__content--text__price"
+                                    >
+                                        <div class="to-sale-list__content--price">
+                                            무료나눔
+                                        </div>
+                                        <div class="to-sale-list__content--picks">
+                                            <img
+                                                src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/like-8111aa74d4b1045d7d5943a901896992574dd94c090cef92c26ae53e8da58260.svg"
+                                                alt="picks"
+                                            />
+                                            1
                                         </div>
                                     </div>
                                 </div>
                             </a>
                         </article>
-                        <article class="to-buy-list__article">
+                        <article class="to-sale-list__article">
                              <a href="../board/toSharingBoardRead.html">
-                                <div class="to-buy-list__content--thumbnail">
+                                <div class="to-sale-list__content--thumbnail">
                                     <img
                                         src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/e109941c1a68f4bef813c0a46f20ab1060b67f92c7510a14c83cdb76ef77ba1d.webp?q=82&s=300x300&t=crop"
                                         alt="thumbnail"
                                     />
                                 </div>
-                                <div class="to-buy-list__content--text">
+                                <div class="to-sale-list__content--text">
                                     <h1
-                                        class="to-buy-list__content--text__title"
+                                        class="to-sale-list__content--text__title"
                                     >
                                         6단 미니벨로 자전거 짐받이, 싸게팔아요
                                     </h1>
                                     <p
-                                        class="to-buy-list__content--text__address"
+                                        class="to-sale-list__content--text__address"
                                     >
                                         서울 송파구 석촌동
                                     </p>
                                     <div
-                                        class="to-buy-list__content--text__date"
+                                        class="to-sale-list__content--text__date"
                                     >
-                                        <div class="to-buy-list__content--date">
+                                        <div class="to-sale-list__content--date">
                                             2020.09.22
                                         </div>
-                                        <div class="to-buy-list__content--hit">
+                                        <div class="to-sale-list__content--hit">
                                             조회수 142
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="to-sale-list__content--text__price"
+                                    >
+                                        <div class="to-sale-list__content--price">
+                                            무료나눔
+                                        </div>
+                                        <div class="to-sale-list__content--picks">
+                                            <img
+                                                src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/like-8111aa74d4b1045d7d5943a901896992574dd94c090cef92c26ae53e8da58260.svg"
+                                                alt="picks"
+                                            />
+                                            25
                                         </div>
                                     </div>
                                 </div>
                             </a>
                         </article>
                     </div>
-                    <div class="to-buy-list__page-num-container">
+                    <div class="to-sale-list__page-num-container">
                         <ul class="page-num-container">
                             <a href="#">
                                 <li
@@ -439,33 +553,33 @@
                         </ul>
                     </div> -->
             </div>
-            <div class="to-buy-list__container">
-                <h2 class="to-buy-list__title">당도측정</h1>
+            <div class="to-sale-list__container">
+                <h2 class="to-sale-list__title">당도측정</h1>
                     <!-- 각 최신글 3개만 띄어주시면 됩니다 -->
                     <!-- 측정내역 없을때 띄우기 -->
-                    <!-- <div class="to-buy-list__text">
-                        <strong>측정을 기다리고있는 내역이 없습니다 !</strong>
-                    </div> -->
+                    <!-- <div class="to-sale-list__text">
+                            <strong>측정을 기다리고있는 내역이 없습니다 !</strong>
+                        </div> -->
                     <!-- 피거래자 입장에서 거래가 완료됐을경우 띄우기 -->
-                    <div class="to-buy-list__content">
-                        <article class="to-buy-list__article">
+                    <div class="to-sale-list__content">
+                        <article class="to-sale-list__article">
                             <a href="../board/toSharingBoardRead.html">
-                                <div class="to-buy-list__content--thumbnail">
+                                <div class="to-sale-list__content--thumbnail">
                                     <img src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/3c06cb158997b8cd4061052c6b457887e4c60496704b6149d4197a6d791ad261.webp?q=82&s=300x300&t=crop"
                                         alt="thumbnail" />
                                 </div>
-                                <div class="to-buy-list__content--text">
-                                    <h1 class="to-buy-list__content--text__title">
+                                <div class="to-sale-list__content--text">
+                                    <h1 class="to-sale-list__content--text__title">
                                         5단 서랍장 입니다
                                     </h1>
-                                    <p class="to-buy-list__content--text__address">
+                                    <p class="to-sale-list__content--text__address">
                                         서울 송파구 석촌동
                                     </p>
-                                    <div class="to-buy-list__content--text__date">
-                                        <div class="to-buy-list__content--date">
+                                    <div class="to-sale-list__content--text__date">
+                                        <div class="to-sale-list__content--date">
                                             2020.09.26
                                         </div>
-                                        <div class="to-buy-list__content--hit">
+                                        <div class="to-sale-list__content--hit">
                                             조회수 30
                                         </div>
                                     </div>
@@ -485,24 +599,24 @@
                                 </div>
                             </div>
                         </article>
-                        <article class="to-buy-list__article">
+                        <article class="to-sale-list__article">
                             <a href="../board/toSharingBoardRead.html">
-                                <div class="to-buy-list__content--thumbnail">
+                                <div class="to-sale-list__content--thumbnail">
                                     <img src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/74ead2897bfdc979dfdc817ea9c966c5dfd876d7479410549c8ceefc29271ebf.webp?q=82&s=300x300&t=crop"
                                         alt="thumbnail" />
                                 </div>
-                                <div class="to-buy-list__content--text">
-                                    <h1 class="to-buy-list__content--text__title">
+                                <div class="to-sale-list__content--text">
+                                    <h1 class="to-sale-list__content--text__title">
                                         스위스크로스 캠핑체어 팝니다.
                                     </h1>
-                                    <p class="to-buy-list__content--text__address">
+                                    <p class="to-sale-list__content--text__address">
                                         서울 송파구 석촌동
                                     </p>
-                                    <div class="to-buy-list__content--text__date">
-                                        <div class="to-buy-list__content--date">
+                                    <div class="to-sale-list__content--text__date">
+                                        <div class="to-sale-list__content--date">
                                             2020.09.25
                                         </div>
-                                        <div class="to-buy-list__content--hit">
+                                        <div class="to-sale-list__content--hit">
                                             조회수 30
                                         </div>
                                     </div>
@@ -521,24 +635,24 @@
                                 </div>
                             </div>
                         </article>
-                        <article class="to-buy-list__article">
+                        <article class="to-sale-list__article">
                             <a href="../board/toSharingBoardRead.html">
-                                <div class="to-buy-list__content--thumbnail">
+                                <div class="to-sale-list__content--thumbnail">
                                     <img src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/e109941c1a68f4bef813c0a46f20ab1060b67f92c7510a14c83cdb76ef77ba1d.webp?q=82&s=300x300&t=crop"
                                         alt="thumbnail" />
                                 </div>
-                                <div class="to-buy-list__content--text">
-                                    <h1 class="to-buy-list__content--text__title">
+                                <div class="to-sale-list__content--text">
+                                    <h1 class="to-sale-list__content--text__title">
                                         6단 미니벨로 자전거 짐받이, 싸게팔아요
                                     </h1>
-                                    <p class="to-buy-list__content--text__address">
+                                    <p class="to-sale-list__content--text__address">
                                         서울 송파구 석촌동
                                     </p>
-                                    <div class="to-buy-list__content--text__date">
-                                        <div class="to-buy-list__content--date">
+                                    <div class="to-sale-list__content--text__date">
+                                        <div class="to-sale-list__content--date">
                                             2020.09.22
                                         </div>
-                                        <div class="to-buy-list__content--hit">
+                                        <div class="to-sale-list__content--hit">
                                             조회수 142
                                         </div>
                                     </div>
@@ -558,7 +672,7 @@
                             </div>
                         </article>
                     </div>
-                    <div class="to-buy-list__page-num-container">
+                    <div class="to-sale-list__page-num-container">
                         <ul class="page-num-container">
                             <a href="#">
                                 <li class="page-num-container__left-btn page-num-container__btn">
@@ -587,7 +701,7 @@
                             </a>
                         </ul>
                     </div>
-                
+               
             </div>
         </div>
     </section>
@@ -736,7 +850,7 @@
             </div>
         </div>
     </div>
-	<%@ include file="footer.jsp" %>
+<%@ include file="footer.jsp" %>
 </body>
 
 </html>
