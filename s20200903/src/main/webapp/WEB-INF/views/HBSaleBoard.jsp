@@ -32,6 +32,116 @@
     <body>
        
         <!-- 메뉴 목록 리스트 -->
+                <!-- 메뉴 고정바 -->
+        <header class="header">
+            <div class="header__fixed-bar">
+                <section class="header__fixed-bar-logo section-logo">
+                    <a href="main.do">
+                        <img
+                            src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FSQxEt%2FbtqJs5kkQnP%2FhvX1kh8aeqli9J93tF5qV1%2Ftfile.svg"
+                            alt="당근나라"
+                        />
+                    </a>
+                </section>
+                <section class="header__fixed-bar-search section-search">
+                    <div
+                        class="header__fixed-bar-search-container"
+                        tabindex="4"
+                    >
+                        <input
+                            class="search-input"
+                            type="text"
+                            placeholder="동네 이름, 물품명 등을 검색해보세요!"
+                        />
+                        <input
+                            type="image"
+                            class="search-icon"
+                            src="https://img.icons8.com/ios-glyphs/30/000000/search.png"
+                        />
+                    </div>
+                    <!-- 검색시 검색창 밑에 뜨는 키워드 추천란 입니다 -->
+                    <div class="search-keyword">
+                        <span class="keyword-title">추천</span>
+                        <span class="keyword-contnet">
+                            <a href="#none">분당 유모차</a>
+                            <a href="#none">키즈카페</a>
+                            <a href="#none">화분</a>
+                            <a href="#none">강남 명품가방</a>
+                            <a href="#none">잠실 냉장고</a>
+                            <a href="#none">인천 마우스</a>
+                        </span>
+                    </div>
+                    <!-- 5~6개 정도 표시해주면 될듯합니다 -->
+                </section>
+                <section class="header__fixed-bar-nav section-nav">
+                    <nav class="header__fixed-bar-nav-container">
+                        <!-- 비로그인시 -->
+                        <ul class="header__fixed-bar-nav-list nav-list">
+                            <li class="nav-list-content">
+                                <a href="../member/join.html">회원가입</a>
+                            </li>
+                            <li class="nav-list-content">
+                                <a href="../member/login.html">로그인</a>
+                            </li>
+                            <li class="nav-list-content">
+                                <a href="#">지도로 보기</a>
+                            </li>
+                        </ul>
+                        <!--  로그인시 활성화
+                            <ul class="header__fixed-bar-nav-list nav-list">
+                            <li class="nav-list-content drop">
+                                <span class="nav-list-text">
+                                    Welcome ~!
+                                    // 로그인 회원에 따라서 이름 바뀌게 작업
+                                    <span class="name">이준호</span>님 </span
+                                ><img
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAA1ElEQVRIie2TsQ3CMBBF/zkLpMQLQO9zmV2IBBINJZQZgDAAVRAj0FBlhrRZwV1GwDQGhUhJnFQg+Xdn371nyzIQEvJfYeZMa50DEDPGBTOfmTn7Wuw0xdbaIzMXEyXCzRwAxO2NqF0YY0op5YKItlLKVZIk97qurQf8CiAFcKuqag/gMxN1u40xDydJm6ZZjkje8LWDbwA8e28wUTIK7xV4SLzgg4IBCfnCAYCGBK3TFnCP6NZSH7ivAABIKXUhop2rveBTI7TWuVLqhHkfMSTkV/MCeGNw/fvNnQwAAAAASUVORK5CYII="
+                                />
+                                <ul class="drop__container">
+                                    <a href="../member/myPage.html"
+                                        ><li>마이페이지</li></a
+                                    >
+                                    <a href="../member/picksList.html"
+                                        ><li>관심목록</li></a
+                                    >
+                                    <a href="../member/toSaleList.html"
+                                        ><li>판매내역</li></a
+                                    >
+                                    <a href="../member/toBuyList.html"
+                                        ><li>구매내역</li></a
+                                    >
+                                    <a href="../member/toSharingList.html"
+                                        ><li>나눔내역</li></a
+                                    >
+                                    <a href="#"><li>로그아웃</li></a>
+                                </ul>
+                            </li>
+                            <li class="nav-list-content">
+                                <a href="#">지도로 보기</a>
+                            </li>
+                             //관리자 로그인시 활성화 될 수 있게
+                                 <li class="nav-list-content drop">
+                                <span class="nav-list-text">
+                                    Welcome ~!
+                                    <span class="name">관리자</span>님 </span
+                                ><img
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAA1ElEQVRIie2TsQ3CMBBF/zkLpMQLQO9zmV2IBBINJZQZgDAAVRAj0FBlhrRZwV1GwDQGhUhJnFQg+Xdn371nyzIQEvJfYeZMa50DEDPGBTOfmTn7Wuw0xdbaIzMXEyXCzRwAxO2NqF0YY0op5YKItlLKVZIk97qurQf8CiAFcKuqag/gMxN1u40xDydJm6ZZjkje8LWDbwA8e28wUTIK7xV4SLzgg4IBCfnCAYCGBK3TFnCP6NZSH7ivAABIKXUhop2rveBTI7TWuVLqhHkfMSTkV/MCeGNw/fvNnQwAAAAASUVORK5CYII="
+                                />
+                                <ul class="drop__container">
+                                    <a href="../admin/adminManageList.html"
+                                        ><li>회원관리</li></a
+                                    >
+                                    <a href="#"><li>로그아웃</li></a>
+                                </ul>
+                            </li>
+                            <li class="nav-list-content">
+                                <a href="#">지도로 보기</a>
+                            </li> 
+                        </ul> -->
+                    </nav>
+                </section>
+            </div>
+        </header>
         <aside class="fixed__list">
             <ul>
                 <li><a href="noticeBoard.html">공지사항</a></li>
@@ -98,8 +208,8 @@
 	                        <a href="HBSaleBoardRead.do?bid=${sb.bid}&pnum=${sb.pnum}">
 	                            <div class="to-sale__content--thumbnail">
 	                                <img
-	                                    src="${sb.pimg1 }"
-	                                    alt="thumbnail"
+	                                    src="/s20200903/img/sale/${sb.pimg1}"
+	                                    alt="img-thumbnail"
 	                                />
 	                            </div>
 	                            <div class="to-sale__content--text">
