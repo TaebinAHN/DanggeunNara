@@ -12,7 +12,7 @@
 	
 	<!-- Application Loggers -->
 	<logger name="oracle.java.s20200903">
-		<level value="info" />
+		<level value="info" /> 
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
