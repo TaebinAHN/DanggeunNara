@@ -70,9 +70,9 @@
 	                                />
 	                                <ul class="drop__container">
 	                                    <a href="TBmyPage.do?mId=${sessionScope.mId}"><li>마이페이지</li></a>
-	                                    <a href="#"><li>관심내역</li></a>
-	                                    <a href="#"><li>판매내역</li></a>
-	                                    <a href="#"><li>구매내역</li></a>
+	                                    <a href="TBpicksList.do?mId=${sessionScope.mId}"><li>관심내역</li></a>
+	                                    <a href="TBtoSaleList.do?mId=${sessionScope.mId}"><li>판매내역</li></a>
+	                                    <a href="TBtoBuyList.do?mId=${sessionScope.mId}"><li>구매내역</li></a>
 	                                    <a href="TBLogout.do"><li>로그아웃</li></a>
 
 	                                    

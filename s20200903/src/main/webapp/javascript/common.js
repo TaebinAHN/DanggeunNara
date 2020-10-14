@@ -25,7 +25,7 @@ const myPageUpdateBtn = document.querySelector(".mypage__update");
 const userLeaveBtn = document.querySelector(".mypage__leave");
 const userLeaveCancleBtn = document.querySelector(".user-leave__cancle");
 const userLeaveSubmitBtn = document.querySelector(".user-leave__submit");
-const updatePwBtn = document.querySelector(".update-pw__submit");
+//const updatePwBtn = document.querySelector(".update-pw__submit");
 //const loginJoin = document.querySelector(".login__join");
 //const loginSubmit = document.querySelector(".login__submit");
 //const submitBtn = document.querySelector(".submit-btn");
@@ -291,11 +291,11 @@ if (findPwResetMain != null) {
 	});
 }
 
-if (userLeaveCancleBtn != null) {
+/*if (userLeaveCancleBtn != null) {
 	userLeaveCancleBtn.addEventListener("click", () => {
 		history.go(-1);
 	});
-}
+}*/
 
 /*if (loginJoin != null) {
 	loginJoin.addEventListener("click", () => {
@@ -306,7 +306,7 @@ if (userLeaveCancleBtn != null) {
 if (userLeaveBtn != null) {
 	userLeaveBtn.addEventListener("click", () => {
 		if (confirm("회원탈퇴를 원하십니까 ?") == true) {
-			location.href = "userLeave.html";
+			location.href = "TBuserLeave.do";
 		} else {
 			return false;
 		}

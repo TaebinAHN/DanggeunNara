@@ -39,4 +39,10 @@
 	<update id="userInfoUpdate" parameterType="TBMember">
 		update member set mNick=#{mNick}, mPw=#{mPw}, mName=#{mName}, mAddr=#{mAddr}, mAddr2=#{mAddr2}, mTel=#{mTel}, mSms=#{mSms}, mMail=#{mMail} where mId=#{mId}
 	</update>
+	<update id="TBMemberLeave">
+		update member set mStatus=9 where mId=#{mId}
+	</update>
+	    <select id="checkMstatus" parameterType="TBMember" resultType="int">
+    	select mStatus from member where mId=#{mId}
+    </select>
 </mapper>

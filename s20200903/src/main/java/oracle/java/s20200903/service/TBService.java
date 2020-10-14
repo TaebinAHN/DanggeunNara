@@ -20,5 +20,6 @@ public interface TBService {
 	TBMember		TBmyPageUp(String mId);
 	int				userInfoUpdate(TBMember tbm);
 	int				checkMlevel(TBMember tbm);
-	
+	int				TBMemberLeave(TBMember tbm);
+	int				checkMstatus(TBMember tbm);
 }

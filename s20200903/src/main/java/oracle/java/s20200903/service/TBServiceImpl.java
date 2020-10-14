@@ -98,6 +98,20 @@ public class TBServiceImpl implements TBService {
 	}
 
 
+	@Override
+	public int TBMemberLeave(TBMember tbm) {
+		// TODO Auto-generated method stub
+		return td.TBMemberLeave(tbm);
+	}
+
+
+	@Override
+	public int checkMstatus(TBMember tbm) {
+		// TODO Auto-generated method stub
+		return td.checkMstatus(tbm);
+	}
+
+
 
 
 }

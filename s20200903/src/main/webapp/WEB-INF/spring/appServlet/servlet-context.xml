@@ -10,9 +10,9 @@
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
-	<resources mapping="resources/**" location="/resources/" />
-	<resources mapping="css/**" location="/css/" />
-	<resources mapping="javascript/**" location="/javascript/" />
+	<resources mapping="resources/**" location="/resources/**" />
+	<resources mapping="css/**" location="/css/**" />
+	<resources mapping="javascript/**" location="/javascript/**" />
 	<resources location="/resources/img/" mapping="/img/**"/>
 
 	<resources location="/WEB-INF/" mapping="/WEB-INF/**"/>
