@@ -76,9 +76,16 @@ public class JHController {
 	}
 	
 	@RequestMapping(value="JHbadReviewBoardWriteForm")
+<<<<<<< Updated upstream
 	public String jhWriteForm(HttpServletRequest request, Model model) {
 		System.out.println("JHController jhWriteForm start");	
 		JHBoard jhBoard = jhs.jhMember((String)request.getSession().getAttribute("mId"));
+=======
+	public String jhWriteForm(HttpServletRequest request, String mId, Model model) {
+		System.out.println("JHController jhWriteForm start");
+		mId = request.getParameter("mId");
+		JHBoard jhBoard = jhs.jhMember(mId);
+>>>>>>> Stashed changes
 		model.addAttribute("jhBoard", jhBoard);
 		//badReviewBoardWrite.jsp로 이동	
 		return"JHbadReviewBoardWrite";
@@ -96,7 +103,11 @@ public class JHController {
 		
 		JHBoard jhb = new JHBoard();
 		//
+<<<<<<< Updated upstream
 		jhb.setmId((String) request.getSession().getAttribute("mId"));
+=======
+		jhb.setmId((String) request.getSession().getAttribute("mId"));//request.getParameter("mId")
+>>>>>>> Stashed changes
 		System.out.println("mId: " + (String) request.getSession().getAttribute("mId"));
 		jhb.setpTitle(request.getParameter("pTitle"));
 		System.out.println("ptitle: " + request.getParameter("ptitle"));
