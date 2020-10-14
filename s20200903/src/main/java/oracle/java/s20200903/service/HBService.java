@@ -4,15 +4,15 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import oracle.java.s20200903.model.saleBoard;
+import oracle.java.s20200903.model.HBsaleBoard;
 
 public interface HBService {
 
 	int                total();
-	List<saleBoard>    list(saleBoard sb);
-	saleBoard          HBSaleBoardRead(int pnum);
-	int                insert(saleBoard sb);
-	List<saleBoard>    listManager();
+	List<HBsaleBoard>    list(HBsaleBoard sb);
+	HBsaleBoard          HBSaleBoardRead(int pnum);
+	int                insert(HBsaleBoard sb);
+	List<HBsaleBoard>    listManager();
 	int                delete(int pnum);
 	
 	

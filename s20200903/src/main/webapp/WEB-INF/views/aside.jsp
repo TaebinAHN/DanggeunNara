@@ -30,7 +30,7 @@
         <aside class="fixed__list">
             <ul>
                 <li><a href="JYnoticeBoard.do">공지사항</a></li>
-                <li><a href="../board/blackListBoard.html">검거완료 !</a></li>
+                <li><a href="SJblackListBoard.do">검거완료 !</a></li>
                 <li>
                     <a href="JHbadReviewBoard.do">불량거래 후기</a>
                 </li>

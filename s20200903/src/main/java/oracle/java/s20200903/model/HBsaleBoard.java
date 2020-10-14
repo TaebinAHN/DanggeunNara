@@ -4,7 +4,7 @@ import java.util.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class saleBoard {
+public class HBsaleBoard {
 
 	private int pnum;
 	private int bid;
