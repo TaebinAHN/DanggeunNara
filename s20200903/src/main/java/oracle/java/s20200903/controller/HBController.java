@@ -36,12 +36,7 @@ public class HBController {
 	private FileUtils fu;
 	
 	
-	
-	@RequestMapping (value="main")
-	public String main(Model model) {
-		
-		return "main";
-	}
+
 	
 	@RequestMapping(value="list")
 	public String list(HBSaleBoard sb, String currentPage, Model model) {

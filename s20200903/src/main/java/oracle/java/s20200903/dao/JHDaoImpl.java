@@ -21,7 +21,7 @@ public class JHDaoImpl implements JHDao {
 	@Override
 	public int jhtotal() {
 		System.out.println("JHDaoImpl jhtotal start..");
-		return session.selectOne("total");
+		return session.selectOne("jhtotal");
 	}
 
 	@Override
