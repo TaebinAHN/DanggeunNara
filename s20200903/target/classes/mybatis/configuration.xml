@@ -33,7 +33,7 @@
 		<!-- 태빈 -->
 		<typeAlias alias="TBMember"  type="oracle.java.s20200903.model.TBMember" />
 		<!-- 종환 -->
-		<typeAlias alias="JHBoard"	type="oracle.java.s20200903.model.JHBoard"/>
+<!-- 		<typeAlias alias="JHBoard"	type="oracle.java.s20200903.model.JHBoard"/>	 -->
 		<!-- 진영 -->
 	 
 		<!-- 석준 -->
@@ -53,7 +53,7 @@
 		<!-- 태빈 -->
 		<mapper resource="mybatis/TBMember.xml" />
 		<!-- 종환 -->
-		<mapper resource="mybatis/JHBoard.xml"/>
+<!-- 		<mapper resource="mybatis/JHBoard.xml"/>	 -->
 		<!-- 진영 -->
 	
 		<!-- 석준 -->

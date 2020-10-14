@@ -108,12 +108,29 @@ public class TBController {
 		return "TBmyPage";
 	}
 	
-	@RequestMapping(value="TBuserLeave.do")
+	@RequestMapping(value="TBuserLeave")
 	public String TBuserLeave (TBMember tbm, Model model) {
 		
-		return "TBuserLeave.do";
+		return "TBuserLeave";
 	}
 	
+	@RequestMapping (value="TBpicksList")
+	public String TBpicksList (TBMember tbm, Model model) {
+		
+		return "TBpicksList";
+	}
+	
+	@RequestMapping(value="TBtoSaleList")
+	public String TBtoSaleList (TBMember tbm, Model model) {
+		
+		return "TBtoSaleList";
+	}
+	
+	@RequestMapping (value="TBtoBuyList")
+	public String TBtoBuyList(TBMember tbm, Model model) {
+		
+		return "TBtoBuyList";
+	}
 	
 	// 기능부분
 	
@@ -152,6 +169,12 @@ public class TBController {
 		PrintWriter pw = response.getWriter();
 		if(result > 0) {
 			int checklevel = ts.checkMlevel(tbm);
+			int checkMstatus = ts.checkMstatus(tbm);
+			if(checkMstatus == 9) {
+				pw.println("<script>alert('탈퇴된 회원입니다.');</script>");
+				pw.flush();
+				return "TBlogin";
+			}
 			if(checklevel == 3) {
 				HttpSession session = request.getSession();
 				session.setAttribute("mId", tbm.getmId());
@@ -273,6 +296,26 @@ public class TBController {
 		return "TBfindPwReset";
 	}
 	
+	
+	@RequestMapping(value="TBMemberLeave", method=RequestMethod.POST)
+	public String TBMemberLeave (HttpServletRequest request, HttpServletResponse response, TBMember tbm, Model model) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		session.setAttribute("mId", tbm.getmId());
+		PrintWriter pw = response.getWriter();
+		response.setContentType("text/html charset=UTF-8");
+		int result = ts.TBMemberLeave(tbm);
+		if(result > 0) {
+			pw.println("<script>alert('탈퇴되었습니다. 그동안 이용해주셔서 감사했습니다.');</script>");
+			pw.flush();
+			session.setAttribute("mId", null);
+			return "TBlogin";
+		} else {
+			pw.println("<script>alert('탈퇴에 실패했습니다. 비밀번호를 확인 바랍니다.');</script>");
+			pw.flush();
+			return "TBuserLeave";
+		}
+		
+	}
 	
 	// 중복검사 AJAX
 	

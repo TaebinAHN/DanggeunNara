@@ -37,11 +37,6 @@ public class HBController {
 	
 	
 	
-	@RequestMapping (value="main")
-	public String main(Model model) {
-		
-		return "main";
-	}
 	
 	@RequestMapping(value="list")
 	public String list(saleBoard sb, String currentPage, Model model) {
