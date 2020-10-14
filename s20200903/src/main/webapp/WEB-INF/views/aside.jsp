@@ -32,7 +32,7 @@
                 <li><a href="JYnoticeBoard.do">공지사항</a></li>
                 <li><a href="../board/blackListBoard.html">검거완료 !</a></li>
                 <li>
-                    <a href="../board/badReviewBoard.html">불량거래 후기</a>
+                    <a href="JHbadReviewBoard.do">불량거래 후기</a>
                 </li>
                 <li><a href="#">판매중 이에요.</a></li>
                 <li><a href="#">나눔중 이에요.</a></li>
