@@ -31,27 +31,27 @@
 				<div class="slider">
 					<div class="slide showing">
 						<img 
-							src=/img/${sjb.pImg1 }" 
+							src="/s20200903/resources/image/${sjb.pImg1 }" 
 							alt="이미지1" />
 					</div>					
  				<c:if test="${sjb.pImg2 != null }">
                 <div class="slide">
-                    <img src="/img/${sjb.pImg2 }" alt="이미지2"/></div>
+                    <img src="/s20200903/resources/image/${sjb.pImg2 }" alt="이미지2"/></div>
                 </c:if>
                 
                 <c:if test="${sjb.pImg3 != null }">
                 <div class="slide">
-                	<img src="/img/${sjb.pImg3 }" alt="이미지3"/></div>
+                	<img src="/s20200903/resources/image/${sjb.pImg3 }" alt="이미지3"/></div>
                 </c:if>
                 
                  <c:if test="${sjb.pImg4 != null }">
                  <div class="slide">
-                 	<img src="/img/${sjb.pImg4 }" alt="이미지4"/></div>
+                 	<img src="/s20200903/resources/image/${sjb.pImg4 }" alt="이미지4"/></div>
                  </c:if>
                  
                  <c:if test="${sjb.pImg5 != null }">
                  <div class="slide">
-                 	<img src="/img/${sjb.pImg5 }" alt="이미지5"/></div>
+                 	<img src="/s20200903/resources/image/${sjb.pImg5 }" alt="이미지5"/></div>
                  </c:if>
 					<div class="left btns" onclick="left_move();">
 						<i class="fas fa-chevron-left"></i>
