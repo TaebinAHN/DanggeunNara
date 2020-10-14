@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import oracle.java.s20200903.model.HBsaleBoard;
+import oracle.java.s20200903.model.HBSaleBoard;
 import oracle.java.s20200903.util.FileUtils;
 
 @Repository("hbDao")
@@ -26,16 +26,16 @@ public class HBDaoImpl implements HBDao {
 	}
 
 	@Override
-	public List<HBsaleBoard> list(HBsaleBoard sb) {
+	public List<HBSaleBoard> list(HBSaleBoard sb) {
 		System.out.println("List<saleBoard> dao......");
 		return sqlSessionTemplate.selectList("HBListAll", sb);
 	}
 
 	@Override                      // 여기에 있는 매기인수를 VO로 선언해주기
-	public HBsaleBoard HBSaleBoardRead(int pnum) {
+	public HBSaleBoard HBSaleBoardRead(int pnum) {
 		// TODO Auto-generated method stub
 		System.out.println("HBDaoImpl HBSaleBoardRead start...");
-		HBsaleBoard sb = new HBsaleBoard();
+		HBSaleBoard sb = new HBSaleBoard();
 		try {
 			sb = sqlSessionTemplate.selectOne("HBSaleBoardSelOne", pnum);
 			System.out.println("HBDaoImpl HBSaleBoardRead getpNum -> " + sb.getPtitle());
@@ -54,28 +54,29 @@ public class HBDaoImpl implements HBDao {
 
 
 	@Override
-	public int insert(HBsaleBoard sb) {
+	public int insert(HBSaleBoard sb) {
 		// TODO Auto-generated method stub
 		System.out.println("HBDaoImpl insert start...");
 		return sqlSessionTemplate.insert("insert", sb);
 	}
 
 	@Override
-	public List<HBsaleBoard> listManager() {
+	public List<HBSaleBoard> listManager() {
 		// TODO Auto-generated method stub
 		System.out.println("HBDaoImpl listManager() start...");
 		return sqlSessionTemplate.selectList("selectManager");
 	}
 
+
 	@Override
-	public int delete(int pnum) {
+	public int delete(HBSaleBoard sb) {
 		// TODO Auto-generated method stub
 		System.out.println("HBDaoImpl delete start...");
-		
+
 		int result = 0;
 		
 		try {
-			result = sqlSessionTemplate.delete("delete", pnum);
+			result = sqlSessionTemplate.delete("delete", sb);
 			System.out.println("HBDaoImpl delete kkk ->" + result);
 		} catch (Exception e) {
 			// TODO: handle exception
