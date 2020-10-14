@@ -11,7 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import oracle.java.s20200903.dao.HBDao;
-import oracle.java.s20200903.model.HBsaleBoard;
+import oracle.java.s20200903.model.HBSaleBoard;
+
 
 @Service("hbService")
 public class HBServiceImpl implements HBService {
@@ -26,7 +27,7 @@ public class HBServiceImpl implements HBService {
 	}
 
 	@Override
-	public List<HBsaleBoard> list(HBsaleBoard sb) {
+	public List<HBSaleBoard> list(HBSaleBoard sb) {
 		// TODO Auto-generated method stub
 		System.out.println("HBServiceImpl list....");
 		return hd.list(sb);
@@ -34,7 +35,7 @@ public class HBServiceImpl implements HBService {
 
 
 	@Override
-	public HBsaleBoard HBSaleBoardRead(int pnum) {
+	public HBSaleBoard HBSaleBoardRead(int pnum) {
 		// TODO Auto-generated method stub
 		System.out.println("HBServiceImpl HBSaleBoardRead....");
 		hd.updateViewCnt(pnum);
@@ -45,7 +46,7 @@ public class HBServiceImpl implements HBService {
 	
 
 	@Override
-	public int insert(HBsaleBoard sb) {
+	public int insert(HBSaleBoard sb) {
 		// TODO Auto-generated method stub
 		System.out.println("HBServiceImpl insert....");
 		return hd.insert(sb);
@@ -53,17 +54,18 @@ public class HBServiceImpl implements HBService {
 
 
 	@Override
-	public List<HBsaleBoard> listManager() {
+	public List<HBSaleBoard> listManager() {
 		// TODO Auto-generated method stub
 		System.out.println("HBServiceImpl listManager()....");
 		return hd.listManager();
 	}
 
+
 	@Override
-	public int delete(int pnum) {
+	public int delete(HBSaleBoard sb) {
 		// TODO Auto-generated method stub
-		System.out.println("HBServiceImpl delete....");
-		return hd.delete(pnum);
+		System.out.println("HBServiceImpl delete sb->"+sb);
+		return hd.delete(sb);
 	}
 
 	
