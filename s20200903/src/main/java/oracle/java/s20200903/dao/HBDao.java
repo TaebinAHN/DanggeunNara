@@ -4,16 +4,16 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import oracle.java.s20200903.model.saleBoard;
+import oracle.java.s20200903.model.HBsaleBoard;
 
 public interface HBDao {
 
 	int               total();
-	List<saleBoard>   list(saleBoard sb);
-	saleBoard         HBSaleBoardRead(int pnum);
+	List<HBsaleBoard>   list(HBsaleBoard sb);
+	HBsaleBoard         HBSaleBoardRead(int pnum);
 	void              updateViewCnt(int pnum);
-	int               insert(saleBoard sb);
-	List<saleBoard>   listManager();
+	int               insert(HBsaleBoard sb);
+	List<HBsaleBoard>   listManager();
 	int               delete(int pnum);
 	
 	

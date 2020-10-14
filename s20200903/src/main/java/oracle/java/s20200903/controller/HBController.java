@@ -21,7 +21,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 
-import oracle.java.s20200903.model.saleBoard;
+import oracle.java.s20200903.model.HBsaleBoard;
 import oracle.java.s20200903.service.HBService;
 import oracle.java.s20200903.service.Paging;
 import oracle.java.s20200903.util.FileUtils;
@@ -39,7 +39,7 @@ public class HBController {
 	
 	
 	@RequestMapping(value="list")
-	public String list(saleBoard sb, String currentPage, Model model) {
+	public String list(HBsaleBoard sb, String currentPage, Model model) {
 		int total = hs.total();
 		System.out.println("total =>" + total);
 		System.out.println("currentPage =>" + currentPage);
@@ -47,7 +47,7 @@ public class HBController {
 		Paging pg = new Paging(total, currentPage);
 		sb.setStart(pg.getStart());
 		sb.setEnd(pg.getEnd());
-		List<saleBoard> list = hs.list(sb);
+		List<HBsaleBoard> list = hs.list(sb);
 		model.addAttribute("list", list);
 		model.addAttribute("pg", pg);
 		return "HBSaleBoard";
@@ -58,7 +58,7 @@ public class HBController {
 		/*HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		System.out.println("session id -> " + id);*/
-		saleBoard sb = hs.HBSaleBoardRead(pnum);
+		HBsaleBoard sb = hs.HBSaleBoardRead(pnum);
 		System.out.println("pnum ->" + pnum);
 		model.addAttribute("sb", sb);
 		return "HBSaleBoardRead";
@@ -68,16 +68,16 @@ public class HBController {
 	@RequestMapping(value="HBSaleBoardWrite", method= {RequestMethod.GET, RequestMethod.POST})
 	public String HBSaleBoardWrite(Model model) {
 		System.out.println("EmpController HBSaleBoardWrite start....");
-		List<saleBoard> list = hs.listManager();
+		List<HBsaleBoard> list = hs.listManager();
 		System.out.println("EmpController HBSaleBoardWrite list.size - >" + list.size());
 		model.addAttribute("saleBoardMngList", list);
 		return "HBSaleBoardWrite";
 	}
 	
 	@RequestMapping(value="HBSaleBoardWritePro", method= {RequestMethod.GET, RequestMethod.POST})
-	public String upload(saleBoard sb, Model model, HttpServletRequest request) throws Exception {
+	public String upload(HBsaleBoard sb, Model model, HttpServletRequest request) throws Exception {
 		System.out.println("EmpController HBSaleBoardWritePro start.....");
-		List<saleBoard> list = fu.parseInsertFileInfo(sb, request);
+		List<HBsaleBoard> list = fu.parseInsertFileInfo(sb, request);
 		sb.setPimg1(list.get(0).getPimg1());
 		sb.setPimg2(list.get(1).getPimg2());
 		sb.setPimg3(list.get(2).getPimg3());

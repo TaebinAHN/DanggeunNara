@@ -37,8 +37,10 @@
 		<!-- 진영 -->
 	 
 		<!-- 석준 -->
-		
+		<typeAlias alias="SJMember"  type="oracle.java.s20200903.model.SJMember" />
+		<typeAlias alias="SJBoard"   type="oracle.java.s20200903.model.SJBoard" />
 		<!-- 현배 -->
+		<typeAlias alias="HBsaleBoard"  type="oracle.java.s20200903.model.HBsaleBoard" />
 	</typeAliases>
 
 	<mappers>
@@ -57,9 +59,10 @@
 		<!-- 진영 -->
 	
 		<!-- 석준 -->
-		
+		<mapper resource="mybatis/SJMember.xml" />
+		<mapper resource="mybatis/SJBoard.xml" />
 		<!-- 현배 -->
-
+		<mapper resource="mybatis/HBsaleBoard.xml" />
 
 	</mappers>
 
