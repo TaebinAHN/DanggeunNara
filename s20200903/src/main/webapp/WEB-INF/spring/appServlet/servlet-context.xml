@@ -13,6 +13,9 @@
 	<resources mapping="resources/**" location="/resources/" />
 	<resources mapping="css/**" location="/css/" />
 	<resources mapping="javascript/**" location="/javascript/" />
+	<resources location="/resources/img/" mapping="/img/**"/>
+
+	<resources location="/WEB-INF/" mapping="/WEB-INF/**"/>
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
@@ -25,11 +28,15 @@
 		<!--       File Upload Bean  Setting 파일업로드시 사용   -->
 	<beans:bean id="multipartResolver"	class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="10485762"></beans:property>
+
+			<!-- max size of file in memory (in bytes) -->
+		<beans:property value="1048576" name="maxInMemorySize"/>
 	</beans:bean>
 
 		<!-- Ajax를 이용한 이미지 업로드시 사용 -->
 	<beans:bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"> 
 		<beans:property name="contentType" value="application/json;charset=UTF-8" /> 
 	</beans:bean>
+
 
 </beans:beans>

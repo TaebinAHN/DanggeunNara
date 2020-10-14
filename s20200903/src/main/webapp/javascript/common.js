@@ -57,9 +57,9 @@ const noticeWriteSubmit = document.querySelector(".notice-board-write__submit");
 const blackListWriteSubmit = document.querySelector(
 	".black-list-board-write__submit"
 );
-/*const badReviewWriteSubmit = document.querySelector(
+const badReviewWriteSubmit = document.querySelector(
 	".bad-review-board-write__submit"
-);*/
+);
 
 const saleWriteSubmit = document.querySelector(".sale-board-write__submit");
 const sharingWriteSubmit = document.querySelector(
@@ -74,9 +74,9 @@ const noticeUpdateSubmit = document.querySelector(
 const blackListUpdateSubmit = document.querySelector(
 	".black-list-board-update__submit"
 );
-/*const badReviewUpdateSubmit = document.querySelector(
+const badReviewUpdateSubmit = document.querySelector(
 	".bad-review-board-update__submit"
-);*/
+);
 const saleUpdateSubmit = document.querySelector(".sale-board-update__submit");
 const sharingUpdateSubmit = document.querySelector(
 	".sharing-board-update__submit"
@@ -87,9 +87,9 @@ const noticeReadDelete = document.querySelector(".notice-board-read__delete");
 const blackListReadDelete = document.querySelector(
 	".black-list-board-read__delete"
 );
-/*const badReviewReadDelete = document.querySelector(
+const badReviewReadDelete = document.querySelector(
 	".bad-review-board-read__delete"
-);*/
+);
 const saleReadDelete = document.querySelector(".sale-board-read__delete");
 const sharingReadDelete = document.querySelector(".sharing-board-read__delete");
 const buyReadDelete = document.querySelector(".buy-board-read__delete");
@@ -98,9 +98,9 @@ const noticeReadUpdate = document.querySelector(".notice-board-read__update");
 const blackListReadUpdate = document.querySelector(
 	".black-list-board-read__update"
 );
-/*const badReviewReadUpdate = document.querySelector(
+const badReviewReadUpdate = document.querySelector(
 	".bad-review-board-read__update"
-);*/
+);
 const saleReadUpdate = document.querySelector(".sale-board-read__update");
 const sharingReadUpdate = document.querySelector(".sharing-board-read__update");
 const buyReadUpdate = document.querySelector(".buy-board-read__update");
@@ -492,7 +492,7 @@ if (blackListWriteSubmit != null) {
 	});
 }
 
-/*if (badReviewWriteSubmit != null) {
+if (badReviewWriteSubmit != null) {
 	badReviewWriteSubmit.addEventListener("click", () => {
 		if (confirm("글을 등록할까요 ?") == true) {
 			if (true) {
@@ -507,7 +507,7 @@ if (blackListWriteSubmit != null) {
 			return false;
 		}
 	});
-}*/
+}
 
 if (saleWriteSubmit != null) {
 	saleWriteSubmit.addEventListener("click", () => {
@@ -594,7 +594,7 @@ if (blackListUpdateSubmit != null) {
 	});
 }
 
-/*if (badReviewUpdateSubmit != null) {
+if (badReviewUpdateSubmit != null) {
 	badReviewUpdateSubmit.addEventListener("click", () => {
 		if (confirm("글을 수정할까요 ?") == true) {
 			if (true) {
@@ -609,7 +609,7 @@ if (blackListUpdateSubmit != null) {
 			return false;
 		}
 	});
-}*/
+}
 
 if (saleUpdateSubmit != null) {
 	saleUpdateSubmit.addEventListener("click", () => {
@@ -696,7 +696,7 @@ if (blackListReadDelete != null) {
 	});
 }
 
-/*if (badReviewReadDelete != null) {
+if (badReviewReadDelete != null) {
 	badReviewReadDelete.addEventListener("click", () => {
 		if (confirm("삭제하시겠습니까 ?") == true) {
 			if (true) {
@@ -711,7 +711,7 @@ if (blackListReadDelete != null) {
 			return false;
 		}
 	});
-}*/
+}
 
 if (saleReadDelete != null) {
 	saleReadDelete.addEventListener("click", () => {
@@ -776,11 +776,11 @@ if (blackListReadUpdate != null) {
 	});
 }
 
-/*if (badReviewReadUpdate != null) {
+if (badReviewReadUpdate != null) {
 	badReviewReadUpdate.addEventListener("click", () => {
 		location.href = "badReviewBoardUpdate.html";
 	});
-}*/
+}
 
 if (saleReadUpdate != null) {
 	saleReadUpdate.addEventListener("click", () => {
