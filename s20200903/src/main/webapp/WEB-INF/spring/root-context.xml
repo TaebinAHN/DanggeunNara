@@ -52,14 +52,7 @@
 		<aop:advisor advice-ref="txAdvice" pointcut="execution(* service.*Service.*(..))"/>
 		<!-- service 패키지의 Service 포함하는 모든 클래스,인터페이스의 모든 메서드를 포인트 컷 한다. -->
 	</aop:config>
-<!-- Board -->
-
-	<context:component-scan base-package="oracle.java.s20200903.dao"/>
-	<context:component-scan base-package="oracle.java.s20200903.model"/>
-	<context:component-scan base-package="oracle.java.s20200903.service"/>
-	<context:component-scan base-package="oracle.java.s20200903.util"/>
 	
-<!-- master -->
 		<!-- 메일 보내기 -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com"/>
