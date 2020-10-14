@@ -33,14 +33,14 @@
 		<!-- 태빈 -->
 		<typeAlias alias="TBMember"  type="oracle.java.s20200903.model.TBMember" />
 		<!-- 종환 -->
-<!-- 		<typeAlias alias="JHBoard"	type="oracle.java.s20200903.model.JHBoard"/>	 -->
+ 		<typeAlias alias="JHBoard"	type="oracle.java.s20200903.model.JHBoard"/>	 
 		<!-- 진영 -->
 	 
 		<!-- 석준 -->
 		<typeAlias alias="SJMember"  type="oracle.java.s20200903.model.SJMember" />
 		<typeAlias alias="SJBoard"   type="oracle.java.s20200903.model.SJBoard" />
 		<!-- 현배 -->
-		<typeAlias alias="HBsaleBoard"  type="oracle.java.s20200903.model.HBsaleBoard" />
+		<typeAlias alias="HBsaleBoard"  type="oracle.java.s20200903.model.HBSaleBoard" />
 	</typeAliases>
 
 	<mappers>
@@ -55,14 +55,14 @@
 		<!-- 태빈 -->
 		<mapper resource="mybatis/TBMember.xml" />
 		<!-- 종환 -->
-<!-- 		<mapper resource="mybatis/JHBoard.xml"/>	 -->
+		<mapper resource="mybatis/JHBoard.xml"/>	
 		<!-- 진영 -->
 	
 		<!-- 석준 -->
 		<mapper resource="mybatis/SJMember.xml" />
 		<mapper resource="mybatis/SJBoard.xml" />
 		<!-- 현배 -->
-		<mapper resource="mybatis/HBsaleBoard.xml" />
+		<mapper resource="mybatis/HBSaleBoard.xml" />
 
 	</mappers>
 
