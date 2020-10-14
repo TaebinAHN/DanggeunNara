@@ -204,7 +204,7 @@
                                     class="image--input image-1"
                                     type="file"
                                     id="PImg1"
-                                    name="PImg1"
+                                    name="file"
                                     accept=".jpg, .jpeg, .png"
                                 />
                             </label>
@@ -216,7 +216,7 @@
                                     class="image--input image-2"
                                     type="file"
                                     id="PImg2"
-                                    name="PImg2"
+                                    name="file1"
                                     accept=".jpg, .jpeg, .png"
                                 />
                             </label>
@@ -228,7 +228,7 @@
                                     class="image--input image-3"
                                     type="file"
                                     id="PImg3"
-                                    name="PImg3"
+                                    name="file2"
                                     accept=".jpg, .jpeg, .png"
                                 />
                             </label>
@@ -240,7 +240,7 @@
                                     class="image--input image-4"
                                     type="file"
                                     id="PImg4"
-                                    name="PImg4"
+                                    name="file3"
                                     accept=".jpg, .jpeg, .png"
                                 />
                             </label>
@@ -252,7 +252,7 @@
                                     class="image--input image-5"
                                     type="file"
                                     id="PImg5"
-                                    name="PImg5"
+                                    name="file4"
                                     accept=".jpg, .jpeg, .png"
                                 />
                             </label>
