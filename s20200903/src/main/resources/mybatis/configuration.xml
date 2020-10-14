@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<settings>
+	
+			<!-- 나은 --> 
+		
+			<!-- 지예 -->
+		
+			<!-- 태빈 -->
+		<setting name="cacheEnabled" value="false"/>
+		<setting name="jdbcTypeForNull" value="NULL"/>	
+			<!-- 종환 -->
+
+			<!-- 진영 -->
+		
+			<!-- 석준 -->
+			
+			<!-- 현배 -->	
+	</settings>
+
+	<typeAliases>
+
+		<!-- 나은 --> 
+		<typeAlias alias="NEPost" type="oracle.java.s20200903.model.NEPost"/>
+		<typeAlias alias="NESearch" type="oracle.java.s20200903.model.NESearch"/>
+		<typeAlias alias="NEJoin" type="oracle.java.s20200903.model.NEJoin"/>
+
+		<!-- 지예 -->
+		<typeAlias alias="JYPost" type="oracle.java.s20200903.model.JYPost" />
+	
+		<!-- 태빈 -->
+		<typeAlias alias="TBMember"  type="oracle.java.s20200903.model.TBMember" />
+		<!-- 종환 -->
+ 		<typeAlias alias="JHBoard"	type="oracle.java.s20200903.model.JHBoard"/>	 
+		<!-- 진영 -->
+	 
+		<!-- 석준 -->
+		<typeAlias alias="SJMember"  type="oracle.java.s20200903.model.SJMember" />
+		<typeAlias alias="SJBoard"   type="oracle.java.s20200903.model.SJBoard" />
+		<!-- 현배 -->
+		<typeAlias alias="HBSaleBoard"  type="oracle.java.s20200903.model.HBSaleBoard" />
+	</typeAliases>
+
+	<mappers>
+
+		<!-- 나은 --> 
+		<mapper resource="mybatis/NE.xml"/>
+		
+
+		<!-- 지예 -->
+		<mapper resource="mybatis/JYPost.xml" />
+
+		<!-- 태빈 -->
+		<mapper resource="mybatis/TBMember.xml" />
+		<!-- 종환 -->
+		<mapper resource="mybatis/JHBoard.xml"/>	
+		<!-- 진영 -->
+	
+		<!-- 석준 -->
+		<mapper resource="mybatis/SJMember.xml" />
+		<mapper resource="mybatis/SJBoard.xml" />
+		<!-- 현배 -->
+		<mapper resource="mybatis/HBSaleBoard.xml" />
+
+	</mappers>
+
+</configuration>
