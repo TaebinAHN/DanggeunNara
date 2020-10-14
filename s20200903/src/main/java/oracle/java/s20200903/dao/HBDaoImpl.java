@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import oracle.java.s20200903.model.saleBoard;
+import oracle.java.s20200903.model.HBsaleBoard;
 import oracle.java.s20200903.util.FileUtils;
 
 @Repository("hbDao")
@@ -26,16 +26,16 @@ public class HBDaoImpl implements HBDao {
 	}
 
 	@Override
-	public List<saleBoard> list(saleBoard sb) {
+	public List<HBsaleBoard> list(HBsaleBoard sb) {
 		System.out.println("List<saleBoard> dao......");
 		return sqlSessionTemplate.selectList("HBListAll", sb);
 	}
 
 	@Override                      // 여기에 있는 매기인수를 VO로 선언해주기
-	public saleBoard HBSaleBoardRead(int pnum) {
+	public HBsaleBoard HBSaleBoardRead(int pnum) {
 		// TODO Auto-generated method stub
 		System.out.println("HBDaoImpl HBSaleBoardRead start...");
-		saleBoard sb = new saleBoard();
+		HBsaleBoard sb = new HBsaleBoard();
 		try {
 			sb = sqlSessionTemplate.selectOne("HBSaleBoardSelOne", pnum);
 			System.out.println("HBDaoImpl HBSaleBoardRead getpNum -> " + sb.getPtitle());
@@ -54,14 +54,14 @@ public class HBDaoImpl implements HBDao {
 
 
 	@Override
-	public int insert(saleBoard sb) {
+	public int insert(HBsaleBoard sb) {
 		// TODO Auto-generated method stub
 		System.out.println("HBDaoImpl insert start...");
 		return sqlSessionTemplate.insert("insert", sb);
 	}
 
 	@Override
-	public List<saleBoard> listManager() {
+	public List<HBsaleBoard> listManager() {
 		// TODO Auto-generated method stub
 		System.out.println("HBDaoImpl listManager() start...");
 		return sqlSessionTemplate.selectList("selectManager");

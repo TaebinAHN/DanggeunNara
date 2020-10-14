@@ -13,13 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import oracle.java.s20200903.model.saleBoard;
+import oracle.java.s20200903.model.HBsaleBoard;
 
 @Component("fileUtils")
 public class FileUtils {
 	private static final String filePath = "C:\\s20200903\\s20200903\\src\\main\\webapp\\img\\sale\\"; // 파일이 저장될 위치
 	
-	public List<saleBoard> parseInsertFileInfo(saleBoard sb, HttpServletRequest reqeust) throws Exception{
+	public List<HBsaleBoard> parseInsertFileInfo(HBsaleBoard sb, HttpServletRequest reqeust) throws Exception{
 		
 		/*
 			Iterator은 데이터들의 집합체? 에서 컬렉션으로부터 정보를 얻어올 수 있는 인터페이스입니다.
@@ -34,7 +34,7 @@ public class FileUtils {
 		String originalFileExtension = null;
 		String storedFileName = null;
 		
-		List<saleBoard> list = new ArrayList<saleBoard>();
+		List<HBsaleBoard> list = new ArrayList<HBsaleBoard>();
 		
 		File file = new File(filePath);
 		 // 파일이 존재하는지 여부를 알기위해
