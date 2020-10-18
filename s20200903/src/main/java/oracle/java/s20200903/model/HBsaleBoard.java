@@ -22,9 +22,6 @@ public class HBSaleBoard {
 	private String pimg3;
 	private String pimg4;
 	private String pimg5;
-	
-	private MultipartFile file;
-
 
 	
 	private String sertch;
@@ -32,6 +29,62 @@ public class HBSaleBoard {
 	private String pageNum;
 	private int start;
 	private int end;
+	
+	
+	private String mnick;
+	private String mname;
+	private String maddr;
+	private String mstatus;
+	private int mlevel;
+	private String ctkinds;	
+	private String pstatus;
+		
+	
+	
+	
+
+	public String getMname() {
+		return mname;
+	}
+	public void setMname(String mname) {
+		this.mname = mname;
+	}
+	public String getMstatus() {
+		return mstatus;
+	}
+	public void setMstatus(String mstatus) {
+		this.mstatus = mstatus;
+	}
+	public String getMnick() {
+		return mnick;
+	}
+	public void setMnick(String mnick) {
+		this.mnick = mnick;
+	}
+	public String getMaddr() {
+		return maddr;
+	}
+	public void setMaddr(String maddr) {
+		this.maddr = maddr;
+	}
+	public int getMlevel() {
+		return mlevel;
+	}
+	public void setMlevel(int mlevel) {
+		this.mlevel = mlevel;
+	}
+	public String getCtkinds() {
+		return ctkinds;
+	}
+	public void setCtkinds(String ctkinds) {
+		this.ctkinds = ctkinds;
+	}
+	public String getPstatus() {
+		return pstatus;
+	}
+	public void setPstatus(String pstatus) {
+		this.pstatus = pstatus;
+	}
 	public int getPnum() {
 		return pnum;
 	}
@@ -127,12 +180,6 @@ public class HBSaleBoard {
 	}
 	public void setPimg5(String pimg5) {
 		this.pimg5 = pimg5;
-	}
-	public MultipartFile getFile() {
-		return file;
-	}
-	public void setFile(MultipartFile file) {
-		this.file = file;
 	}
 	public String getSertch() {
 		return sertch;

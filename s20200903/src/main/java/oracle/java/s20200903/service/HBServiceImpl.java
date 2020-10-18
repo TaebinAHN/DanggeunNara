@@ -33,13 +33,12 @@ public class HBServiceImpl implements HBService {
 		return hd.list(sb);
 	}
 
-
 	@Override
-	public HBSaleBoard HBSaleBoardRead(int pnum) {
+	public HBSaleBoard HBSaleBoardRead(HBSaleBoard sb) {
 		// TODO Auto-generated method stub
-		System.out.println("HBServiceImpl HBSaleBoardRead....");
-		hd.updateViewCnt(pnum);
-		return hd.HBSaleBoardRead(pnum);
+		System.out.println("HBServiceImpl HBSaleBoardRead sb ->" + sb);
+		hd.updateViewCnt(sb.getPnum());
+		return hd.HBSaleBoardRead(sb);
 	}
 	
 
@@ -60,6 +59,20 @@ public class HBServiceImpl implements HBService {
 		return hd.listManager();
 	}
 
+	@Override
+	public HBSaleBoard HBSaleBoardUpdate(HBSaleBoard sb) {
+		// TODO Auto-generated method stub
+		System.out.println("HBServiceImpl HBSaleBoardUpdate....");
+		return hd.HBSaleBoardUpdate(sb);
+	}
+	
+	@Override
+	public int update(HBSaleBoard sb) {
+		// TODO Auto-generated method stub
+		System.out.println("HBServiceImpl update....");
+		return hd.update(sb);
+	}
+	
 
 	@Override
 	public int delete(HBSaleBoard sb) {
@@ -67,6 +80,10 @@ public class HBServiceImpl implements HBService {
 		System.out.println("HBServiceImpl delete sb->"+sb);
 		return hd.delete(sb);
 	}
+
+
+
+
 
 	
 	
