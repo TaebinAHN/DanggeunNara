@@ -16,6 +16,7 @@ public class TBMember {
 	private Date mDate;
 	private String mMail;
 	private String mSms;
+	private int mlf;
 	
 	private String search;   
 	private String keyword;
@@ -24,7 +25,12 @@ public class TBMember {
 	private int end;
 	
 	
-	
+	public int getMlf() {
+		return mlf;
+	}
+	public void setMlf(int mlf) {
+		this.mlf = mlf;
+	}
 	public int getmStatus() {
 		return mStatus;
 	}

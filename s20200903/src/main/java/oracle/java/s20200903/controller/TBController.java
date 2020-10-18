@@ -30,7 +30,7 @@ import oracle.java.s20200903.service.TBPaging;
 
 @Controller
 public class TBController {
-	
+
 	@Autowired
 	private TBService ts;
 	
@@ -75,7 +75,7 @@ public class TBController {
 		
 	}
 	
-	@RequestMapping (value="TBfindPw", method=RequestMethod.POST)
+	@RequestMapping (value="TBfindPw")
 	public String TBfindPwPost(Model model) {
 		return "TBfindPw";
 	}
@@ -167,9 +167,9 @@ public class TBController {
 		int result = ts.loginMember(tbm);
 		response.setContentType("text/html charset=UTF-8"); 
 		PrintWriter pw = response.getWriter();
+		int checkMstatus = ts.checkMstatus(tbm);
 		if(result > 0) {
 			int checklevel = ts.checkMlevel(tbm);
-			int checkMstatus = ts.checkMstatus(tbm);
 			if(checkMstatus == 9) {
 				pw.println("<script>alert('탈퇴된 회원입니다.');</script>");
 				pw.flush();
@@ -192,6 +192,19 @@ public class TBController {
 			session.setAttribute("mId", tbm.getmId());
 			return "forward:main.do";
 		} else {
+			int checkMlf = ts.checkMlf(tbm);
+			int mlfcnt = ts.mlf(tbm);
+			if(checkMlf > 5) {
+				System.out.println("checkMlf ==>" + checkMlf);
+				int stopmember = ts.stopmember(tbm);
+				if(checkMstatus == 7) {
+					System.out.println(checkMlf + "==" + tbm.getMlf());
+					System.out.println(stopmember);
+					pw.println("<script>alert('로그인 5회 입력 실패하여 비밀번호 변경 후 이용바랍니다.');</script>");
+					pw.flush();
+					return "TBlogin";
+				}
+			}
 			pw.println("<script>alert('아이디와 비밀번호를 확인해주세요.');</script>");
 			pw.flush();
 			return "TBlogin";
@@ -200,9 +213,6 @@ public class TBController {
 	
 	@RequestMapping(value="TBfindPwgo", method=RequestMethod.POST)
 	public String TBfindPwgo(HttpServletRequest request, HttpServletResponse response, TBMember tbm, Model model) throws ServletException, IOException  {
-		HttpSession session = request.getSession();
-		session.setAttribute("mId", tbm.getmId());
-		System.out.println(session.getAttribute("mId")); 
 		int result = ts.TBfindPwgo(tbm);
 		if(result > 0) {
 			System.out.println("TBfindPwgo result 값 : " + result);
@@ -215,9 +225,6 @@ public class TBController {
 	}
 	@RequestMapping(value="TBfindPwgo", method=RequestMethod.GET)
 	public String TBfindPwgoGet(HttpServletRequest request, HttpServletResponse response, TBMember tbm, Model model) throws ServletException, IOException  {
-		HttpSession session = request.getSession();
-		session.setAttribute("mId", tbm.getmId());
-		System.out.println(session.getAttribute("mId")); 
 		int result = ts.TBfindPwgo(tbm);
 		if(result > 0) {
 			System.out.println("TBfindPwgo result 값 : " + result);
@@ -273,7 +280,7 @@ public class TBController {
 	public String mailTransport(HttpServletRequest request, Model model, TBMember tbm) {
 		HttpSession session;
 		session = request.getSession();
-		session.setAttribute("mId", tbm.getmId());
+		session.setAttribute("mId", request.getParameter("mId"));
 		System.out.println("메일 발송 시작..");
 		
 		

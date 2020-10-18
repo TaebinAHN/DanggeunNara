@@ -31,7 +31,7 @@
 		select count(*) from member where mId=#{mId}
 	</select>
 	<update id="passwdUpdate" parameterType="TBMember">
-		update member set mPw=#{mPw} where mId=#{mId}
+		update member set mPw=#{mPw}, mStatus=1, mlf=0 where mId=#{mId}
 	</update>
 	<select id="TBmyPageUp" parameterType="java.lang.String" resultType="TBMember">
 		select * from member where mId=#{mId}
@@ -42,7 +42,17 @@
 	<update id="TBMemberLeave">
 		update member set mStatus=9 where mId=#{mId}
 	</update>
-	    <select id="checkMstatus" parameterType="TBMember" resultType="int">
+	    <select id="checkMstatus" parameterType="int" resultType="int">
     	select mStatus from member where mId=#{mId}
+    </select>
+    <update id="mlf" parameterType="int">
+    	update member set mlf=mlf+1 where mId=#{mId}
+    </update>
+    
+    <update id="stopmember" parameterType="int">
+    	update member set mStatus=7 where mId=#{mId}
+    </update>
+    <select id="checkMlf" parameterType="int" resultType="int">
+    	select mlf from member where mId=#{mId}
     </select>
 </mapper>

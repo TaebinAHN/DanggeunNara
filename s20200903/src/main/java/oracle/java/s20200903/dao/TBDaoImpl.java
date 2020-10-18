@@ -137,6 +137,29 @@ public class TBDaoImpl implements TBDao {
 		int result = 0;
 		result = session.selectOne("checkMstatus", tbm);
 		return result;
+	}
+
+	@Override
+	public int mlf(TBMember tbm) {
+		int result = 0;
+		
+		result = session.update("mlf", tbm);
+		return result;
+	}
+
+	@Override
+	public int stopmember(TBMember tbm) {
+		int result = 0;
+		result = session.update("stopmember", tbm);
+		return result;
+	}
+	
+	@Override
+	public int checkMlf(TBMember tbm) {
+		int result = 0;
+		result = session.selectOne("checkMlf", tbm);
+		
+		return result;
 	} 
 
 
