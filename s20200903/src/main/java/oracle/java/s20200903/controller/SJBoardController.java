@@ -55,10 +55,12 @@ public class SJBoardController {
 	}
 	//게시글 내용
 	@RequestMapping(value="SJblackListBoardRead")
-	public String SJblackListBoardRead (HttpServletRequest request, int pNum, Model model) {
-		SJBoard sjb = bs.SJblackListBoardRead(pNum);
-		System.out.println("blbr pNum->" + pNum);
-		model.addAttribute("sjb", sjb);
+	public String SJblackListBoardRead (HttpServletRequest request, Model model) {
+		SJBoard sjb = new SJBoard();
+		sjb.setpNum(Integer.parseInt(request.getParameter("pNum")));
+		SJBoard sjb2 = bs.SJblackListBoardRead(sjb);
+		System.out.println("blbr pNum->" + sjb);
+		model.addAttribute("sjb", sjb2);
 		return "SJblackListBoardRead";
 	}
 	
@@ -69,45 +71,88 @@ public class SJBoardController {
 		return "SJblackListBoardWrite";
 	}
 	
-	//게시글 작성
-	@RequestMapping(value="SJblackListBoardInsert", method=RequestMethod.POST)
-	public String SJblackListBoardInsert(HttpServletRequest request , Model model, @RequestParam("img") MultipartFile[] uploadFile ) throws IOException, Exception  {
-		String uploadPath = "C:\\Users\\anjal\\Documents\\spring\\s20200903\\src\\main\\webapp\\resources\\img";
-		
+    @RequestMapping(value="SJblackListBoardInsert", method = RequestMethod.POST)
+	public String jhWrite(HttpServletRequest request, @RequestParam("img") MultipartFile[] uploadFile, Model model) throws Exception {
+    	System.out.println("SJController SJblackListBoardInsert start");
+    	//사진 업로드 경로를 설정
+		String uploadPath = request.getSession().getServletContext().getRealPath("/blackListBoardImg/");
+		System.out.println("uploadPath: " + uploadPath);
+		//
 		SJBoard sjb = new SJBoard();
-		sjb.setmId("admin@dang.com");
+		//
+		sjb.setmId((String) request.getSession().getAttribute("mId"));//request.getParameter("mId")
+		System.out.println("mId: " + (String) request.getSession().getAttribute("mId"));
 		sjb.setpTitle(request.getParameter("pTitle"));
+		System.out.println("pTitle: " + request.getParameter("pTitle"));
 		sjb.setpContent(request.getParameter("pContent"));
-		for (int i = 0; i < uploadFile.length; i++) {
-			MultipartFile img = uploadFile[i];
-			logger.info("upload File Name : " + img.getOriginalFilename());
-			logger.info("upload File Size : " + img.getSize());
-			String savedName = uploadFile(img.getOriginalFilename(), img.getBytes(), uploadPath);
-			if (i == 0) {
-				sjb.setpImg1(savedName);
-				System.out.println(savedName);
-			}
-			if (i == 1)
-				sjb.setpImg2(savedName);
-			if (i == 2)
-				sjb.setpImg3(savedName);
-			if (i == 3)
-				sjb.setpImg4(savedName);
-			if (i == 4)
-				sjb.setpImg5(savedName);
-
-		}
-
-
-		int result = bs.SJblackListBoardInsert(sjb);
+		System.out.println("pContent: " + request.getParameter("pContent"));
 		
-		if (result > 0) return "redirect:SJblackListBoard.do";
-		else {
-			model.addAttribute("msg", "입력 실패 확인해 보세요");
-			return "forward:SJblackListBoardWrite.do";
+		for(int i = 0; i<uploadFile.length; i++) {
+			MultipartFile img = uploadFile[i];
+			System.out.println("upload File Name : " + img.getOriginalFilename());
+			System.out.println("upload File Size : " + img.getSize());
 			
-		}
+			if(i==0 && img.getSize() != 0) {String savedName = uploadFile(img.getOriginalFilename(), img.getBytes(), uploadPath);
+					  System.out.println(savedName);
+					  sjb.setpImg1(savedName);}
+			if(i==1 && img.getSize() != 0) {String savedName = uploadFile(img.getOriginalFilename(), img.getBytes(), uploadPath);
+			  		  sjb.setpImg2(savedName);}
+			if(i==2 && img.getSize() != 0) {String savedName = uploadFile(img.getOriginalFilename(), img.getBytes(), uploadPath);
+					  System.out.println(savedName);
+			  		  sjb.setpImg3(savedName);}
+			if(i==3 && img.getSize() != 0) {String savedName = uploadFile(img.getOriginalFilename(), img.getBytes(), uploadPath);
+					  System.out.println(savedName);
+			  		  sjb.setpImg4(savedName);}
+			if(i==4 && img.getSize() != 0) {String savedName = uploadFile(img.getOriginalFilename(), img.getBytes(), uploadPath);
+					  System.out.println(savedName);
+			  		  sjb.setpImg5(savedName);
+				/*jhb.setPimg5(savedName); System.out.println(savedName);*/}		
+		}   
+		//jhInsert()를 실행후 결과값을 result에 저장
+		int result = bs.SJblackListBoardInsert(sjb);
+		if (result > 0) {System.out.println("글쓰기 성공"); return "redirect:SJblackListBoard.do";}
+		else {System.out.println("글쓰기 실패"); return "forward:SJblackListBoardWrite.do";}
 	}
+	
+//	//게시글 작성
+//	@RequestMapping(value="SJblackListBoardInsert", method=RequestMethod.POST)
+//	public String SJblackListBoardInsert(HttpServletRequest request , Model model, @RequestParam("img") MultipartFile[] uploadFile ) throws IOException, Exception  {
+//		String uploadPath = "C:\\spring\\springSrc\\s20200903\\src\\main\\webapp\\resources\\image";
+//		
+//		SJBoard sjb = new SJBoard();
+//		sjb.setmId("admin@dang.com");
+//		sjb.setpTitle(request.getParameter("pTitle"));
+//		sjb.setpContent(request.getParameter("pContent"));
+//		for (int i = 0; i < uploadFile.length; i++) {
+//			MultipartFile img = uploadFile[i];
+//			logger.info("upload File Name : " + img.getOriginalFilename());
+//			logger.info("upload File Size : " + img.getSize());
+//			String savedName = uploadFile(img.getOriginalFilename(), img.getBytes(), uploadPath);
+//			if (i == 0) {
+//				sjb.setpImg1(savedName);
+//				System.out.println(savedName);
+//			}
+//			if (i == 1)
+//				sjb.setpImg2(savedName);
+//			if (i == 2)
+//				sjb.setpImg3(savedName);
+//			if (i == 3)
+//				sjb.setpImg4(savedName);
+//			if (i == 4)
+//				sjb.setpImg5(savedName);
+//
+//		}
+//
+//
+//		int result = bs.SJblackListBoardInsert(sjb);
+//		
+//		if (result > 0) return "redirect:SJblackListBoard.do";
+//		else {
+//			model.addAttribute("msg", "입력 실패 확인해 보세요");
+//			return "forward:SJblackListBoardWrite.do";
+//			
+//		}
+//	}
 	
 	public String uploadFile(String originalName, byte[] fileData, String uploadPath) throws Exception {
 
@@ -133,19 +178,54 @@ public class SJBoardController {
 	}
 	
 	// 게시글 수정
-	@RequestMapping(value="SJblackListBoardUpdateForm")
-	public String SJblackListBoardUpdateForm(int pNum, Model model) {
-		SJBoard sjb = bs.SJblackListBoardRead(pNum);
-		model.addAttribute("sjb", sjb);
+	@RequestMapping(value="SJblackListBoardUpdateForm" )
+	public String SJblackListBoardUpdateForm(HttpServletRequest request, Model model) {
+		SJBoard sjb = new SJBoard();
+		sjb.setpNum(Integer.parseInt(request.getParameter("pNum")));
+		SJBoard sjb2 = bs.SJblackListBoardRead(sjb);
+		model.addAttribute("sjb", sjb2);
 		return "SJblackListBoardUpdateForm";
 	}
 	@RequestMapping(value="SJblackListBoardUpdate",  method=RequestMethod.POST)
-	public String update(SJBoard sjb, Model model) {
-		int k = bs.SJblackListBoardUpdate(sjb);
-		System.out.println("bs.SJblackListBoardUpdate(sjb) CNT -->"+k);
-		model.addAttribute("kkk",k);   // Test Controller간 Data 전달
-		model.addAttribute("kk3","Message Test");   // Test Controller간 Data 전달	
-		return "forward:SJblackListBoard.do";   //  Controller간 Data 전달시 활용(Model등에 담아서리....)
+	public String update(HttpServletRequest request, @RequestParam("img") MultipartFile[] uploadFile, Model model) throws Exception{
+		String uploadPath = request.getSession().getServletContext().getRealPath("/blackListBoardImg/");
+		SJBoard sjb = new SJBoard();
+		sjb.setpNum(Integer.parseInt(request.getParameter("pNum")));
+		SJBoard sjBoard = bs.SJblackListBoardRead(sjb);		
+		sjb.setmId((String) request.getSession().getAttribute("mId"));	//(String) request.getSession().getAttribute("mid");
+		System.out.println("mId" + (String) request.getSession().getAttribute("mId"));
+		sjb.setpTitle(request.getParameter("pTitle"));
+		System.out.println("pTitle" + request.getParameter("pTitle"));
+		sjb.setpContent(request.getParameter("pContent"));
+	    System.out.println("pContent" + request.getParameter("pContent"));
+		
+		for(int i = 0; i<uploadFile.length; i++) {
+			MultipartFile img = uploadFile[i];
+			System.out.println("upload File Name : " + img.getOriginalFilename());
+			System.out.println("upload File Size : " + img.getSize());
+			
+			//if => 새로 첨부된 파일이 있을 시 새로 set //else => 새로 첨부된 파일이 없을 시 기존의 img정보 저장
+			if(img.getSize()!=0) {	//새로 첨부된 파일이 있을 시 새로 set
+				String savedName = uploadFile(img.getOriginalFilename(), img.getBytes(), uploadPath);
+				if(i==0) { sjb.setpImg1(savedName); System.out.println(savedName);}
+				if(i==1) sjb.setpImg2(savedName);
+				if(i==2) sjb.setpImg3(savedName);
+				if(i==3) sjb.setpImg4(savedName);
+				if(i==4) sjb.setpImg5(savedName);	
+			} else {				// 새로 첨부된 파일이 없을 시 기존의 img정보 저장
+				if(i==0)sjb.setpImg1(sjBoard.getpImg1());
+				if(i==1)sjb.setpImg2(sjBoard.getpImg2());
+				if(i==2)sjb.setpImg3(sjBoard.getpImg3());
+				if(i==3)sjb.setpImg4(sjBoard.getpImg4());
+				if(i==4)sjb.setpImg5(sjBoard.getpImg5());
+			}	
+		}
+		
+	    int result = bs.SJblackListBoardUpdate(sjb);
+	    model.addAttribute("result", result);
+	    System.out.println("result: " + result);
+		if (result > 0) {System.out.println("글수정 성공"); return "redirect:SJblackListBoard.do";}
+		else { System.out.println("글수정 실패"); return "forward:SJblackListBoardUpdateForm.do";}
 	}
 	
 	//게시글 삭제

@@ -21,8 +21,7 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
 	rel="stylesheet" />
 </head>
-<%@ include file="header.jsp" %>
-<%@ include file="aside.jsp" %>
+<%@ include file="includeJSP.jsp"%>
 
 <body>
 	<c:set var="num" value="${pg.total-pg.start+1}"></c:set>
@@ -46,7 +45,7 @@
 						<option value="withdraswal">탈퇴</option>
 				</select></th>
 			</tr>
-			<c:forEach var="TB" items="${list }">
+			<c:forEach var="TB" items="${adminList }">
 				<tr>
 					<td><a href="detail.do?${TB.mId}">${TB.mName}</a></td>
 					<td>${TB.mId}</td>
@@ -63,19 +62,19 @@
 		<div class="user-manage-list__page-num-container">
 			<ul class="page-num-container">
 				<c:if test="${pg.startPage > pg.pageBlock }">
-					<a href="list.do?currentPage=${pg.startPage-pg.pageBlock}">
+					<a href="adminList.do?currentPage=${pg.startPage-pg.pageBlock}">
 						<li class="page-num-container__left-btn page-num-container__btn">
 							<i class="fas fa-chevron-left" />
 					</li>
 					</a>
 				</c:if>
 				<c:forEach var="i" begin="${pg.startPage }" end="${pg.endPage }">
-					<a href="list.do?currentPage=${i}">
+					<a href="adminList.do?currentPage=${i}">
 						<li class="page-num-container__num">${i}</li>
 					</a>
 				</c:forEach>
 				<c:if test="${pg.endPage < pg.totalPage }">
-					<a href="list.do?currentPage=${pg.startPage+pg.pageBlock}">
+					<a href="adminList.do?currentPage=${pg.startPage+pg.pageBlock}">
 						<li class="page-num__right-btn page-num-container__btn"><i
 							class="fas fa-chevron-right" /></li>
 					</a>

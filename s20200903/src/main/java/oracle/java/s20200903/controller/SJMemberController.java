@@ -25,17 +25,17 @@ public class SJMemberController {
 	
 	@RequestMapping(value="adminList")
 	public String list(SJMember sjm, String currentPage, Model model) {
-		int total = ss.total();
-		System.out.println("total=>" + total);
+		int adminTotal = ss.adminTotal();
+		System.out.println("total=>" + adminTotal);
 		
-		SJPaging pg = new SJPaging(total, currentPage);
+		SJPaging pg = new SJPaging(adminTotal, currentPage);
 		sjm.setStart(pg.getStart());
 		sjm.setEnd(pg.getEnd());
-		List<SJMember> list = ss.list(sjm);
+		List<SJMember> adminList = ss.adminList(sjm);
 		
 		
-		model.addAttribute("list", list);
+		model.addAttribute("adminList", adminList);
 		model.addAttribute("pg", pg);
-		return "SJMemberlist.do";
+		return "SJMemberlist";
 	}	
 }
