@@ -10,7 +10,7 @@
     <select id="blTotal" resultType="int">
    		select count(*) from post where bId = 5
    	</select> 
-   	<select id="blackListBoardRead" parameterType="int" resultType="SJBoard">
+   	<select id="blackListBoardRead" parameterType="SJBoard" resultType="SJBoard">
    		select * From Post Where pNum = #{pNum} and bId = 5
    	</select>
    	<insert id="SJblackListBoardInsert"	parameterType="SJBoard">

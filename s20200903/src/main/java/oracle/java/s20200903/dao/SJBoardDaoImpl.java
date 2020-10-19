@@ -27,21 +27,34 @@ public class SJBoardDaoImpl implements SJBoardDao {
 	}
 
 	@Override
-	public SJBoard SJblackListBoardRead(int pNum) {
+	public SJBoard SJblackListBoardRead(SJBoard sjb) {
 		System.out.println("BoardDaoImpl start..");
-		SJBoard sjb = new SJBoard();
+		SJBoard sjb2  = new SJBoard();
 		try {
-			sjb = session.selectOne("blackListBoardRead", pNum);
+			sjb2 = session.selectOne("blackListBoardRead", sjb);
 			System.out.println("BoardDaoImpl blbr getPTitle-> "+ sjb.getpTitle());
 		} catch (Exception e) {
 			System.out.println("BoardDaoImpl detail Exception->"+ e.getMessage());
 		}
-		return sjb;
+		return sjb2;
 	}
 	@Override
 	public int SJblackListBoardInsert(SJBoard sjb) {
 		// TODO Auto-generated method stub
 		return session.insert("SJblackListBoardInsert", sjb);
+	}
+	
+	@Override
+	public SJBoard SJblackListBoardUpdateForm(SJBoard sjb) {
+		System.out.println("BoardDaoImpl start..");
+		SJBoard sjb2  = new SJBoard();
+		try {
+			sjb2 = session.selectOne("blackListBoardRead", sjb);
+			System.out.println("BoardDaoImpl blbr getPTitle-> "+ sjb.getpTitle());
+		} catch (Exception e) {
+			System.out.println("BoardDaoImpl detail Exception->"+ e.getMessage());
+		}
+		return sjb2;
 	}
 
 	@Override
@@ -69,10 +82,12 @@ public class SJBoardDaoImpl implements SJBoardDao {
 	}
 
 	@Override
-	public void SJUpdateViewCnt(int pNum) {
+	public void SJUpdateViewCnt(SJBoard sjb) {
 		// TODO Auto-generated method stub
-		session.update("SJUpdateViewCnt", pNum);
+		session.update("SJUpdateViewCnt", sjb);
 	}
+
+
 
 
 }

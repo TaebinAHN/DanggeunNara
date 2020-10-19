@@ -27,11 +27,11 @@ public class SJBoardServiceImpl implements SJBoardService {
 	}
 
 	@Override
-	public SJBoard SJblackListBoardRead(int pNum) {
+	public SJBoard SJblackListBoardRead(SJBoard sjb) {
 		// TODO Auto-generated method stub
-		bd.SJUpdateViewCnt(pNum);
-		System.out.println("blbrServiceImpl pNum->"+pNum);
-		return bd.SJblackListBoardRead(pNum);
+		bd.SJUpdateViewCnt(sjb);
+		System.out.println("blbrServiceImpl pNum->"+sjb);
+		return bd.SJblackListBoardRead(sjb);
 	}
 
 	@Override
@@ -50,6 +50,12 @@ public class SJBoardServiceImpl implements SJBoardService {
 	public int delete(int pNum) {
 		// TODO Auto-generated method stub
 		return bd.SJblackListBoardDelete(pNum);
+	}
+
+	@Override
+	public SJBoard SJblackListBoardUpdateForm(SJBoard sjb) {
+		// TODO Auto-generated method stub
+		return bd.SJblackListBoardUpdateForm(sjb);
 	}
 
 

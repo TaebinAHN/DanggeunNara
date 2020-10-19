@@ -8,10 +8,11 @@ import oracle.java.s20200903.model.SJBoard;
 public interface SJBoardService {
 	List<SJBoard>		SJblackListBoard(SJBoard sjb);
 	int				total();
-	SJBoard			SJblackListBoardRead(int pNum);
 	int 			SJblackListBoardUpdate(SJBoard sjb);
 	int 			delete(int pNum);
 	int 			SJblackListBoardInsert(SJBoard sjb);
+	SJBoard 		SJblackListBoardUpdateForm(SJBoard sjb);
+	SJBoard 		SJblackListBoardRead(SJBoard sjb);
 
 	
 }
