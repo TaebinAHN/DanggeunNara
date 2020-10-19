@@ -31,7 +31,8 @@
                     <input
                         id="pw__write"
                         class="update-pw__info"
-                        type="text"
+                        type="password"
+                        name="mPw"
                         placeholder="새 비밀번호를 입력해주세요"
                     />
                     <div class="check__message write__message"></div>
@@ -41,8 +42,7 @@
                     <input
                         id="pw__check"
                         class="update-pw__info"
-                        type="text"
-                        name="mPw"
+                        type="password"
                         placeholder="새 비밀번호를 한번 더 입력해주세요"
                     />
                     <div class="check__message pw__confirm"></div>

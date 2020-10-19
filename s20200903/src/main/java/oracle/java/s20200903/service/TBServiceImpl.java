@@ -112,6 +112,26 @@ public class TBServiceImpl implements TBService {
 	}
 
 
+	@Override
+	public int mlf(TBMember tbm) {
+		// TODO Auto-generated method stub
+		return td.mlf(tbm);
+	}
+
+
+	@Override
+	public int stopmember(TBMember tbm) {
+		// TODO Auto-generated method stub
+		return td.stopmember(tbm);
+	}
+
+	@Override
+	public int checkMlf(TBMember tbm) {
+		// TODO Auto-generated method stub
+		return td.checkMlf(tbm);
+	}
+
+
 
 
 }

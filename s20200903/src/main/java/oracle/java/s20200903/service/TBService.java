@@ -22,4 +22,7 @@ public interface TBService {
 	int				checkMlevel(TBMember tbm);
 	int				TBMemberLeave(TBMember tbm);
 	int				checkMstatus(TBMember tbm);
+	int				mlf(TBMember tbm);
+	int				stopmember(TBMember tbm);
+	int				checkMlf(TBMember tbm);
 }
