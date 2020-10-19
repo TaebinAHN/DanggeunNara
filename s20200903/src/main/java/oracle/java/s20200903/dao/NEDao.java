@@ -36,4 +36,5 @@ public interface NEDao {
 
 	NEJoin serTotal(NEJoin neJoin);
 
+
 }

@@ -8,7 +8,8 @@ public class NEJoin {
 	private int pnum;
 	private String mid;
 	private int ctcode; 	
-	private int pstatus; 	// 1.거래가능 2.거래중 3.거래완료
+	private String pstatus; 	// 1.거래가능 2.거래중 3.거래완료
+	private int pscode;
 	private String ptitle;
 	private int pprice;
 	private String pdate;
@@ -33,8 +34,16 @@ public class NEJoin {
 	private String mnick;
 	private String maddr;
 	private String msweet;
+	private int mlevel;
 	private String ctkinds;
 	
+	public int getMlevel() {
+		return mlevel;
+	}
+	public void setMlevel(int mlevel) {
+		this.mlevel = mlevel;
+	}
+
 	// 조회용
 	private String search;   
 	private String keyword;
@@ -53,6 +62,21 @@ public class NEJoin {
 	private int sSaleTotal;
 	private int sShareTotal;
 	private int sBuyTotal;
+	
+	private int result;
+	
+	public int getResult() {
+		return result;
+	}
+	public void setResult(int result) {
+		this.result = result;
+	}
+	public int getPscode() {
+		return pscode;
+	}
+	public void setPscode(int pscode) {
+		this.pscode = pscode;
+	}
 	
 	public int getsTotal() {
 		return sTotal;
@@ -103,10 +127,10 @@ public class NEJoin {
 	public void setCtcode(int ctcode) {
 		this.ctcode = ctcode;
 	}
-	public int getPstatus() {
+	public String getPstatus() {
 		return pstatus;
 	}
-	public void setPstatus(int pstatus) {
+	public void setPstatus(String pstatus) {
 		this.pstatus = pstatus;
 	}
 	public String getPtitle() {

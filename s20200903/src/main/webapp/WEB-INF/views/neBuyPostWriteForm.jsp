@@ -51,8 +51,9 @@
 				<div class="buy-board-write__info">
 					<div class="buy-board-write__location">
 						<label class="buy-board-write__location--label"
-							for="buy-board-write__location--input">활동 지역</label> <input
-							class="buy-board-write__location--input" type="text" readonly
+							for="buy-board-write__location--input">활동 지역</label> 
+							<input
+							name="maddr" class="buy-board-write__location--input" type="text" readonly
 							value="서울 강남구" />
 					</div>
 					<div class="buy-board-write__price">
