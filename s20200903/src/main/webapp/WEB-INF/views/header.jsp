@@ -64,13 +64,13 @@
 	                    	<ul class="header__fixed-bar-nav-list nav-list">
 	                            <li class="nav-list-content drop">
 	                                <span class="nav-list-text">
-	                                    <span class="name">${sessionScope.mId}</span>님 </span
+	                                    <span class="name">${sessionScope.mNick}</span>님 </span
 	                                ><img
 	                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAA1ElEQVRIie2TsQ3CMBBF/zkLpMQLQO9zmV2IBBINJZQZgDAAVRAj0FBlhrRZwV1GwDQGhUhJnFQg+Xdn371nyzIQEvJfYeZMa50DEDPGBTOfmTn7Wuw0xdbaIzMXEyXCzRwAxO2NqF0YY0op5YKItlLKVZIk97qurQf8CiAFcKuqag/gMxN1u40xDydJm6ZZjkje8LWDbwA8e28wUTIK7xV4SLzgg4IBCfnCAYCGBK3TFnCP6NZSH7ivAABIKXUhop2rveBTI7TWuVLqhHkfMSTkV/MCeGNw/fvNnQwAAAAASUVORK5CYII="
 	                                />
 	                                <ul class="drop__container">
 	                                    <a href="TBmyPage.do?mId=${sessionScope.mId}"><li>마이페이지</li></a>
-	                                    <c:if test="${sessionScope.mId.equals('admin@dang.com')}">
+	                                    <c:if test="${sessionScope.checklevel==3}">
 	                                    	<a href="adminList.do?mId=${sessionScope.mId}"><li>회원관리페이지</li></a>
 	                                    </c:if>
 	                                    <a href="TBpicksList.do?mId=${sessionScope.mId}"><li>관심내역</li></a>

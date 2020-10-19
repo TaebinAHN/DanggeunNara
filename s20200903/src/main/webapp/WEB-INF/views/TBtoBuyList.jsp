@@ -48,28 +48,32 @@
                     <div class="to-buy-list__content">
                         <!-- 태그 안에 있는 더미 데이터들은 틀을 보기 위함이며 실제 작업시엔 해당 데이터를 불러 올 수 있도록 변경 부탁드립니다. -->
                         <article class="to-buy-list__article">
-                            <a href="../board/toBuyBoardRead.html">
+                        <c:forEach var="bPost" items="${blist }">
+                        <c:if test="${sessionScope.mId == NEPost.mid}">
+                            <a href="toBuyBoardRead.do">
                                 <div class="to-buy-list__content--thumbnail">
                                     <img src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/3c06cb158997b8cd4061052c6b457887e4c60496704b6149d4197a6d791ad261.webp?q=82&s=300x300&t=crop"
                                         alt="thumbnail" />
                                 </div>
                                 <div class="to-buy-list__content--text">
                                     <h1 class="to-buy-list__content--text__title">
-                                        5단 서랍장 입니다
+                                        ${NEPost.ptitle}
                                     </h1>
                                     <p class="to-buy-list__content--text__address">
-                                        서울 송파구 석촌동
+                                        ${NEPost.maddr}
                                     </p>
                                     <div class="to-buy-list__content--text__date">
                                         <div class="to-buy-list__content--date">
-                                            2020.09.26
+                                         ${NEPost.pdate} 
                                         </div>
                                         <div class="to-buy-list__content--hit">
-                                            조회수 30
+                                         ${NEPost.phit}
                                         </div>
                                     </div>
                                 </div>
                             </a>
+                            </c:if>
+                            </c:forEach>
                         </article>
                         <!-- 이 아래부턴 삭제 부탁드립니다. -->
                         <article class="to-buy-list__article">
@@ -159,7 +163,7 @@
                     <!-- 구매내역 없을때 띄우기 -->
                     <div class="to-buy-list__text">
                         <strong>구매 내역이 없어요 !</strong>
-                        <a href="../board/toBuyBoard.html">
+                        <a href="toBuyBoard.do">
                             <p>구경가기</p>
                         </a>
                     </div>
@@ -449,14 +453,14 @@
                     <!-- 피거래자 입장에서 거래가 완료됐을경우 띄우기 -->
                     <div class="to-buy-list__content">
                         <article class="to-buy-list__article">
-                            <a href="../board/toSharingBoardRead.html">
+                            <a href="toSharingBoardRead.do">
                                 <div class="to-buy-list__content--thumbnail">
                                     <img src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/3c06cb158997b8cd4061052c6b457887e4c60496704b6149d4197a6d791ad261.webp?q=82&s=300x300&t=crop"
                                         alt="thumbnail" />
                                 </div>
                                 <div class="to-buy-list__content--text">
                                     <h1 class="to-buy-list__content--text__title">
-                                        5단 서랍장 입니다
+                                        ${NEPost.ptitle}
                                     </h1>
                                     <p class="to-buy-list__content--text__address">
                                         서울 송파구 석촌동

@@ -1,5 +1,6 @@
 package oracle.java.s20200903.dao;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,4 +25,6 @@ public interface TBDao {
 	int				mlf(TBMember tbm);
 	int				stopmember(TBMember tbm);
 	int				checkMlf(TBMember tbm);
+	String			getMnick(TBMember tbm);
+	int				mlfReset(TBMember tbm);
 }

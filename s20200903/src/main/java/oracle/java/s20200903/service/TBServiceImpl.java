@@ -132,6 +132,20 @@ public class TBServiceImpl implements TBService {
 	}
 
 
+	@Override
+	public String getMnick(TBMember tbm) {
+		// TODO Auto-generated method stub
+		return td.getMnick(tbm);
+	}
+
+
+	@Override
+	public int mlfReset(TBMember tbm) {
+		// TODO Auto-generated method stub
+		return td.mlfReset(tbm);
+	}
+
+
 
 
 }

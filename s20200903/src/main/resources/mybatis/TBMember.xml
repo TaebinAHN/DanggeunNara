@@ -9,7 +9,7 @@
      	select count(*) from Member
     </select> 
     <insert id="joinMember" parameterType="TBMember">
-    	insert into member values(#{mId}, #{mNick}, #{mName}, #{mPw}, #{mAddr}, #{mAddr2}, #{mTel}, 1, #{mSweet}, sysdate, #{mMail}, #{mSms}, 1)
+    	insert into member values(#{mId}, #{mNick}, #{mName}, #{mPw}, #{mAddr}, #{mAddr2}, #{mTel}, 1, #{mSweet}, sysdate, #{mMail}, #{mSms}, 1, 0)
     </insert> 
     <select id="jList">
     	select *
@@ -55,4 +55,10 @@
     <select id="checkMlf" parameterType="int" resultType="int">
     	select mlf from member where mId=#{mId}
     </select>
+    <select id="getMnick" parameterType="java.lang.String" resultType="java.lang.String">
+    	select mNick from member where mId=#{mId}
+    </select>
+    <update id="mlfReset" parameterType="int">
+    	update member set mlf=0 where mId=#{mId}
+    </update>
 </mapper>

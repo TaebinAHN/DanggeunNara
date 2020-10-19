@@ -29,7 +29,7 @@
 
 <body>
     <!-- 섹션 시작 -->
-    <!-- 각 input의 value값을 DB에서 가져올 값으로 수정해주세요 -->
+    <!-- 각 input의 value값을 DB에서 가져올 값으로 수정해주세요 --> 
     <section class="section">
         <div class="to-sale-list">
             <h1 class="list-title">내 판매내역</h1>
@@ -48,6 +48,8 @@
                     <div class="to-sale-list__content">
                         <!-- 태그 안에 있는 더미 데이터들은 틀을 보기 위함이며 실제 작업시엔 해당 데이터를 불러 올 수 있도록 변경 부탁드립니다. -->
                         <article class="to-sale-list__article">
+                            <c:forEach var="bPost" items="${blist }">
+    						<c:if test="${sessionScope.mId == NEPost.mid}">   
                             <a href="../board/toSaleBoardRead.html">
                                 <div class="to-sale-list__content--thumbnail">
                                     <img src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/3c06cb158997b8cd4061052c6b457887e4c60496704b6149d4197a6d791ad261.webp?q=82&s=300x300&t=crop"
@@ -55,31 +57,33 @@
                                 </div>
                                 <div class="to-sale-list__content--text">
                                     <h1 class="to-sale-list__content--text__title">
-                                        5단 서랍장 입니다
+                                        ${NEPost.ptitle}
                                     </h1>
                                     <p class="to-sale-list__content--text__address">
-                                        서울 송파구 석촌동
+                                        ${NEPost.maddr}
                                     </p>
                                     <div class="to-sale-list__content--text__date">
                                         <div class="to-sale-list__content--date">
-                                            2020.09.26
+                                            ${NEPost.pdate} 
                                         </div>
                                         <div class="to-sale-list__content--hit">
-                                            조회수 30
+                                            ${NEPost.phit}
                                         </div>
                                     </div>
                                     <div class="to-sale-list__content--text__price">
                                         <div class="to-sale-list__content--price">
-                                            15,000원
+                                            ${NEPost.pprice}
                                         </div>
                                         <div class="to-sale-list__content--picks">
                                             <img src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/like-8111aa74d4b1045d7d5943a901896992574dd94c090cef92c26ae53e8da58260.svg"
                                                 alt="picks" />
-                                            4
+                                            ${NEPost.ppicks}
                                         </div>
                                     </div>
                                 </div>
                             </a>
+                        </c:if>
+                        </c:forEach>
                         </article>
                         <!-- 이 아래부턴 삭제 부탁드립니다. -->
                         <article class="to-sale-list__article">

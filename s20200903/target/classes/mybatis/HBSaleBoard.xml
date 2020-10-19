@@ -46,9 +46,6 @@
 			SELECT NVL(MAX(PNUM),0)+1 FROM post WHERE BID=1
 		</selectKey>
 		<![CDATA[ INSERT INTO post
-
-		VALUES(1, #{pnum}, #{mid}, #{ctcode}, #{pscode}, #{ptitle}, #{pprice}, sysdate, #{pcontent}, #{phit}, #{ppicks}, 
-
 		VALUES(#{bid}, #{pnum}, #{mid}, #{ctcode},  1, #{ptitle}, #{pprice}, sysdate, #{pcontent}, #{phit}, #{ppicks}, 
 
 			     #{pimg1}, #{pimg2}, #{pimg3}, #{pimg4}, #{pimg5})

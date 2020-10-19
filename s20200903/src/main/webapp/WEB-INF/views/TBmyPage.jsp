@@ -12,8 +12,6 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>회원 정보 수정 :: 당근나라</title>
-        <link rel="stylesheet" href="../css/common.css" />
-        <script src="../javascript/common.js" defer></script>
         <script
             src="https://kit.fontawesome.com/797af710b1.js"
             crossorigin="anonymous"
@@ -133,7 +131,7 @@
         						<span id="msg1"></span>
 							</td>
 						</tr>					
-                        <tr>
+<!--                         <tr>
                             <th>
                                 현재 비밀번호<span class="mypage--form__sub--color-pink"
                                     >*</span
@@ -141,14 +139,16 @@
                             </th>
                             <td>
                                 <input
+                                	id="mPw"
                                     class="mypage--form__input"
+                                    name="mPw"
                                     type="password"
                                     placeholder="기존의 비밀번호를 입력해주세요"
                                     maxlength="16"
                                     required="required"
                                 />
                             </td>
-                        </tr>
+                        </tr> -->
 
                         <tr>
                             <th>

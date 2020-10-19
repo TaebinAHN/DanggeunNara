@@ -25,4 +25,6 @@ public interface TBService {
 	int				mlf(TBMember tbm);
 	int				stopmember(TBMember tbm);
 	int				checkMlf(TBMember tbm);
+	String			getMnick(TBMember tbm);
+	int				mlfReset(TBMember tbm);
 }

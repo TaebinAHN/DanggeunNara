@@ -3,7 +3,13 @@ package oracle.java.s20200903.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import javax.mail.internet.MimeMessage;
@@ -26,6 +32,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import oracle.java.s20200903.model.TBMember;
 import oracle.java.s20200903.service.TBService;
+import scala.util.hashing.Hashing;
 import oracle.java.s20200903.service.TBPaging;
 
 @Controller
@@ -137,35 +144,77 @@ public class TBController {
 	
 	@RequestMapping(value="userInfoUpdate")
 	public String userInfoUpdate (HttpServletRequest request, HttpServletResponse response, TBMember tbm, Model model) throws IOException {
-		int result = ts.userInfoUpdate(tbm);
 		PrintWriter pw = response.getWriter();
-		response.setContentType("text/html charset=UTF-8");
-		if(result > 0) {
-			System.out.println("수정되었다..");
-			pw.println("<script>alert('회원정보가 수정 되었습니다. 다시 로그인 후 이용 부탁드립니다.');</script>");
-			pw.flush();
+		String mixPassword = tbm.getmPw();
+		MessageDigest messageDigest;
+		try {
+/*			SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
+			byte[] bytes = new byte[16];
+			random.nextBytes(bytes);
+			String salt = new String(Base64.getEncoder().encode(bytes));*/
+			
+			messageDigest = MessageDigest.getInstance("SHA-512");
+			messageDigest.reset();
+			messageDigest.update(mixPassword.getBytes("utf8"));
+			String enPassword = String.format("%0128x", new BigInteger(1, messageDigest.digest()));
+			tbm.setmPw(enPassword);
+			System.out.println(mixPassword);
+			System.out.println(messageDigest);
+//			System.out.println(salt);
+			System.out.println("enPassword ==>" + enPassword);
+			response.setContentType("text/html charset=UTF-8");
+			int result = ts.userInfoUpdate(tbm);
+			if(result > 0) {
+				pw.println("<script>alert('회원정보가 수정 되었습니다. 다시 로그인 후 이용 부탁드립니다.');</script>");
+				pw.flush();
+			}
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
 		}
-		
 		return "forward:TBlogin.do";
 	}
 	
 	@RequestMapping (value="joinMember.do", method=RequestMethod.POST)
-	public String joinMember(TBMember tbm ,Model model) {
-		int result = ts.joinMember(tbm);
-		if(result > 0) {
-			System.out.println("값 있다....");
-			System.out.println(result);
-			System.out.println("joinMember result 값 : " + result);
-		} else {
-			model.addAttribute("msg", "");
+	public String joinMember(TBMember tbm ,Model model) throws UnsupportedEncodingException {
+		String mixPassword = tbm.getmPw();
+		MessageDigest messageDigest;
+		try {
+/*			SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
+			byte[] bytes = new byte[16];
+			random.nextBytes(bytes);
+			String salt = new String(Base64.getEncoder().encode(bytes));*/
+			
+			messageDigest = MessageDigest.getInstance("SHA-512");
+			messageDigest.reset();
+			messageDigest.update(mixPassword.getBytes("utf8"));
+			String enPassword = String.format("%0128x", new BigInteger(1, messageDigest.digest()));
+			tbm.setmPw(enPassword);
+			System.out.println(mixPassword);
+			System.out.println(messageDigest);
+//			System.out.println(salt);
+			System.out.println("enPassword ==>" + enPassword);
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
 		}
+		int result = ts.joinMember(tbm);
 		return "forward:TBlogin.do";
 	}
 	
 	@RequestMapping (value="loginMember", method=RequestMethod.POST)
-	public String loginMember(HttpServletRequest request, HttpServletResponse response ,TBMember tbm, Model model) throws ServletException, IOException {	
-		int result = ts.loginMember(tbm);
-		response.setContentType("text/html charset=UTF-8"); 
+	public String loginMember(HttpServletRequest request, HttpServletResponse response ,TBMember tbm, Model model) throws UnsupportedEncodingException, ServletException, IOException {	
+		String mNick = ts.getMnick(tbm);
+		String mixPassword = tbm.getmPw();
+		MessageDigest messageDigest;
+		try {
+			messageDigest = MessageDigest.getInstance("SHA-512");
+			messageDigest.reset();
+			messageDigest.update(mixPassword.getBytes("utf8"));
+			String enPassword = String.format("%0128x", new BigInteger(1, messageDigest.digest()));
+			tbm.setmPw(enPassword);
+			int result = ts.loginMember(tbm);
+		System.out.println("tbm.getmPw => " + tbm.getmPw());
+		System.out.println("mNick" + mNick);
+		response.setContentType("text/html charset=UTF-8");
 		PrintWriter pw = response.getWriter();
 		int checkMstatus = ts.checkMstatus(tbm);
 		if(result > 0) {
@@ -178,6 +227,8 @@ public class TBController {
 			if(checklevel == 3) {
 				HttpSession session = request.getSession();
 				session.setAttribute("mId", tbm.getmId());
+				session.setAttribute("mNick", mNick);
+				session.setAttribute("checklevel", checklevel);
 				pw.println("<script>alert('관리자님 어서오세요.');</script>");
 				pw.flush();
 				return "forward:main.do";
@@ -188,8 +239,11 @@ public class TBController {
 			}
 			pw.println("<script>alert('어서오세요 환영합니다~');</script>");
 			pw.flush();
+			ts.mlfReset(tbm);
 			HttpSession session = request.getSession();
 			session.setAttribute("mId", tbm.getmId());
+			session.setAttribute("mNick", mNick);
+			System.out.println("tbm.getmNick()" + mNick);
 			return "forward:main.do";
 		} else {
 			int checkMlf = ts.checkMlf(tbm);
@@ -209,8 +263,13 @@ public class TBController {
 			pw.flush();
 			return "TBlogin";
 		} 
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "TBlogin";
 	}
-	
+
 	@RequestMapping(value="TBfindPwgo", method=RequestMethod.POST)
 	public String TBfindPwgo(HttpServletRequest request, HttpServletResponse response, TBMember tbm, Model model) throws ServletException, IOException  {
 		int result = ts.TBfindPwgo(tbm);
