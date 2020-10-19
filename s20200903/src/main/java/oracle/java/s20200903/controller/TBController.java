@@ -194,7 +194,7 @@ public class TBController {
 		} else {
 			int checkMlf = ts.checkMlf(tbm);
 			int mlfcnt = ts.mlf(tbm);
-			if(checkMlf > 5) {
+			if(checkMlf > 4) { 
 				System.out.println("checkMlf ==>" + checkMlf);
 				int stopmember = ts.stopmember(tbm);
 				if(checkMstatus == 7) {
