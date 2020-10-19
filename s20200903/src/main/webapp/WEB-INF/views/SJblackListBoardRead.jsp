@@ -21,37 +21,38 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
 	rel="stylesheet" />
 </head>
-<%@ include file="header.jsp"%>
-<%@ include file="aside.jsp"%>
+<%@ include file="includeJSP.jsp"%>
 <body>
 	<!-- 섹션 시작 -->
 	<article class="article">
 		<div class="article__bad-review-board-read">
 			<div class="silder-container">
 				<div class="slider">
+				<c:if test="${sjb.pImg1 != null }">
 					<div class="slide showing">
 						<img 
-							src="/s20200903/resources/image/${sjb.pImg1 }" 
+							src="/s20200903/blackListBoardImg/${sjb.pImg1 }" 
 							alt="이미지1" />
 					</div>					
+				</c:if>
  				<c:if test="${sjb.pImg2 != null }">
                 <div class="slide">
-                    <img src="/s20200903/resources/image/${sjb.pImg2 }" alt="이미지2"/></div>
+                    <img src="/s20200903/blackListBoardImg/${sjb.pImg2 }" alt="이미지2"/></div>
                 </c:if>
                 
                 <c:if test="${sjb.pImg3 != null }">
                 <div class="slide">
-                	<img src="/s20200903/resources/image/${sjb.pImg3 }" alt="이미지3"/></div>
+                	<img src="/s20200903/blackListBoardImg/${sjb.pImg3 }" alt="이미지3"/></div>
                 </c:if>
                 
                  <c:if test="${sjb.pImg4 != null }">
                  <div class="slide">
-                 	<img src="/s20200903/resources/image/${sjb.pImg4 }" alt="이미지4"/></div>
+                 	<img src="/s20200903/blackListBoardImg/${sjb.pImg4 }" alt="이미지4"/></div>
                  </c:if>
                  
                  <c:if test="${sjb.pImg5 != null }">
                  <div class="slide">
-                 	<img src="/s20200903/resources/image/${sjb.pImg5 }" alt="이미지5"/></div>
+                 	<img src="/s20200903/blackListBoardImg/${sjb.pImg5 }" alt="이미지5"/></div>
                  </c:if>
 					<div class="left btns" onclick="left_move();">
 						<i class="fas fa-chevron-left"></i>
@@ -61,29 +62,31 @@
 					</div>
 				</div>
 			</div>
-			<div class="bad-review-board-read__info-container">
-				<div class="bad-review-board-read__info">
+			<div class="black-list-board-read__info-container">
+				<div class="black-list-board-read__info">
 					<a href="/userDetail.do?mId=${sjb.mId }">
-					<div class="bad-review-board-read__name">${sjb.mId }</div>
+					<div class="black-list-board-read__name">${sjb.mId }</div>
 					</a>
 				</div>
 			</div>
-			<div class="bad-review-board-read__content">
-				<h1 class="bad-review-board-read__content--title">${sjb.pTitle }</h1>
-				<div class="bad-review-board-read__content--hits">${sjb.pDate } ·
+			<div class="black-list-board-read__content">
+				<h1 class="black-list-board-read__content--title">${sjb.pTitle }</h1>
+				<div class="black-list-board-read__content--hits">${sjb.pDate } ·
 					${sjb.pHit }</div>
-				<div class="bad-review-board-read__content--article">
+				<div class="black-list-board-read__content--article">
 					${sjb.pContent }
 				</div>
 			</div>
-			<div class="bad-review-board-read__btn-container">
+			<div class="black-list-board-read__btn-container">
 				<a href="SJblackListBoard.do"><div class="bad-review-board-read__list list-btn">목록</div></a>
+			<c:if test="${sjb.mId == sessionScope.mId }">
 				<a href="SJblackListBoardDelete.do?pNum=${sjb.pNum }">
-					<input class="bad-review-board-read__delete" type="button" value="삭제" />
+					<input class="black-list-board-read__delete" type="button" value="삭제" />
 				</a>
 				<a href="SJblackListBoardUpdateForm.do?pNum=${sjb.pNum }">
-					<input class="bad-review-board-read__update" type="button" value="수정" />
+					<input class="black-list-board-read__update" type="button" value="수정" />
 				</a>
+			</c:if>
 			</div>
 		</div>
 	</article>

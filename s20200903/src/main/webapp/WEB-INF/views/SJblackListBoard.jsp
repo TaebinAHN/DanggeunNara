@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ include file="includeJSP.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,8 +16,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fcz9VUi%2FbtqJt0b2VUe%2FiiBIEnDkufPInk4hKsunE1%2Fimg.png" />
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet" />
 </head>
-<%@ include file="header.jsp" %>
-<%@ include file="aside.jsp" %>
+
 <body>
 
 	<!-- 섹션 시작 -->
@@ -37,9 +37,11 @@
 					<!-- 불러오는 게시글 갯수불러오기 -->
 					<span class="black-list__count">${pg.total }</span>
 				</p>
+				<c:if test="${sessionScope.mId == 'admin@dang.com' }">
 				<a href="SJblackListBoardWrite.do">
 					<div class="black-list__write">글작성</div>
 				</a>
+				</c:if>
 			</div>
 		</div>
 		<c:forEach var="sjb" items="${SJblackListBoard }">

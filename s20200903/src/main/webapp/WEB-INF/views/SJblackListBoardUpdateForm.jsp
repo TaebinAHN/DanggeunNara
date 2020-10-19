@@ -6,11 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>글수정하기 :: 당근나라</title>
 </head>
-<%@ include file="header.jsp"%>
-<%@ include file="aside.jsp"%>
+<%@ include file="includeJSP.jsp"%>
+
 <body>
 	<!-- 섹션 시작 -->
-	<form action="SJblackListBoardUpdate.do" method="post">		
+	<form action="SJblackListBoardUpdate.do?pNum=${sjb.pNum }" method="post" enctype="multipart/form-data">		
 		<article class="article">
 		<div class="article__black-list-board-update">
 			<div class="black-list-board-update__image">
@@ -20,50 +20,62 @@
 					<div class="image--input-container">
 						<label class="image--input-label">
 							<div class="image--input-button button-1">
-						
-								<div class="del-btn"></div>
-							</div> <input class="image--input image-1" type="file" accept=".jpg, .jpeg, .png" name="pImg1" value="${sjb.pImg1}"/>
+								<c:if test="${sjb.pImg1 != null}">
+									<img src="/s20200903/blackListBoardImg/${sjb.pImg1}" alt="이미지1" />	
+									<div class="del-btn"></div>
+								</c:if>
+							</div> 
+							<input class="image--input image-1" type="file" accept=".jpg, .jpeg, .png" name="img"/>
 						</label>
+				
 					</div>
 					<div class="image--input-container">
 						<label class="image--input-label">
 							<div class="image--input-button button-2">
-							
-								<div class="del-btn"></div>
-							</div> <input class="image--input image-2" type="file" accept=".jpg, .jpeg, .png"  name="pImg2" value="${sjb.pImg2}"/>
+								<c:if test="${sjb.pImg2 != null}">
+									<img src="/s20200903/blackListBoardImg/${sjb.pImg2}" alt="이미지2" />								
+									<div class="del-btn"></div>
+								</c:if>
+							</div> 
+								<input class="image--input image-2" type="file" accept=".jpg, .jpeg, .png"  name="img"/>
 						</label>
 					</div>
 					<div class="image--input-container">
 						<label class="image--input-label">
 							<div class="image--input-button button-3">
-								<div class="del-btn"></div>
-							</div> <input class="image--input image-3" type="file" accept=".jpg, .jpeg, .png"  name="pImg3" value="${sjb.pImg3}"/>
+								<c:if test="${sjb.pImg3 != null}">
+									<img src="/s20200903/blackListBoardImg/${sjb.pImg3}" alt="이미지3" />	
+									<div class="del-btn"></div>
+								</c:if>
+							</div> 
+								<input class="image--input image-3" type="file" accept=".jpg, .jpeg, .png"  name="img"/>
 						</label>
 					</div>
 					<div class="image--input-container">
 						<label class="image--input-label">
 							<div class="image--input-button button-4">
-								<div class="image--input-button button-3">
+								<c:if test="${sjb.pImg4 != null}">
+									<img src="/s20200903/blackListBoardImg/${sjb.pImg4}" alt="이미지4" />	
 									<div class="del-btn"></div>
-								</div>
-							</div> <input class="image--input image-4" type="file" accept=".jpg, .jpeg, .png"  name="pImg4" value="${sjb.pImg4}"/>
+								</c:if>
+							</div> 
+								<input class="image--input image-4" type="file" accept=".jpg, .jpeg, .png"  name="img"/>
 						</label>
 					</div>
 					<div class="image--input-container">
 						<label class="image--input-label">
 							<div class="image--input-button button-5">
-								<div class="del-btn"></div>
-							</div> <input class="image--input image-5" type="file" accept=".jpg, .jpeg, .png"  name="pImg5" value="${sjb.pImg5}"/>
+								<c:if test="${sjb.pImg5 != null}">
+									<img src="/s20200903/blackListBoardImg/${sjb.pImg5}" alt="이미지5" />	
+									<div class="del-btn"></div>
+								</c:if>
+							</div> 
+								<input class="image--input image-5" type="file" accept=".jpg, .jpeg, .png"  name="img"/>
 						</label>
 					</div>
 				</div>
 			</div>
-				<input type="hidden" name="bId" value="${sjb.bId }" >
 				<input type="hidden" name="pNum" value="${sjb.pNum }" >
-				<input type="hidden" name="pDate" value="${sjb.pDate }" >
-				<input type="hidden" name="pHit" value="${sjb.pHit }" >
-				<input type="hidden" name="pPicks" value="${sjb.pPicks }" >
-				
 			<div class="black-list-board-update__title">
 				<textarea class="black-list-board-update__title--textarea" name="pTitle" required>${sjb.pTitle }</textarea>
 			</div>
@@ -79,5 +91,6 @@
 		</article>
 	</form>
 </body>
-
+<%@ include file="chat.jsp"%>
+<%@ include file="footer.jsp"%>
 </html>

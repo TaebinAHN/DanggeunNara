@@ -17,15 +17,15 @@ public class SJMemberServiceIpl implements SJMemberService {
 
 
 	@Override
-	public List<SJMember> list(SJMember sjm) {
+	public List<SJMember> adminList(SJMember sjm) {
 		// TODO Auto-generated method stub
-		return sd.list(sjm);
+		return sd.adminList(sjm);
 	}
 
 	@Override
-	public int total() {
+	public int adminTotal() {
 		// TODO Auto-generated method stub
-		return sd.total();
+		return sd.adminTotal();
 	}
 
 

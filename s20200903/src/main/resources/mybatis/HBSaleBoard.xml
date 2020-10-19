@@ -1,73 +1,39 @@
-<<<<<<< HEAD
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-<mapper namespace="HBSaleBoard">
-
-	<!-- 판매글  Total-->
-=======
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
 <mapper namespace="HBSaleBoard">
->>>>>>> master
 	<select id="HBTotal" resultType="int">
 		select count(*)
 		from post
 		where 
 		bid=1
 	</select>
-<<<<<<< HEAD
 	
-	<!-- 판매글  List-->
+
 	<select id="HBListAll" parameterType="HBSaleBoard" resultType="HBSaleBoard">
 		select *
 		from (select rownum rn, a.*
 		from (select * from HBJoin where bid=1 order by pnum desc) a)
 		where rn between #{start} and #{end}
 		
-	<!-- 판매글 상세보기 -->	
+
 	</select>
 	<select id="HBSaleBoardSelOne" parameterType="HBSaleBoard" resultType="HBSaleBoard">
 		select * From HBJoin Where bid=#{bid} and pnum=#{pnum} 
 	</select>
-	
-	<!-- 판매글  조회수-->
-=======
 
-	<select id="HBListAll" parameterType="HBSaleBoard" resultType="HBSaleBoard">
-		select *
-		from (select rownum rn, a.*
-		from (select * from post where bid=1 order by pnum) a)
-		where rn between #{start} and #{end}
-	</select>
-	<select id="HBSaleBoardSelOne" parameterType="HBSaleBoard"
-		resultType="HBSaleBoard">
-		select * From Post Where PNUM = #{pnum} and BID=#{bid}
-	</select>
-
->>>>>>> master
 	<update id="updateViewCnt">
 		update post set phit=phit+1 where pnum=#{pnum} and
 		bid=1
 	</update>
-<<<<<<< HEAD
 	
-	
-<!-- 	<select id="total" resultType="int">
-		select count(*) from post
-	</select> -->
-	
-	
-=======
 
 	<select id="total" resultType="int">
 		select count(*) from post
 	</select>
 
->>>>>>> master
 	<select id="selectManager" resultType="HBSaleBoard">
 		select *
 		from post
@@ -80,16 +46,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			SELECT NVL(MAX(PNUM),0)+1 FROM post WHERE BID=1
 		</selectKey>
 		<![CDATA[ INSERT INTO post
-<<<<<<< HEAD
+
 		VALUES(1, #{pnum}, #{mid}, #{ctcode}, #{pscode}, #{ptitle}, #{pprice}, sysdate, #{pcontent}, #{phit}, #{ppicks}, 
-=======
+
 		VALUES(#{bid}, #{pnum}, #{mid}, #{ctcode},  1, #{ptitle}, #{pprice}, sysdate, #{pcontent}, #{phit}, #{ppicks}, 
->>>>>>> master
+
 			     #{pimg1}, #{pimg2}, #{pimg3}, #{pimg4}, #{pimg5})
 			     ]]>
 	</insert>
 
-<<<<<<< HEAD
+
 	<select id="HBSaleBoardUpdate" parameterType="HBSaleBoard" resultType="HBSaleBoard">
 		select * From HBJoin where bid=1 and pnum=#{pnum}
 	</select>
@@ -103,20 +69,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="delete" parameterType="HBSaleBoard">
 		delete from post where
 		bid=1 and pnum=#{pnum}
-=======
-	<delete id="delete" parameterType="int">
-		delete from post where
-		bid=#{bid} and pnum=#{pnum}
->>>>>>> master
 	</delete>
 
-
-
-
-
-
-<<<<<<< HEAD
 </mapper>
-=======
-</mapper>
->>>>>>> master
+

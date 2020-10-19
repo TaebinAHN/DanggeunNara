@@ -21,8 +21,7 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
 	rel="stylesheet" />
 </head>
-<%@ include file="header.jsp"%>
-<%@ include file="aside.jsp"%>
+<%@ include file="includeJSP.jsp"%>
 <body>
 	<!-- 섹션 시작 -->
 	<article class="article">

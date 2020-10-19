@@ -15,17 +15,17 @@ public class SJMemberDaoImpl implements SJMemberDao {
 	private SqlSession session;
 	
 	@Override
-	public List<SJMember> list(SJMember sjm) {
+	public List<SJMember> adminList(SJMember sjm) {
 		
 		
 		// TODO Auto-generated method stub
-		return session.selectList("MemberAll", sjm);
+		return session.selectList("SJMemberAll", sjm);
 	}
 
 	@Override
-	public int total() {
+	public int adminTotal() {
 		// TODO Auto-generated method stub
-		return session.selectOne("total");
+		return session.selectOne("adminTotal");
 	}
 
 }
