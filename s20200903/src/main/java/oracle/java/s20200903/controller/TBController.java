@@ -297,42 +297,66 @@ public class TBController {
 	
 	@RequestMapping (value="passwdUpdate", method=RequestMethod.POST)
 	public String passwdUpdatePOST(HttpServletRequest request, HttpServletResponse response, TBMember tbm, Model model) throws ServletException, IOException  {
-		System.out.println("controller tbm.getmId()=>" + " " + tbm.getmId());
-		System.out.println("controller getmPw->" + " " + tbm.getmPw());
-		int result = ts.passwdUpdate(tbm);
+
 		response.setContentType("text/html charset=UTF-8");
 		PrintWriter pw = response.getWriter();
-		if(result > 0) {
-			pw.println("<script>alert('변경이 완료 되었습니다. 다시 로그인 시도해주세요.');</script>");
-			pw.flush();
-			System.out.println("passwdUpdate result 값 : " + result);
-			return "forward:TBlogin.do";
-		} else {
-			pw.println("<script>alert('변경실패. 다시 입력해주세요.'); history.go(-1);</script>");
-			pw.flush();
-			System.out.println("passwdUpdate result 값 : " + result);
-			return "redirect:TBfindPwUpdate.do";
-		}
+		
+		String mixPassword = tbm.getmPw();
+		MessageDigest messageDigest;
+		try {			
+			messageDigest = MessageDigest.getInstance("SHA-512");
+			messageDigest.reset();
+			messageDigest.update(mixPassword.getBytes("utf8"));
+			String enPassword = String.format("%0128x", new BigInteger(1, messageDigest.digest()));
+			tbm.setmPw(enPassword);
+			
+			int result = ts.passwdUpdate(tbm);
+			if(result > 0) {
+				pw.println("<script>alert('변경이 완료 되었습니다. 다시 로그인 시도해주세요.');</script>");
+				pw.flush();
+				System.out.println("passwdUpdate result 값 : " + result);
+			} else {
+				pw.println("<script>alert('변경실패. 다시 입력해주세요.'); history.go(-1);</script>");
+				pw.flush();
+				System.out.println("passwdUpdate result 값 : " + result);
+				return "redirect:TBfindPwUpdate.do";
+			}
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}	
+		return "forward:TBlogin.do";
 	}
 
 	@RequestMapping (value="passwdUpdate", method=RequestMethod.GET)
 	public String passwdUpdateGET(HttpServletRequest request, HttpServletResponse response, TBMember tbm, Model model) throws ServletException, IOException  {
-		System.out.println("controller tbm.getmId()=>" + " " + tbm.getmId());
-		System.out.println("controller getmPw->" + " " + tbm.getmPw());
-		int result = ts.passwdUpdate(tbm);
+
 		response.setContentType("text/html charset=UTF-8");
 		PrintWriter pw = response.getWriter();
-		if(result > 0) {
-			pw.println("<script>alert('변경이 완료 되었습니다. 다시 로그인 시도해주세요.');</script>");
-			pw.flush();
-			System.out.println("passwdUpdate result 값 : " + result);
-			return "forward:TBlogin.do";
-		} else {
-			pw.println("<script>alert('변경실패. 다시 입력해주세요.'); history.go(-1);</script>");
-			pw.flush();
-			System.out.println("passwdUpdate result 값 : " + result);
-			return "redirect:TBfindPwUpdate.do";
-		}
+		
+		String mixPassword = tbm.getmPw();
+		MessageDigest messageDigest;
+		try {			
+			messageDigest = MessageDigest.getInstance("SHA-512");
+			messageDigest.reset();
+			messageDigest.update(mixPassword.getBytes("utf8"));
+			String enPassword = String.format("%0128x", new BigInteger(1, messageDigest.digest()));
+			tbm.setmPw(enPassword);
+			
+			int result = ts.passwdUpdate(tbm);
+			if(result > 0) {
+				pw.println("<script>alert('변경이 완료 되었습니다. 다시 로그인 시도해주세요.');</script>");
+				pw.flush();
+				System.out.println("passwdUpdate result 값 : " + result);
+			} else {
+				pw.println("<script>alert('변경실패. 다시 입력해주세요.'); history.go(-1);</script>");
+				pw.flush();
+				System.out.println("passwdUpdate result 값 : " + result);
+				return "redirect:TBfindPwUpdate.do";
+			}
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}	
+		return "forward:TBlogin.do";
 	}
 	
 	@RequestMapping(value="mailTransport")
