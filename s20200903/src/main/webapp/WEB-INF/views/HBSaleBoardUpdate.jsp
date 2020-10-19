@@ -6,7 +6,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>제목 불러오기:: 당근나라</title>
+        <title>글수정하기 :: 당근나라</title>
         <script
             src="https://kit.fontawesome.com/797af710b1.js"
             crossorigin="anonymous"
@@ -16,6 +16,7 @@
             src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"
             defer
         ></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
         <link
             rel="shortcut icon"
             type="image/x-icon"
@@ -28,134 +29,234 @@
     </head>
 
     <body>
-        <!-- 게시글 보기는 위 head에 title도 글제목으로 불러와주세요 -->
-
         <!-- 섹션 시작 -->
         <article class="article">
-            <div class="article__sale-board-read">
-            <!-- <input type="hidden" name="bid" value="1"/> -->
-                <div class="silder-container">
-                    <div class="slider">
-                        <div class="slide showing">
-                            <img
-                                src="/s20200903/img/sale/${sb.pimg1}"
-                                alt="img-thumbnail1"
-                            />
-                        </div>
-                        <c:if test="${sb.pimg2 != null }">
-                        <div class="slide">
-                            <img
-                                src="/s20200903/img/sale/${sb.pimg2}"
-                                alt="img-thumbnail2"
-                            />
-                        </div>
-                        </c:if>
-                        <c:if test="${sb.pimg3 != null }">
-                        <div class="slide">
-                            <img
-                                src="/s20200903/img/sale/${sb.pimg3}"
-                                alt="img-thumbnail3"
-                            />
-                        </div>
-                        </c:if>
-                        <c:if test="${sb.pimg4 != null }">
-                        <div class="slide">
-                            <img
-                                src="/s20200903/img/sale/${sb.pimg4}"
-                                alt="img-thumbnail14"
-                            />
-                        </div>
-                        </c:if>
-                        <c:if test="${sb.pimg5 != null }">
-                        <div class="slide">
-                            <img
-                                src="/s20200903/img/sale/${sb.pimg5}"
-                                alt="img-thumbnail5"
-                            />
-                        </div>
-                        </c:if>
-                        <div class="left btns" onclick="left_move();">
-                            <i class="fas fa-chevron-left"></i>
-                        </div>
-                        <div class="right btns" onclick="right_move();">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="sale-board-read__info-container">
-                    <div class="sale-board-read__info">
-                        <a href="../member/userDetail.html"
-                            ><div class="sale-board-read__name">${sb.mid }</div></a
-                        >
-                        <span class="board--chat">채팅하기<img
-                            src="data:image/png;base64,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"
-                            alt="board--chat-ico"></span>
-                        <p class="sale-board-read__address">
-                            서울특별시 송파구 석촌동
-                        </p>
-                    </div>
-                    <div class="sale-board-read__sweet-cotainer">
-                        <div
-                            class="sale-board-read__sweet sweet-cotainer"
-                        ></div>
-                        <div class="sale-board-read__text">당도</div>
-                    </div>
-                </div>
-                <div class="sale-board-read__content">
-                    <h1 class="sale-board-read__content--title">
-                        ${sb.ptitle}
-                    </h1>
-                    <div class="sale-board-read__content--detail">
-                        <!-- 실제 게시글에 등록된 주소, 카테고리 -->
-                        <span
-                            >경기도 평택시 서정동
-                            <div class="vertical"></div>
-                            	${sb.ctcode }
-                            <div class="vertical"></div>
-                            	${sb.pscode }
-                        </span>
-                    </div>
-                    <div class="sale-board-read__content--price"><fmt:formatNumber value="${sb.pprice}" pattern="#,###" />원</div>
-                    <div class="sale-board-read__content--article">
-                       ${sb.pcontent }
-                    </div>
-                    <div class="sale-board-read__content--hits">
-                        <fmt:formatDate value="${sb.pdate}" pattern="yyyy-MM-dd"/> · 조회수 ${sb.phit}
-                    </div>
-                    <div
-                        class="sale-board-read__content--counts picks-container"
+            <div class="article__sale-board-update">   
+            <form method="post" action="HBSaleBoardUpdatePro.do" enctype="multipart/form-data">   
+            	<input type="hidden" name="bid" value="${sb.bid }"/>   
+            	<input type="hidden" name="pnum" value="${sb.pnum }"/>   
+                <!-- 게시글에대한 카테고리 불러오기 -->
+                <div class="sale-board-update__sort">
+                    <select
+                        class="sale-board-update__category"
+                        name="ctcode"
+                        required
                     >
-                        <img
-                            class="picks-ico"
-                            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iMjYiIGhlaWdodD0iMjYiCnZpZXdCb3g9IjAgMCAxNzIgMTcyIgpzdHlsZT0iIGZpbGw6IzAwMDAwMDsiPjxnIHRyYW5zZm9ybT0iIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9Im5vbnplcm8iIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtZGFzaGFycmF5PSIiIHN0cm9rZS1kYXNob2Zmc2V0PSIwIiBmb250LWZhbWlseT0ibm9uZSIgZm9udC13ZWlnaHQ9Im5vbmUiIGZvbnQtc2l6ZT0ibm9uZSIgdGV4dC1hbmNob3I9Im5vbmUiIHN0eWxlPSJtaXgtYmxlbmQtbW9kZTogbm9ybWFsIj48cGF0aCBkPSJNMCwxNzJ2LTE3MmgxNzJ2MTcyeiIgZmlsbD0ibm9uZSI+PC9wYXRoPjxnIGZpbGw9IiMwMDAwMDAiPjxwYXRoIGQ9Ik01MS4wNjI1LDI2Ljg3NWMtMjIuMjM0ODYsMCAtNDAuMzEyNSwxOC4yODc2IC00MC4zMTI1LDQwLjMxMjVjMCw3LjY4NDU3IDMuNDg1MzUsMTQuMzQwMzMgNi43MTg3NSwxOS4xNDg0NGMzLjIzMzQsNC44MDgxIDYuNTUwNzgsNy44OTQ1MyA2LjU1MDc4LDcuODk0NTNsNTguMTE3MTksNTguMjg1MTZsMy44NjMyOCwzLjg2MzI4bDMuODYzMjgsLTMuODYzMjhsNTguMTE3MTksLTU4LjI4NTE2YzAsMCAxMy4yNjk1MywtMTEuNjk0ODIgMTMuMjY5NTMsLTI3LjA0Mjk3YzAsLTIyLjAyNDkgLTE4LjA3NzY0LC00MC4zMTI1IC00MC4zMTI1LC00MC4zMTI1Yy0xOC40NTU1NywwIC0zMC4zMzkzNSwxMS4xMDY5MyAtMzQuOTM3NSwxNS43ODkwNmMtNC41OTgxNSwtNC42ODIxMyAtMTYuNDgxOTMsLTE1Ljc4OTA2IC0zNC45Mzc1LC0xNS43ODkwNnpNNTEuMDYyNSwzNy42MjVjMTYuMDYyMDEsMCAzMC45MDYyNSwxNS42MjEwOSAzMC45MDYyNSwxNS42MjEwOWw0LjAzMTI1LDQuNTM1MTZsNC4wMzEyNSwtNC41MzUxNmMwLDAgMTQuODQ0MjQsLTE1LjYyMTA5IDMwLjkwNjI1LC0xNS42MjEwOWMxNi4zNTU5NiwwIDI5LjU2MjUsMTMuNDE2NTEgMjkuNTYyNSwyOS41NjI1YzAsOC4yOTM0NiAtMTAuMDc4MTIsMTkuNDg0MzggLTEwLjA3ODEyLDE5LjQ4NDM4bC01NC40MjE4Nyw1NC40MjE4OGwtNTQuNDIxODcsLTU0LjQyMTg3YzAsMCAtMi42MDM1MiwtMi40OTg1NCAtNS4yMDcwMywtNi4zODI4MWMtMi42MDM1MiwtMy44ODQyOCAtNC44NzEwOSwtOC45NDQzMyAtNC44NzEwOSwtMTMuMTAxNTZjMCwtMTYuMTQ1OTkgMTMuMjA2NTQsLTI5LjU2MjUgMjkuNTYyNSwtMjkuNTYyNXoiPjwvcGF0aD48L2c+PC9nPjwvZz48L3N2Zz4="
-                            alt="picks"
+                    	<option value="${sb.ctcode}" disabled selected hidden>${sb.ctkinds}</option>
+                        <option value="1">디지털/가전</option>
+                        <option value="2">가구/인테리어</option>
+                        <option value="3">유아동/유아도서</option>
+                        <option value="4">생활/가공식품</option>
+                        <option value="5">스포츠/레저</option>
+                        <option value="6">여성잡화</option>
+                        <option value="7">여성의류</option>
+                        <option value="8">남성패션/잡화</option>
+                        <option value="9">게임/취미</option>
+                        <option value="10">뷰티/미용</option>
+                        <option value="11">반려동물용품</option>
+                        <option value="12">도서/티켓/음반</option>
+                        <option value="13">기타중고물품</option>
+                    </select>
+                    <select
+                        class="sale-board-update__category category-status"
+                        name="pscode"
+                        required
+                    >
+                    	<option value="${sb.pscode }" selected hidden>${sb.pstatus}</option>
+                        <option value="1">거래가능</option>
+                        <option value="2">거래중</option>
+                        <option value="3">거래완료</option>
+                    </select>
+                    <%-- <input
+                    class="sale-board-update__category--text category-input"
+                    type="text"                    
+                    name="mid"
+                    value="${sb.mId }"
+                    placeholder="아이디를 입력해주세요"
+                    required>
+                	</input> --%>
+                <!-- <span class="sweet-rating">
+                    <a href="#" class="on"><i class="fas fa-carrot"></i></a>
+                    <a href="#" class="on"><i class="fas fa-carrot"></i></a>
+                    <a href="#" class="on"><i class="fas fa-carrot"></i></a>
+                    <a href="#"><i class="fas fa-carrot"></i></a>
+                    <a href="#"><i class="fas fa-carrot"></i></a>
+                </span> -->
+                </div>
+                <div class="sale-board-update__info">
+                    <div class="sale-board-update__location">
+                        <label
+                            class="sale-board-update__location--label"
+                            for="sale-board-update__location--input"
+                            >활동 지역</label
+                        >
+                        <input
+                            class="sale-board-update__location--input"
+                            type="text"
+                            readonly
+                            value="회원 주소값 넣기"
+                        />
+                    </div>
+                    <div class="sale-board-update__price">
+                        <label
+                            class="sale-board-update__price--label"
+                            for="sale-board-update__price--input"
+                            >거래 가격</label
+                        >
+                        <input
+                            class="sale-board-update__price--input"
+                            type="text"
+                            placeholder="가격을 입력하세요"
+                            value="${sb.pprice }"
+                            name="pprice"
+                            required
                         />
                     </div>
                 </div>
-                <div class="sale-board-read__btn-container">
+                <div class="sale-board-update__image">
+                    <div class="sale-board-update__image--title">사진 첨부</div>
+                    <div class="sale-board-update__image--container">
+                        <!-- 이미지경로 받아오기 -->
+                        <div class="image--input-container">
+                            <label class="image--input-label">
+                                <div class="image--input-button button-1">
+                                   <c:if test="${sb.pimg1 != null }">
+                        			 <img
+                               			 src="/s20200903/img/sale/${sb.pimg1}"
+                                	     alt="img-thumbnail1"
+                             		 />
+                                    </c:if>
+                                    <div class="del-btn"></div>
+                                </div>
+                                <input
+                                    class="image--input image-1"
+                                    type="file"
+                                    value="${pimg1 }"
+                                    name="file1"
+                                    accept=".jpg, .jpeg, .png"
+                                />
+                            </label>
+                        </div>
+                        <div class="image--input-container">
+                            <label class="image--input-label">
+                                <div class="image--input-button button-2">
+                                    <c:if test="${sb.pimg2 != null }">
+                        			 <img
+                               			 src="/s20200903/img/sale/${sb.pimg2}"
+                                	     alt="img-thumbnail1"
+                             		 />
+                                    </c:if>
+                                    <div class="del-btn"></div>
+                                </div>
+                                <input
+                                    class="image--input image-2"
+                                    type="file"
+                                    value="${pimg3 }"
+                                    name="file12"
+                                    accept=".jpg, .jpeg, .png"
+                                />
+                            </label>
+                        </div>
+                        <div class="image--input-container">
+                            <label class="image--input-label">
+                                <div class="image--input-button button-3">
+                                    <c:if test="${sb.pimg3 != null }">
+                        			 <img
+                               			 src="/s20200903/img/sale/${sb.pimg3}"
+                                	     alt="img-thumbnail1"
+                             		 />
+                                    </c:if>
+                                    <div class="del-btn"></div>
+                                </div>
+                                <input
+                                    class="image--input image-3"
+                                    type="file"
+                                    value="${pimg3 }"
+                                    name="file3"
+                                    accept=".jpg, .jpeg, .png"
+                                />
+                            </label>
+                        </div>
+                        <div class="image--input-container">
+                            <label class="image--input-label">
+                                <div class="image--input-button button-4">
+                                    <div class="image--input-button button-3">
+                                        <c:if test="${sb.pimg4 != null }">
+                        			 <img
+                               			 src="/s20200903/img/sale/${sb.pimg4}"
+                                	     alt="img-thumbnail1"
+                             		 />
+                                    </c:if>
+                                        <div class="del-btn"></div>
+                                    </div>
+                                </div>
+                                <input
+                                    class="image--input image-4"
+                                    type="file"
+                                    value=""
+                                    name="file4"
+                                    accept=".jpg, .jpeg, .png"
+                                />
+                            </label>
+                        </div>
+                        <div class="image--input-container">
+                            <label class="image--input-label">
+                                <div class="image--input-button button-5">
+                                    <c:if test="${sb.pimg5 != null }">
+                        			 <img
+                               			 src="/s20200903/img/sale/${sb.pimg5}"
+                                	     alt="img-thumbnail1"
+                             		 />
+                                    </c:if>
+                                    <div class="del-btn"></div>
+                                </div>
+                                <input
+                                    class="image--input image-5"
+                                    type="file"
+                                    id="pimg5"
+                                    name="file5"
+                                    accept=".jpg, .jpeg, .png"
+                                />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="sale-board-update__title">
+                    <textarea
+                        class="sale-board-update__title--textarea"
+                        placeholder="제목 가져오기"
+                        id="ptitle"
+                        name="ptitle"
+                        required>${sb.ptitle }</textarea>
+                </div>
+                <div class="sale-board-update__content">
+                    <textarea
+                        class="sale-board-update__content--textarea"
+                        placeholder="내용가져오기"
+                        name="pcontent"
+                        id="pcontent"
+                        required>${sb.pcontent }</textarea>
+                </div>
+                
+                <input type="hidden" name="bid" value="${sb.bid}"/>
+				<input type="hidden" name="pnum" value="${sb.pnum}"/>
+                
+                <div class="sale-board-update__btn-container">
                     <a href="list.do"
-                        ><div class="sale-board-read__list list-btn">
-                            목록
+                        ><div class="sale-board-update__list list--btn">
+                            돌아가기
                         </div></a
                     >
-                    <a href="delete.do?bid=${sb.bid }&pnum=${sb.pnum }">
                     <input
-                        class="sale-board-read__delete"
-                        type="button"
-                        value="삭제"
-                        
-                    /></a>
-                    <a href="HBSaleBoardUpdate.do?bid=${sb.bid }&pnum=${sb.pnum }">
-                    <input
-                        class="sale-board-read__update"
-                        type="button"
-                        value="수정"
-                    /></a>
+                        class="sale-board-update__submit"
+                        type="submit"                        
+                        value="수정하기"/>
                 </div>
+                </form>
             </div>
         </article>
-        <!-- 실시간 채팅 아이콘 -->
-        <div class="chat-container">
+         <!-- 실시간 채팅 아이콘 -->
+         <div class="chat-container">
             <div class="chat-container__relative">
                 <div class="chat-container__icon">
                     <!-- 새로운 메세지 있을때만 -->
