@@ -1,5 +1,9 @@
 package oracle.java.s20200903.dao;
 
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,13 +38,11 @@ public class TBDaoImpl implements TBDao {
 	}
 
 	@Override
-	public int joinMember(TBMember tbm) {
+	public int joinMember(TBMember tbm)  {
 		int result = 0;
-		try {
-			result = session.insert("joinMember", tbm);
-		}catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
+		
+
+		result = session.insert("joinMember", tbm);
 		return result;
 		
 	}
@@ -160,6 +162,17 @@ public class TBDaoImpl implements TBDao {
 		result = session.selectOne("checkMlf", tbm);
 		
 		return result;
+	}
+
+	@Override
+	public String getMnick(TBMember tbm) {
+		return session.selectOne("getMnick", tbm);
+	}
+
+	@Override
+	public int mlfReset(TBMember tbm) {
+		// TODO Auto-generated method stub
+		return session.update("mlfReset", tbm);
 	} 
 
 
