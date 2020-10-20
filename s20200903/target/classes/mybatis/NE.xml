@@ -103,6 +103,13 @@
 				<if test="pimg3!=null"> #{pimg3},</if>
 				<if test="pimg4!=null"> #{pimg4},</if>
 				<if test="pimg5!=null"> #{pimg5}</if> -->
+				
+	<!--	<update id="NEBuyPostHitUp" parameterType="NEJoin">
+		UPDATE post
+		SET    phit = phit+1
+		WHERE  bid = 2
+		AND    pnum = #{pnum}
+	</update>					-->
 	
 	<select id="NEBuyPostDetail" parameterType="NEJoin" resultType="NEJoin">
 		SELECT *
@@ -120,8 +127,9 @@
 	
 	<update id="NEbuyPostUpdate" parameterType="NEJoin">
 		UPDATE post
-		SET ctcode=#{ctcode}, pstatus=#{pstatus}, pprice=#{pprice}, pimg1=#{pimg1}, pimg2=#{pimg2}, pimg3=#{pimg3}, pimg4=#{pimg4}, pimg5=#{pimg5}, ptitle=#{ptitle}, pcontent=#{pcontent}
+		SET ctcode=#{ctcode}, pscode=#{pscode}, pprice=#{pprice}, pimg1=#{pimg1}, pimg2=#{pimg2}, pimg3=#{pimg3}, pimg4=#{pimg4}, pimg5=#{pimg5}, ptitle=#{ptitle}, pcontent=#{pcontent}
 		WHERE bid = 2
 		AND pnum=#{pnum}
 	</update>
+	
 </mapper>

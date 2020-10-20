@@ -543,7 +543,7 @@ if (sharingWriteSubmit != null) {
 	});
 }
 
-if (buyWriteSubmit != null) {
+/*if (buyWriteSubmit != null) {
 	buyWriteSubmit.addEventListener("click", () => {
 		if (confirm("글을 등록할까요 ?") == true) {
 			if (true) {
@@ -558,7 +558,7 @@ if (buyWriteSubmit != null) {
 			return false;
 		}
 	});
-}
+}*/
 
 if (noticeUpdateSubmit != null) {
 	noticeUpdateSubmit.addEventListener("click", () => {
@@ -645,7 +645,7 @@ if (sharingUpdateSubmit != null) {
 	});
 }
 
-if (buyUpdateSubmit != null) {
+/*if (buyUpdateSubmit != null) {
 	buyUpdateSubmit.addEventListener("click", () => {
 		if (confirm("글을 수정할까요 ?") == true) {
 			if (true) {
@@ -660,7 +660,7 @@ if (buyUpdateSubmit != null) {
 			return false;
 		}
 	});
-}
+}*/
 
 if (noticeReadDelete != null) {
 	noticeReadDelete.addEventListener("click", () => {
@@ -747,22 +747,27 @@ if (sharingReadDelete != null) {
 	});
 }
 
+//삭제 확인 버튼을 누르면 id가 pnum인 input(hidden)태그를 찾아 pnum값 받아 옴, 파라미터로 넘겨줌
 if (buyReadDelete != null) {
-	buyReadDelete.addEventListener("click", () => {
-		if (confirm("삭제하시겠습니까 ?") == true) {
-			if (true) {
-				// 주석해제 후 formname에 값 전달을 위한 form태그의 name을 적어주세요
-				// document.formname.submit();
-				alert("삭제완료 !");
-				location.href = "toBuyBoard.html";
-			} else {
-				alert("삭제실패 !");
-			}
-		} else {
-			return false;
-		}
-	});
+    buyReadDelete.addEventListener("click", () => {
+        if (confirm("삭제하시겠습니까 ?") == true) {
+            if (true) {
+            	var pnum = document.getElementById("pnum").value;
+                location.href = "buyPostDelete.do?pnum="+pnum;
+            } 
+        } else {
+            return false;
+        }
+    });
 }
+/*
+if (buyReadDelete != null) {
+    buyReadDelete.addEventListener("click", () => {
+         var pnum = document.getElementById("pnum").value;
+         location.href = "buyPostDelete.do?pnum="+pnum;
+    });
+}
+*/
 
 if (noticeReadUpdate != null) {
 	noticeReadUpdate.addEventListener("click", () => {
@@ -796,8 +801,9 @@ if (sharingReadUpdate != null) {
 
 if (buyReadUpdate != null) {
 	buyReadUpdate.addEventListener("click", () => {
-		location.href = "toBuyBoardUpdate.html";
-	});
+    	var pnum = document.getElementById("pnum").value;
+        location.href = "buyPostUpdateForm.do?pnum="+pnum;
+    });
 }
 
 if (PicksBtn != null) {
@@ -1173,6 +1179,85 @@ function imageThumbnail5() {
 	}
 }
 // 파일첨부
+
+//buyUpdateForm에서 del-btn을 누르면 기존 이미지 삭제
+const delbtn1 = document.querySelector(".del-btn1");
+const delbtn2 = document.querySelector(".del-btn2");
+const delbtn3 = document.querySelector(".del-btn3");
+const delbtn4 = document.querySelector(".del-btn4");
+const delbtn5 = document.querySelector(".del-btn5");
+
+if(delbtn1 != null){
+	delbtn1.addEventListener("click", () => {
+		delBtn1();
+	});
+}
+
+if(delbtn2 != null){
+	delbtn2.addEventListener("click", () => {
+	    delBtn2();
+	});
+}
+
+if(delbtn3 != null){
+	delbtn3.addEventListener("click", () => {
+		delBtn3();
+	});
+}
+
+if(delbtn4 != null){
+	delbtn4.addEventListener("click", () => {
+	    delBtn4();
+	});
+}
+
+if(delbtn5 != null){
+	delbtn5.addEventListener("click", () => {
+	    delBtn5();
+	});
+}
+
+
+// x버튼을 누르면 첨부파일 삭제
+function delBtn1() {
+	var img = document.querySelector(".update-image1");
+	var delbtn = document.querySelector(".del-btn1");
+    img.remove();
+    delbtn.remove();
+}
+
+function delBtn2() {
+	var img = document.querySelector(".update-image2");
+	var delbtn = document.querySelector(".del-btn2");
+    imageInput2.value = "";
+    img.remove();
+    delbtn.remove();
+}
+
+function delBtn3() {
+	var img = document.querySelector(".update-image3");
+	var delbtn = document.querySelector(".del-btn3");
+    imageInput3.value = "";
+    img.remove();
+    delbtn.remove();
+
+}
+
+function delBtn4() {
+	var img = document.querySelector(".update-image4");
+	var delbtn = document.querySelector(".del-btn4");
+    imageInput4.value = "";
+    img.remove();
+    delbtn.remove();
+}
+
+function delBtn5() {
+	var img = document.querySelector(".update-image5");
+	var delbtn = document.querySelector(".del-btn5");
+    imageInput5.value = "";
+    img.remove();
+    delbtn.remove();
+}
 
 // 슬라이드
 const showing_class = "showing";
