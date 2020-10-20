@@ -110,9 +110,9 @@
                         <span
                             >경기도 평택시 서정동
                             <div class="vertical"></div>
-                            	${sb.ctcode }
+                            	${sb.ctkinds }
                             <div class="vertical"></div>
-                            	${sb.pscode }
+                            	${sb.pstatus }
                         </span>
                     </div>
                     <div class="sale-board-read__content--price"><fmt:formatNumber value="${sb.pprice}" pattern="#,###" />원</div>

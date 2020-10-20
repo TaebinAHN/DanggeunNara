@@ -17,6 +17,19 @@
             defer
         ></script>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
+        
+         <script type="text/javascript">
+         
+       //삭제 버튼 누르면 삭제할 것이냐고 묻고 삭제한다고 하면 주소이동(BoardController의 remove 메소드 호출)
+       	$(function(){
+       		$('#btn-del').click(function(){
+       			if(confirm("Are u sure?")){
+       				self.location.href = "HBSaleBoardUpdate.do?bid=${sb.bid}&pnum=${sb.pnum}";
+       			}
+       		});
+       	});
+        </script>
+        
         <link
             rel="shortcut icon"
             type="image/x-icon"
@@ -117,42 +130,44 @@
                     <div class="sale-board-update__image--title">사진 첨부</div>
                     <div class="sale-board-update__image--container">
                         <!-- 이미지경로 받아오기 -->
-                        <div class="image--input-container">
+                          <div class="image--input-container">
                             <label class="image--input-label">
-                                <div class="image--input-button button-1">
+                                <div class="image--input-button button-1"> 
+                                <a href="javascript:" onclick="fileUploadAction();" class="my_button">                                  
                                    <c:if test="${sb.pimg1 != null }">
                         			 <img
                                			 src="/s20200903/img/sale/${sb.pimg1}"
-                                	     alt="img-thumbnail1"
+                                	     alt="이미지를 삽입하세요"
                              		 />
-                                    </c:if>
-                                    <div class="del-btn"></div>
+                                    </c:if>                                    
+                                    	<div class="del-btn"></div>  
+                                    	</a>                                 
                                 </div>
                                 <input
                                     class="image--input image-1"
-                                    type="file"
-                                    value="${pimg1 }"
-                                    name="file1"
+                                    type="file"          
+                                    id="pimg1"                          
+                                    name="file"
                                     accept=".jpg, .jpeg, .png"
                                 />
                             </label>
-                        </div>
+                        </div>  
                         <div class="image--input-container">
                             <label class="image--input-label">
-                                <div class="image--input-button button-2">
-                                    <c:if test="${sb.pimg2 != null }">
+                                <div class="image--input-button button-2">                                
+                                   	<c:if test="${sb.pimg2 != null }">
                         			 <img
                                			 src="/s20200903/img/sale/${sb.pimg2}"
-                                	     alt="img-thumbnail1"
+                                	     alt="이미지를 삽입하세요"
                              		 />
-                                    </c:if>
-                                    <div class="del-btn"></div>
+                                    </c:if>                                    
+                                    	<div class="del-btn"></div>                                    
                                 </div>
                                 <input
                                     class="image--input image-2"
-                                    type="file"
-                                    value="${pimg3 }"
-                                    name="file12"
+                                    type="file"   
+                                    id="pimg2"                                 
+                                    name="file1"
                                     accept=".jpg, .jpeg, .png"
                                 />
                             </label>
@@ -171,8 +186,8 @@
                                 <input
                                     class="image--input image-3"
                                     type="file"
-                                    value="${pimg3 }"
-                                    name="file3"
+                                    id="pimg3"
+                                    name="file2"
                                     accept=".jpg, .jpeg, .png"
                                 />
                             </label>
@@ -181,7 +196,7 @@
                             <label class="image--input-label">
                                 <div class="image--input-button button-4">
                                     <div class="image--input-button button-3">
-                                        <c:if test="${sb.pimg4 != null }">
+                                    <c:if test="${sb.pimg4 != null }">
                         			 <img
                                			 src="/s20200903/img/sale/${sb.pimg4}"
                                 	     alt="img-thumbnail1"
@@ -193,8 +208,8 @@
                                 <input
                                     class="image--input image-4"
                                     type="file"
-                                    value=""
-                                    name="file4"
+                                    id="pimg4"
+                                    name="file3"
                                     accept=".jpg, .jpeg, .png"
                                 />
                             </label>
@@ -213,8 +228,8 @@
                                 <input
                                     class="image--input image-5"
                                     type="file"
-                                    id="pimg5"
-                                    name="file5"
+                                    value="pimg5"
+                                    name="file4"
                                     accept=".jpg, .jpeg, .png"
                                 />
                             </label>
@@ -237,8 +252,7 @@
                         id="pcontent"
                         required>${sb.pcontent }</textarea>
                 </div>
-                
-                <input type="hidden" name="bid" value="${sb.bid}"/>
+                                
 				<input type="hidden" name="pnum" value="${sb.pnum}"/>
                 
                 <div class="sale-board-update__btn-container">
