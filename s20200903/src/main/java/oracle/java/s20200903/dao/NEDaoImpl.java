@@ -70,11 +70,15 @@ public class NEDaoImpl implements NEDao {
 
 	@Override
 	public NEJoin buyPostDetail(NEJoin neJoin) {
+		System.out.println("DaoImpl buyPostDetail start...");
+		//session.update("NEBuyPostHitUp", neJoin);
+		System.out.println("DaoImpl NEBuyPostHitUp done...");
 		return session.selectOne("NEBuyPostDetail", neJoin);
 	}
 
 	@Override
 	public int buyPostDelete(NEJoin neJoin) {
+		System.out.println("DaoImpl buyPostDelete deleteddddd...");
 		return session.delete("NEbuyPostDelete", neJoin);
 	}
 
@@ -96,7 +100,8 @@ public class NEDaoImpl implements NEDao {
 		result.setsBuyTotal((session.selectOne("NEserBuyTotal", neJoin)));
 		return result;
 	}
-	
+
+
 
 
 }

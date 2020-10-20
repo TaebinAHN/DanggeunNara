@@ -58,9 +58,10 @@
                     </select>
                     <select
                         class="buy-board-update__category"
-                        name="pstatus"
+                        name="pscode"
                         required
-                    >
+                    >	
+                    	<option value="${bPost.pscode }" selected hidden>${bPost.pstatus }</option>
                         <option value="1">거래가능</option>
                         <option value="2">거래중</option>
                         <option value="3">거래완료</option>
@@ -122,7 +123,7 @@
                         <div class="image--input-container">
                             <label class="image--input-label">
                                 <div class="image--input-button button-2">
-                                <c:if test="${bPost.pimg2 != 'null'}">
+                                <c:if test="${bPost.pimg2 != 'null' && bPost.pimg2 != null}">
                                     <img
                                     	class="update-image2 image-2"
                                         src="/image/${bPost.pimg2}"
@@ -142,7 +143,7 @@
                         <div class="image--input-container">
                             <label class="image--input-label">
                                 <div class="image--input-button button-3">
-                                <c:if test="${bPost.pimg3 != 'null'}">
+                                <c:if test="${bPost.pimg3 != 'null' && bPost.pimg3 != null}">
                                     <img
                                     	class="update-image3 image-3"
                                         src="/image/${bPost.pimg3 }"
@@ -163,7 +164,7 @@
                             <label class="image--input-label">
                                 <div class="image--input-button button-4">
                                     <div class="image--input-button button-3">
-                                    <c:if test="${bPost.pimg4 != 'null'}">
+                                    <c:if test="${bPost.pimg4 != 'null' && bPost.pimg4 != null}">
                                         <img
                                         	class="update-image4 image-4"
                                             src="/image/${bPost.pimg4 }"
@@ -184,7 +185,7 @@
                         <div class="image--input-container">
                             <label class="image--input-label">
                                 <div class="image--input-button button-5">
-                                <c:if test="${bPost.pimg5 != 'null'}">
+                                <c:if test="${bPost.pimg5 != 'null' && bPost.pimg5 != null}">
                                     <img
                                     	class="update-image5 image-5"
                                         src="/image/${bPost.pimg5 }"

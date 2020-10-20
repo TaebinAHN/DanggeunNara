@@ -1,5 +1,6 @@
 package oracle.java.s20200903.controller;
 
+import java.awt.peer.ButtonPeer;
 import java.io.*;
 import java.util.*;
 
@@ -43,7 +44,6 @@ public class NEController {
 	// 검색어를 입력받은 후 결과 출력
 	@RequestMapping(value="search", method=RequestMethod.POST)
 	public String search(HttpServletRequest request, Model model, String currentPage, NEJoin neJoin) {
-		System.out.println("요기로 왔지롱...");
 		System.out.println("search start...");
 		/*HttpSession session = request.getSession();
 		if(session.getAttribute("mid") != null) {
@@ -148,7 +148,7 @@ public class NEController {
 		
 		List<NEJoin> bSList = ns.bSList(neJoin);
 		
-		model.addAttribute("blist", bSList);
+		model.addAttribute("bSList", bSList);
 		model.addAttribute("pg", pg);
 		return "neSerBuyBoard";
 	}
@@ -186,11 +186,11 @@ public class NEController {
 	public String buyPostWrite(HttpServletRequest request,@RequestParam("img") MultipartFile[] uploadFile, Model model) throws Exception {		
 		System.out.println("buyPostInsert start..." + request.getParameter("img")); 
 		
-		String uploadPath = "C:\\Spring-Project\\s20200903\\src\\main\\webapp\\resources\\image";
+		String uploadPath = "C:\\당근\\DanggeunNara\\s20200903\\src\\main\\webapp\\resources\\image";
 		
 		NEJoin neJoin = new NEJoin();
-		// bId, pNum은 Dao에서 DB연결을 통해 set
-		neJoin.setMid("user@naver.com");	// 통합 후 neJoin.setMid((String) request.getSession().getAttribute("mid"));
+		// bId, pNum은 Dao에서 DB연결을 통해 set 
+		neJoin.setMid("user@naver.com");	// 통합 후 neJoin.setMid((String) request.getSession().getAttribute("mId"));
 		neJoin.setCtcode(Integer.parseInt(request.getParameter("ctcode")));
 		neJoin.setPprice(Integer.parseInt(request.getParameter("pprice")));
 		neJoin.setPtitle(request.getParameter("ptitle"));
@@ -243,6 +243,7 @@ public class NEController {
 		return "neBuyPostDetail";
 	}
 	
+	
 	// 구매 게시글 삭제
 	@RequestMapping("buyPostDelete")
 	public String buyPostDelete(HttpServletRequest request, Model model) {
@@ -277,10 +278,11 @@ public class NEController {
 		
 		System.out.println("buyPostInsert start..." + request.getParameter("img")); 
 		
-		String uploadPath = "C:\\Spring-Project\\s20200903\\src\\main\\webapp\\resources\\image";
+		String uploadPath = "C:\\당근\\DanggeunNara\\s20200903\\src\\main\\webapp\\resources\\image";
 		
 		// bId, pNum은 Dao에서 DB연결을 통해 set
 		neJoin.setMid("user@naver.com");	// 통합 후 neJoin.setMid((String) request.getSession().getAttribute("mid"));
+		neJoin.setPscode(Integer.parseInt(request.getParameter("pscode")));
 		neJoin.setCtcode(Integer.parseInt(request.getParameter("ctcode")));
 		neJoin.setPprice(Integer.parseInt(request.getParameter("pprice")));
 		neJoin.setPtitle(request.getParameter("ptitle"));

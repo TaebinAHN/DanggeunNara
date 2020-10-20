@@ -116,17 +116,14 @@
                             <div class="vertical"></div>
                             	${bPost.ctkinds }
                             <div class="vertical"></div>
-                            <c:if test="${bPost.pstatus == 1 }">거래가능</c:if>
-                            <c:if test="${bPost.pstatus == 2 }">거래중</c:if>
-                            <c:if test="${bPost.pstatus == 3 }">거래완료</c:if>
-                            <c:if test="${bPost.pstatus == 4 }">불량거래</c:if>
-                        </span>
+                            	${bPost.pstatus }
                     </div>
                     <div class="buy-board-read__content--price">${bPost.pprice }원</div>
-                   <!--  <div class="buy-board-read__content--article"> -->
-                    	<textarea class="buy-board-read__content--article" rows="8" cols="60" readonly><c:out value="${bPost.pcontent }" />
-                    	</textarea>
-                    <!-- </div> -->
+
+                    <div class="buy-board-read__content--article"> 
+                    	${bPost.pcontent }
+                    </div>
+
                     <div class="buy-board-read__content--hits">
                         ${bPost.pdate } · 조회수 ${bPost.phit }
                     </div>
