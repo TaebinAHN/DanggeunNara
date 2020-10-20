@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import oracle.java.s20200903.dao.TBDao;
+import oracle.java.s20200903.model.NEPost;
 import oracle.java.s20200903.model.TBMember;
 
 @Service
@@ -27,9 +28,9 @@ public class TBServiceImpl implements TBService {
 
 
 	@Override
-	public int total() {
+	public int TBBuytotal() {
 		// TODO Auto-generated method stub
-		return td.total();
+		return td.TBBuytotal();
 	}
 
 
@@ -143,6 +144,13 @@ public class TBServiceImpl implements TBService {
 	public int mlfReset(TBMember tbm) {
 		// TODO Auto-generated method stub
 		return td.mlfReset(tbm);
+	}
+
+
+	@Override
+	public List<NEPost> toBuyList(NEPost np) {
+		// TODO Auto-generated method stub
+		return td.toBuyList(np);
 	}
 
 

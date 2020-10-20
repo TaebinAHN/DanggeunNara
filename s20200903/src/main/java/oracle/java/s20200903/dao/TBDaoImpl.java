@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import oracle.java.s20200903.model.NEPost;
 import oracle.java.s20200903.model.TBMember;
 
  
@@ -32,9 +33,9 @@ public class TBDaoImpl implements TBDao {
 	}
 
 	@Override
-	public int total() {
+	public int TBBuytotal() {
 		// TODO Auto-generated method stub
-		return session.selectOne("total");
+		return session.selectOne("TBBuytotal");
 	}
 
 	@Override
@@ -173,6 +174,12 @@ public class TBDaoImpl implements TBDao {
 	public int mlfReset(TBMember tbm) {
 		// TODO Auto-generated method stub
 		return session.update("mlfReset", tbm);
+	}
+
+	@Override
+	public List<NEPost> toBuyList(NEPost np) {
+		// TODO Auto-generated method stub
+		return session.selectList("toBuyList", np);
 	} 
 
 

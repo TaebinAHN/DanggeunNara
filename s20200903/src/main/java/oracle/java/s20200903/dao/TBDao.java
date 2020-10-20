@@ -5,12 +5,13 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import oracle.java.s20200903.model.NEPost;
 import oracle.java.s20200903.model.TBMember;
 
 
 public interface TBDao {
 	List<TBMember> 	list(TBMember tbm);
-	int				total();
+	int				TBBuytotal();
 	int				joinMember(TBMember tbm);
 	String			idCheck(String mId);
 	String			checkNick(String mNick);
@@ -27,4 +28,5 @@ public interface TBDao {
 	int				checkMlf(TBMember tbm);
 	String			getMnick(TBMember tbm);
 	int				mlfReset(TBMember tbm);
+	List<NEPost> 	toBuyList(NEPost np);
 }
