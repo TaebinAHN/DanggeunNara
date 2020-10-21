@@ -75,9 +75,8 @@
 	                                    </c:if>
 	                                    <a href="TBpicksList.do?mId=${sessionScope.mId}"><li>관심내역</li></a>
 	                                    <a href="TBtoSaleList.do?mId=${sessionScope.mId}"><li>판매내역</li></a>
-	                                    <a href="TBtoBuyList.do?mId=${sessionScope.mId}"><li>구매내역</li></a>
+	                                    <a href="TBtoBuyListUp.do?mId=${sessionScope.mId}"><li>구매내역</li></a>
 	                                    <a href="TBLogout.do"><li>로그아웃</li></a>
-
 	                                    
 	                                </ul>
 	                            </li>

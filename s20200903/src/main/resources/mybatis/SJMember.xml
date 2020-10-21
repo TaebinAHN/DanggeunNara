@@ -8,4 +8,15 @@
     <select id="adminTotal" resultType="int">
      	select count(*) from Member
     </select> 
+    <select id="SJUserDetail" parameterType="SJMember" resultType="SJMember" >
+     	select * from (select rownum rn, a.* from (select * from SJMemberJOIN
+    	 order by bId, pNum) a where mId= #{mId}) where rn between #{start} and #{end}
+    </select> 
+    <select id="userDetailTotal" parameterType="SJMember" resultType="int">
+     	select count(*) from SJMemberJOIN where mId=#{mId}
+    </select> 
+    <select id="SJDetail" parameterType="SJMember" resultType="SJMember">
+     	select * From Member Where mId = #{mId}  
+    </select> 
+ 
 </mapper>

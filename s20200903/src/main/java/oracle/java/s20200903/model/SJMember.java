@@ -16,6 +16,13 @@ public class SJMember {
 	private String mMail;
 	private String mSms;
 	private int mStatus;
+	
+	private int bId;			//게시판구분
+	private int pNum;			//게시글번호	
+	private String pTitle;		//게시글 제목
+	private Date pDate;			//게시글 등록일자
+	
+	//조회용
 	private String search;   
 	private String keyword;
 	private String pageNum;  
@@ -129,6 +136,30 @@ public class SJMember {
 	}
 	public void setmStatus(int mStatus) {
 		this.mStatus = mStatus;
+	}
+	public int getbId() {
+		return bId;
+	}
+	public void setbId(int bId) {
+		this.bId = bId;
+	}
+	public int getpNum() {
+		return pNum;
+	}
+	public void setpNum(int pNum) {
+		this.pNum = pNum;
+	}
+	public String getpTitle() {
+		return pTitle;
+	}
+	public void setpTitle(String pTitle) {
+		this.pTitle = pTitle;
+	}
+	public Date getpDate() {
+		return pDate;
+	}
+	public void setpDate(Date pDate) {
+		this.pDate = pDate;
 	}
 	
 	

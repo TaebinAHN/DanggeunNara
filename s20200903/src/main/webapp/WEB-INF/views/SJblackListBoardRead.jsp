@@ -64,7 +64,7 @@
 			</div>
 			<div class="black-list-board-read__info-container">
 				<div class="black-list-board-read__info">
-					<a href="/userDetail.do?mId=${sjb.mId }">
+					<a href="SJUserDetail.do?mId=${sjb.mId }">
 					<div class="black-list-board-read__name">${sjb.mId }</div>
 					</a>
 				</div>

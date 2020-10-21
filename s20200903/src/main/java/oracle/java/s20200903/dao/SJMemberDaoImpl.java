@@ -27,5 +27,42 @@ public class SJMemberDaoImpl implements SJMemberDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("adminTotal");
 	}
+ 
 
+
+	
+	@Override
+	public List<SJMember> SJUserDetail(SJMember sjm) {
+		System.out.println("SJMemberDaoImpl SJUserDetail start");
+//		SJMember sjm2 = new SJMember();
+//		try {
+//			sjm2 = session.selectList("SJUserDetail", sjm);
+//			System.out.println("SJMemberDaoImpl detail getmNick-> "+ sjm.getmNick());
+//			System.out.println("SJMemberDaoImpl detail getpTitle-> "+ sjm.getpTitle());
+//		} catch (Exception e) {
+//			System.out.println("BoardDaoImpl detail Exception->"+ e.getMessage());
+//		}
+		return session.selectList("SJUserDetail", sjm);
+	}
+	
+	@Override
+	public int userDetailTotal(SJMember sjm) {
+		int result = session.selectOne("userDetailTotal", sjm);
+		System.out.println("SJMemberDaoImpl userDetailTotal start" + result);
+		return result;
+	}
+
+	@Override
+	public SJMember SJDetail(String mId) {
+		System.out.println("SJMemberDaoImpl SJDetail start..");
+		SJMember sjmm = new SJMember();
+		try {
+			sjmm = session.selectOne("SJDetail",    mId);
+			System.out.println("EmpDaoImpl detail getEname->"+sjmm.getmNick());
+		} catch (Exception e) {
+			System.out.println("EmpDaoImpl detail Exception->"+e.getMessage());
+		}
+		
+	return sjmm;
+	}
 }

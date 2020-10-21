@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -47,7 +45,7 @@
 			</tr>
 			<c:forEach var="TB" items="${adminList }">
 				<tr>
-					<td><a href="detail.do?${TB.mId}">${TB.mName}</a></td>
+					<td><a href="SJUserDetail.do?mId=${TB.mId}">${TB.mName}</a></td>
 					<td>${TB.mId}</td>
 					<td>${TB.mNick }</td>
 					<td>${TB.mTel }</td>
@@ -81,7 +79,8 @@
 				</c:if>
 			</ul>
 		</div>
-		<div class="user-manage-list__search-container">
+<!-- 
+ 		<div class="user-manage-list__search-container">
 			<select name="search-container__category" id="search-container__category">
 				<option value="name">이름</option>
 				<option value="email">이메일</option>
@@ -91,6 +90,7 @@
 			<input type="image" class="search-container__icon" src="https://img.icons8.com/ios-glyphs/30/000000/search.png" />
 		</div>
 	</div>
+ -->
 	
 	<%@ include file="chat.jsp" %>
 	</article>
