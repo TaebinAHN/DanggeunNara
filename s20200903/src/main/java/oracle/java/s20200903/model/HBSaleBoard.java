@@ -23,6 +23,7 @@ public class HBSaleBoard {
 	private String pimg4;
 	private String pimg5;
 
+	private MultipartFile file;
 	
 	private String sertch;
 	private String keyword;
@@ -40,7 +41,12 @@ public class HBSaleBoard {
 	private String pstatus;
 		
 	
-	
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
 	
 
 	public String getMname() {

@@ -12,13 +12,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 
@@ -27,7 +30,7 @@ import oracle.java.s20200903.service.HBService;
 import oracle.java.s20200903.service.Paging;
 import oracle.java.s20200903.util.FileUtils;
 
-@Controller 
+@Controller
 public class HBController {
 	
 	@Resource(name="hbService")
@@ -90,7 +93,7 @@ public class HBController {
 		System.out.println("HBController HBSaleBoardWritePro start.....");	
 		
 		List<HBSaleBoard> list = fu.parseInsertFileInfo(sb, request);
-		// bid íŒŒë¦¬ë¯¸í„° ë°›ì•„ì˜¤ëŠ” ì½”ë“œì§œê¸°
+		// bid ÆÄ¸®¹ÌÅÍ ¹Þ¾Æ¿À´Â ÄÚµåÂ¥±â
 			
 		
 		if(list.size() > 0) {
@@ -115,40 +118,59 @@ public class HBController {
 		int bid = Integer.parseInt(request.getParameter("bid"));
 		int pnum = Integer.parseInt(request.getParameter("pnum"));
 		
-		// jspíŒŒì¼ì—ì„œ ì´ë¯¸ì§€ ë„£ëŠ” ê¸°ëŠ¥ì´ ì•ˆë¨
-		// ì°¾ì•„ì„œ í•´ê²°
-		// ê´€ì‹¬ëª©ë¡ ëˆ„ë¥´ê³  ë§ˆì´íŽ˜ì´ì§€ ë„˜ê¸°ëŠ”ê±°
-		// ê¸€ ìˆ˜ì •ì‹œ ì´ë¯¸ì§€ xë²„íŠ¼ ëˆ„ë¥´ë©´ dbì—ì„œ ì‚¬ë¼ì§€ê²Œ í•˜ëŠ”ê±°
+		// °ü½É¸ñ·Ï ´©¸£°í ¸¶ÀÌÆäÀÌÁö ³Ñ±â´Â°Å
+		// ±Û ¼öÁ¤½Ã ÀÌ¹ÌÁö x¹öÆ° ´©¸£¸é db¿¡¼­ »ç¶óÁö°Ô ÇÏ´Â°Å
 		
 		sb.setBid(bid);
 		sb.setPnum(pnum);
 		
-		System.out.println(" HBSaleBoardUpdate pnum->" + sb.getBid());
-		System.out.println("HBSaleBoardUpdate bId->" + sb.getPnum());
+		System.out.println("HBSaleBoardUpdate bid->" + sb.getBid());
+		System.out.println("HBSaleBoardUpdate pnum->" + sb.getPnum());
 		
 		HBSaleBoard resultSb = hs.HBSaleBoardUpdate(sb);
 		model.addAttribute("sb", resultSb);
 		return "HBSaleBoardUpdate";
 	} 
 	
-	@RequestMapping(value="HBSaleBoardUpdatePro", method=RequestMethod.POST)
-	public String update(HBSaleBoard sb, Model model) {
+	@RequestMapping(value="HBSaleBoardUpdatePro", method={RequestMethod.POST, RequestMethod.GET})
+	public String updatePro(HttpServletRequest request, HBSaleBoard sb, Model model) throws Exception {
 		System.out.println("HBController updatePro start.....");
 		System.out.println("HBSaleBoardUpdatePro getPtitle() ->" + sb.getPtitle());
 		System.out.println("HBSaleBoardUpdatePro getBid() ->" + sb.getBid());
 		System.out.println("HBSaleBoardUpdatePro getPnum() ->" + sb.getPnum());
+		
+				
+		List<HBSaleBoard> list = fu.parseInsertFileInfo(sb, request);
+				
+		
+		if(list.size() > 0) {
+			sb.setPimg1(list.get(0).getPimg1());
+			System.out.println("getPimg1()" + sb.getPimg1());
+			sb.setPimg2(list.get(0).getPimg2());
+			System.out.println("getPimg2()" + sb.getPimg2());
+			sb.setPimg3(list.get(0).getPimg3());
+			System.out.println("getPimg3()" + sb.getPimg3());
+			sb.setPimg4(list.get(0).getPimg4());
+			System.out.println("getPimg4()" + sb.getPimg4());
+			sb.setPimg5(list.get(0).getPimg5());
+			System.out.println("getPimg5()" + sb.getPimg5());
+		}
+		
+		
 		int result = hs.update(sb);
+		model.addAttribute("result", result);
 		System.out.println("updatePro pnum ->" + result);
 		
 		if(result > 0) {
-			System.out.println("ìˆ˜ì •ì™„ë£Œ");
+			System.out.println("¼öÁ¤¿Ï·á");
 			return "redirect:list.do";
 		} else {
-			System.out.println("ë‹¤ì‹œ ìž…ë ¥í•˜ì„¸ìš”");
-			model.addAttribute("Message", "ë‹¤ì‹œ ìž…ë ¥í•˜ì„¸ìš”");
+			System.out.println("´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä");
+			model.addAttribute("Message", "´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä");
 			
 			return "forward:HBSaleBoardUpdate.do";
 		}
+	
 	}
 	
 	
@@ -160,7 +182,6 @@ public class HBController {
 		System.out.println("HBController delete result->"+ result);
 		return "redirect:list.do";
 	}
-	
 	
 	
 }

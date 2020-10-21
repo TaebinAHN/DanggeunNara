@@ -121,10 +121,7 @@ public class HBDaoImpl implements HBDao {
 		return result;
 	}
 
+
+	}
+
 	
-
-
-	
-
-
-}
