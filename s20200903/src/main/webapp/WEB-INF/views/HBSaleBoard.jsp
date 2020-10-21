@@ -81,8 +81,8 @@
                 <!-- 각 최신글 9 ~ 12개만 띄어주시면 됩니다 -->
                 <div class="to-sale__content">
                     <!-- 태그 안에 있는 더미 데이터들은 틀을 보기 위함이며 실제 작업시엔 해당 데이터를 불러 올 수 있도록 변경 부탁드립니다. -->
-                    <article class="to-sale__article">
-                    	<c:forEach items="${list}" var="sb">
+                    <c:forEach items="${list}" var="sb">
+                    <article class="to-sale__article">                    	
 	                        <a href="HBSaleBoardRead.do?bid=${sb.bid}&pnum=${sb.pnum}">
 	                            <div class="to-sale__content--thumbnail">
 	                                <img
@@ -115,9 +115,9 @@
 	                                    </div>
 	                                </div>
 	                            </div>
-	                        </a>
-                    	</c:forEach>
-                    </article>
+	                        </a>                    	
+                   	 	</article>
+                    </c:forEach>
  
                 </div>
             </div>

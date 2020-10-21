@@ -17,7 +17,7 @@ public interface HBService {
 	HBSaleBoard          HBSaleBoardUpdate(HBSaleBoard sb);
 	int                  update(HBSaleBoard sb);
 	int                  delete(HBSaleBoard sb);
-		
+
 	
 	
 	

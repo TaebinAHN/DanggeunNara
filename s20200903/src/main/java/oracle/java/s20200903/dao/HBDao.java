@@ -18,7 +18,7 @@ public interface HBDao {
 	HBSaleBoard         HBSaleBoardUpdate(HBSaleBoard sb);
 	int                 update(HBSaleBoard sb);
 	int                 delete(HBSaleBoard sb);
-			
+	
 	
 	
 }
