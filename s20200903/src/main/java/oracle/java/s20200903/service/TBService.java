@@ -6,11 +6,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
+import oracle.java.s20200903.model.NEPost;
 import oracle.java.s20200903.model.TBMember;
 
 public interface TBService {
 	List<TBMember> 	list(TBMember tbm);
-	int				total();
+	int				TBBuytotal();
 	int				joinMember(TBMember tbm);
 	String 			idCheck(String mId);
 	String			checkNick(String mNick);
@@ -27,4 +28,6 @@ public interface TBService {
 	int				checkMlf(TBMember tbm);
 	String			getMnick(TBMember tbm);
 	int				mlfReset(TBMember tbm);
+	List<NEPost> 	toBuyList(NEPost np);
+	
 }

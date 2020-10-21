@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import oracle.java.s20200903.model.NEPost;
 import oracle.java.s20200903.model.TBMember;
 import oracle.java.s20200903.service.TBService;
 import scala.util.hashing.Hashing;
@@ -133,11 +134,11 @@ public class TBController {
 		return "TBtoSaleList";
 	}
 	
-	@RequestMapping (value="TBtoBuyList")
+/*	@RequestMapping (value="TBtoBuyList")
 	public String TBtoBuyList(TBMember tbm, Model model) {
 		
 		return "TBtoBuyList";
-	}
+	}*/
 	
 	// 기능부분
 	
@@ -212,63 +213,64 @@ public class TBController {
 			String enPassword = String.format("%0128x", new BigInteger(1, messageDigest.digest()));
 			tbm.setmPw(enPassword);
 			int result = ts.loginMember(tbm);
-		System.out.println("tbm.getmPw => " + tbm.getmPw());
-		System.out.println("mNick" + mNick);
-		response.setContentType("text/html charset=UTF-8");
-		PrintWriter pw = response.getWriter();
-		int checkMstatus = ts.checkMstatus(tbm);
-		if(result > 0) {
-			int checklevel = ts.checkMlevel(tbm);
-			if(checkMstatus == 9) {
-				pw.println("<script>alert('탈퇴된 회원입니다.');</script>");
-				pw.flush();
-				return "TBlogin";
-			}
-			if(checklevel == 3) {
-				HttpSession session = request.getSession();
-				session.setAttribute("mId", tbm.getmId());
-				session.setAttribute("mNick", mNick);
-				session.setAttribute("checklevel", checklevel);
-				pw.println("<script>alert('관리자님 어서오세요.');</script>");
-				pw.flush();
-				return "forward:main.do";
-			} else if(checklevel == 2) {
-				pw.println("<script>alert('이용정지된 계정입니다.');</script>");
-				pw.flush();
-				return "TBlogin";
-			}
-			pw.println("<script>alert('어서오세요 환영합니다~');</script>");
-			pw.flush();
-			ts.mlfReset(tbm);
-			HttpSession session = request.getSession();
-			session.setAttribute("mId", tbm.getmId());
-			session.setAttribute("mNick", mNick);
-			System.out.println("tbm.getmNick()" + mNick);
-			return "forward:main.do";
-		} else {
-			int checkMlf = ts.checkMlf(tbm);
-			int mlfcnt = ts.mlf(tbm);
-			if(checkMlf > 4) { 
-				System.out.println("checkMlf ==>" + checkMlf);
-				int stopmember = ts.stopmember(tbm);
-				if(checkMstatus == 7) {
-					System.out.println(checkMlf + "==" + tbm.getMlf());
-					System.out.println(stopmember);
-					pw.println("<script>alert('로그인 5회 입력 실패하여 비밀번호 변경 후 이용바랍니다.');</script>");
+			System.out.println("tbm.getmPw => " + tbm.getmPw());
+			System.out.println("mNick" + mNick);
+			response.setContentType("text/html charset=UTF-8");
+			PrintWriter pw = response.getWriter();
+			int checkMstatus = ts.checkMstatus(tbm);
+			if(result > 0) {
+				int checklevel = ts.checkMlevel(tbm);
+				if(checkMstatus == 9) {
+					pw.println("<script>alert('탈퇴된 회원입니다.');</script>");
 					pw.flush();
 					return "TBlogin";
 				}
+				if(checklevel == 3) {
+					HttpSession session = request.getSession();
+					session.setAttribute("mId", tbm.getmId());
+					session.setAttribute("mNick", mNick);
+					session.setAttribute("checklevel", checklevel);
+					pw.println("<script>alert('관리자님 어서오세요.');</script>");
+					pw.flush();
+					return "forward:main.do";
+				} else if(checklevel == 2) {
+					pw.println("<script>alert('이용정지된 계정입니다.');</script>");
+					pw.flush();
+					return "TBlogin";
+				}
+				pw.println("<script>alert('어서오세요 환영합니다~');</script>");
+				pw.flush();
+				ts.mlfReset(tbm);
+				HttpSession session = request.getSession();
+				session.setAttribute("mId", tbm.getmId());
+				session.setAttribute("mNick", mNick);
+				System.out.println("tbm.getmNick()" + mNick);
+				System.out.println("tbm.getmId()" + tbm.getmId());
+				return "forward:main.do";
+			} else {
+				int checkMlf = ts.checkMlf(tbm);
+				int mlfcnt = ts.mlf(tbm);
+				if(checkMlf > 4) { 
+					System.out.println("checkMlf ==>" + checkMlf);
+					int stopmember = ts.stopmember(tbm);
+					if(checkMstatus == 7) {
+						System.out.println(checkMlf + "==" + tbm.getMlf());
+						System.out.println(stopmember);
+						pw.println("<script>alert('로그인 5회 입력 실패하여 비밀번호 변경 후 이용바랍니다.');</script>");
+						pw.flush();
+						return "TBlogin";
+					}
+				}
+				pw.println("<script>alert('아이디와 비밀번호를 확인해주세요.');</script>");
+				pw.flush();
+				return "TBlogin";
+			} 
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			pw.println("<script>alert('아이디와 비밀번호를 확인해주세요.');</script>");
-			pw.flush();
 			return "TBlogin";
-		} 
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-		return "TBlogin";
-	}
 
 	@RequestMapping(value="TBfindPwgo", method=RequestMethod.POST)
 	public String TBfindPwgo(HttpServletRequest request, HttpServletResponse response, TBMember tbm, Model model) throws ServletException, IOException  {
@@ -407,6 +409,26 @@ public class TBController {
 		
 	}
 	
+	@RequestMapping(value="TBtoBuyListUp") 
+	public String toBuyList(HttpServletRequest request, TBMember tbm, NEPost np, String currentPage, Model model) {
+		HttpSession session = request.getSession();
+		session.setAttribute("mId", tbm.getmId());
+		System.out.println("toBuyList mId => " + tbm.getmId());
+		int Buytotal = ts.TBBuytotal();
+		System.out.println("total=>" + Buytotal);
+		TBPaging pg = new TBPaging(Buytotal, currentPage);
+		np.setStart(pg.getStart());
+		np.setEnd(pg.getEnd());
+		List<NEPost> blist = ts.toBuyList(np);
+
+		model.addAttribute("blist", blist);
+		model.addAttribute("pg", pg);
+		
+		return "TBtoBuyList";
+	}
+
+	
+	
 	// 중복검사 AJAX
 	
 	
@@ -425,7 +447,6 @@ public class TBController {
 	@RequestMapping(value="checkNick", produces = "application/text;charset=UTF-8")
 	@ResponseBody
 	public String nickCheck(String mNick, Model model) {
-		
 		String sNick = ts.checkNick(mNick);
 		if(sNick == null) {
 			model.addAttribute("msg", "사용가능한 닉네임	 입니다.");
@@ -434,4 +455,5 @@ public class TBController {
 		}
 		return sNick;
 	}
+	
 }

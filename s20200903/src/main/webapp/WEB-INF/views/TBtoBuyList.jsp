@@ -49,7 +49,7 @@
                         <!-- 태그 안에 있는 더미 데이터들은 틀을 보기 위함이며 실제 작업시엔 해당 데이터를 불러 올 수 있도록 변경 부탁드립니다. -->
                         <article class="to-buy-list__article">
                         <c:forEach var="bPost" items="${blist }">
-                        <c:if test="${sessionScope.mId == NEPost.mid}">
+                        	<c:if test="${sessionScope.mId == bPost.mid }">
                             <a href="toBuyBoardRead.do">
                                 <div class="to-buy-list__content--thumbnail">
                                     <img src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/3c06cb158997b8cd4061052c6b457887e4c60496704b6149d4197a6d791ad261.webp?q=82&s=300x300&t=crop"
@@ -57,103 +57,35 @@
                                 </div>
                                 <div class="to-buy-list__content--text">
                                     <h1 class="to-buy-list__content--text__title">
-                                        ${NEPost.ptitle}
+                                        ${bPost.ptitle}
                                     </h1>
                                     <p class="to-buy-list__content--text__address">
-                                        ${NEPost.maddr}
+                                        ${bPost.maddr}
                                     </p>
                                     <div class="to-buy-list__content--text__date">
                                         <div class="to-buy-list__content--date">
-                                         ${NEPost.pdate} 
+                                         ${bPost.pdate} 
                                         </div>
                                         <div class="to-buy-list__content--hit">
-                                         ${NEPost.phit}
+                                         ${bPost.phit}
                                         </div>
                                     </div>
                                 </div>
                             </a>
                             </c:if>
-                            </c:forEach>
-                        </article>
-                        <!-- 이 아래부턴 삭제 부탁드립니다. -->
-                        <article class="to-buy-list__article">
-                            <a href="../board/toBuyBoardRead.html">
-                                <div class="to-buy-list__content--thumbnail">
-                                    <img src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/74ead2897bfdc979dfdc817ea9c966c5dfd876d7479410549c8ceefc29271ebf.webp?q=82&s=300x300&t=crop"
-                                        alt="thumbnail" />
-                                </div>
-                                <div class="to-buy-list__content--text">
-                                    <h1 class="to-buy-list__content--text__title">
-                                        스위스크로스 캠핑체어 팝니다.
-                                    </h1>
-                                    <p class="to-buy-list__content--text__address">
-                                        서울 송파구 석촌동
-                                    </p>
-                                    <div class="to-buy-list__content--text__date">
-                                        <div class="to-buy-list__content--date">
-                                            2020.09.25
-                                        </div>
-                                        <div class="to-buy-list__content--hit">
-                                            조회수 30
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </article>
-                        <article class="to-buy-list__article">
-                            <a href="../board/toBuyBoardRead.html">
-                                <div class="to-buy-list__content--thumbnail">
-                                    <img src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/e109941c1a68f4bef813c0a46f20ab1060b67f92c7510a14c83cdb76ef77ba1d.webp?q=82&s=300x300&t=crop"
-                                        alt="thumbnail" />
-                                </div>
-                                <div class="to-buy-list__content--text">
-                                    <h1 class="to-buy-list__content--text__title">
-                                        6단 미니벨로 자전거 짐받이, 싸게팔아요
-                                    </h1>
-                                    <p class="to-buy-list__content--text__address">
-                                        서울 송파구 석촌동
-                                    </p>
-                                    <div class="to-buy-list__content--text__date">
-                                        <div class="to-buy-list__content--date">
-                                            2020.09.22
-                                        </div>
-                                        <div class="to-buy-list__content--hit">
-                                            조회수 142
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
+                            <c:set var="num" value="${num - 1}"></c:set>
+                        </c:forEach>
                         </article>
                     </div>
                     <div class="to-buy-list__page-num-container">
                         <ul class="page-num-container">
-                            <a href="#">
-                                <li class="page-num-container__left-btn page-num-container__btn">
-                                    <i class="fas fa-chevron-left"></i>
-                                </li>
-                            </a>
-                            <a href="#">
-                                <li class="page-num-container__num">1</li>
-                            </a>
-                            <!-- 더미데이터 -->
-                            <a href="#">
-                                <li class="page-num-container__num">2</li>
-                            </a>
-                            <a href="#">
-                                <li class="page-num-container__num">3</li>
-                            </a>
-                            <a href="#">
-                                <li class="page-num-container__num">4</li>
-                            </a>
-                            <a href="#">
-                                <li class="page-num-container__num">5</li>
-                            </a>
-                            <!-- 더미데이터 -->
-                            <a href="#">
-                                <li class="page-num__right-btn page-num-container__btn">
-                                    <i class="fas fa-chevron-right"></i>
-                                </li>
-                            </a>
+							<a href="TBtoBuyListUp.do?currentPage=${pg.startPage-pg.pageBlock}&mId=${sessionScope.mId}"><li class="page-num-container__left-btn page-num-container__btn">
+                                   <i class="fas fa-chevron-left"></i></li></a>
+							<c:forEach var="i" begin="${pg.startPage }" end="${pg.endPage }">
+								<a href="TBtoBuyListUp.do?currentPage=${i}&mId=${sessionScope.mId}"><li class="page-num-container__num">${i}</li></a>
+							</c:forEach>
+							<a href="TBtoBuyListUp.do?currentPage=${pg.startPage+pg.pageBlock}&mId=${sessionScope.mId}"><li class="page-num-container__right-btn page-num-container__btn">
+                                   <i class="fas fa-chevron-right"></i></li></a>
                         </ul>
                     </div>
             </div>

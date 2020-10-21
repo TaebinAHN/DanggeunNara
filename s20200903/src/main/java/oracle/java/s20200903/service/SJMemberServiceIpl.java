@@ -28,5 +28,23 @@ public class SJMemberServiceIpl implements SJMemberService {
 		return sd.adminTotal();
 	}
 
+	@Override
+	public List<SJMember> SJUserDetail(SJMember sjm) {
+		// TODO Auto-generated method stub
+		return sd.SJUserDetail(sjm);
+	}
+	
+	@Override
+	public int userDetailTotal(SJMember sjm) {
+		System.out.println("SJMemberServiceIpl userDetailTotal start");
+		return sd.userDetailTotal(sjm);
+	}
+
+	@Override
+	public SJMember SJDetail(String mId) {
+		// TODO Auto-generated method stub
+		return sd.SJDetail(mId);
+	}
+
 
 }
