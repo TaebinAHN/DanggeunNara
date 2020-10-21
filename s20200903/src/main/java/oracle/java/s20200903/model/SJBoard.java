@@ -7,7 +7,7 @@ public class SJBoard {
 	private int pNum;			//게시글번호
 	private String mId;			//회원아이디
 	private int ctCode;			//카테고리코드
-	private int psCode;		//거래상태코드
+	private int psCode;			//거래상태코드
 	private String pTitle;		//게시글 제목
 	private int pPrice;			//물품가격
 	private Date pDate;			//게시글 등록일자

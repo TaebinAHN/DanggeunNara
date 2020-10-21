@@ -60,6 +60,7 @@ public class SJBoardController {
 		sjb.setpNum(Integer.parseInt(request.getParameter("pNum")));
 		SJBoard sjb2 = bs.SJblackListBoardRead(sjb);
 		System.out.println("blbr pNum->" + sjb);
+		System.out.println("pImg1 -> " + request.getParameter("pImg1"));
 		model.addAttribute("sjb", sjb2);
 		return "SJblackListBoardRead";
 	}
