@@ -34,8 +34,14 @@ public class TBDaoImpl implements TBDao {
 
 	@Override
 	public int TBBuytotal() {
-		// TODO Auto-generated method stub
-		return session.selectOne("TBBuytotal");
+		int result = 0;
+		try {
+			result = session.selectOne("NE.TBBuytotal");
+			System.out.println("result =>"+result);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
 	}
 
 	@Override
@@ -179,7 +185,7 @@ public class TBDaoImpl implements TBDao {
 	@Override
 	public List<NEPost> toBuyList(NEPost np) {
 		// TODO Auto-generated method stub
-		return session.selectList("toBuyList", np);
+		return session.selectList("NE.toBuyList", np);
 	} 
 
 

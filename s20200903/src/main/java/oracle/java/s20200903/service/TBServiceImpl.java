@@ -29,7 +29,7 @@ public class TBServiceImpl implements TBService {
 
 	@Override
 	public int TBBuytotal() {
-		// TODO Auto-generated method stub
+		
 		return td.TBBuytotal();
 	}
 

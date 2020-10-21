@@ -134,11 +134,11 @@ public class TBController {
 		return "TBtoSaleList";
 	}
 	
-	@RequestMapping (value="TBtoBuyList")
+/*	@RequestMapping (value="TBtoBuyList")
 	public String TBtoBuyList(TBMember tbm, Model model) {
 		
 		return "TBtoBuyList";
-	}
+	}*/
 	
 	// 기능부분
 	
@@ -245,6 +245,7 @@ public class TBController {
 				session.setAttribute("mId", tbm.getmId());
 				session.setAttribute("mNick", mNick);
 				System.out.println("tbm.getmNick()" + mNick);
+				System.out.println("tbm.getmId()" + tbm.getmId());
 				return "forward:main.do";
 			} else {
 				int checkMlf = ts.checkMlf(tbm);
@@ -408,26 +409,22 @@ public class TBController {
 		
 	}
 	
-	
-	
 	@RequestMapping(value="TBtoBuyListUp") 
-	public String toBuyList(HttpServletRequest request, NEPost np, String currentPage, Model model) {
-		String mNick = request.getParameter("mNick");
+	public String toBuyList(HttpServletRequest request, TBMember tbm, NEPost np, String currentPage, Model model) {
 		HttpSession session = request.getSession();
-		session.setAttribute("mNick", mNick);
+		session.setAttribute("mId", tbm.getmId());
+		System.out.println("toBuyList mId => " + tbm.getmId());
 		int Buytotal = ts.TBBuytotal();
 		System.out.println("total=>" + Buytotal);
-		
 		TBPaging pg = new TBPaging(Buytotal, currentPage);
 		np.setStart(pg.getStart());
 		np.setEnd(pg.getEnd());
-		List<NEPost> list = ts.toBuyList(np);
+		List<NEPost> blist = ts.toBuyList(np);
 
-		model.addAttribute("TBtoBuyList", list);
+		model.addAttribute("blist", blist);
 		model.addAttribute("pg", pg);
 		
-		
-		return "forward:TBtoBuyList.do";
+		return "TBtoBuyList";
 	}
 
 	
@@ -450,7 +447,6 @@ public class TBController {
 	@RequestMapping(value="checkNick", produces = "application/text;charset=UTF-8")
 	@ResponseBody
 	public String nickCheck(String mNick, Model model) {
-		
 		String sNick = ts.checkNick(mNick);
 		if(sNick == null) {
 			model.addAttribute("msg", "사용가능한 닉네임	 입니다.");
@@ -460,6 +456,4 @@ public class TBController {
 		return sNick;
 	}
 	
-	
-
 }
