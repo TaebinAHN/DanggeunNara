@@ -140,7 +140,7 @@
 			(SELECT rownum rn, a.*
 			 FROM (SELECT bid, pnum, mid, ctcode, pscode, ptitle, pprice, TO_CHAR(pdate,'yyyy-mm-dd') pdate, pcontent, phit, ppicks, pimg1, pimg2, pimg3, pimg4, pimg5, maddr, mnick, msweet, ctkinds    
 				  FROM pmcjoin 
-				  WHERE bid=2 
+				  WHERE bid=2
 				  ORDER BY pnum desc) a)
 		WHERE rn BETWEEN #{start} AND #{end}
     </select>

@@ -149,13 +149,14 @@ public class TBController {
 		String mixPassword = tbm.getmPw();
 		MessageDigest messageDigest;
 		try {
-/*			SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
+			SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
 			byte[] bytes = new byte[16];
 			random.nextBytes(bytes);
-			String salt = new String(Base64.getEncoder().encode(bytes));*/
+			String salt = new String(Base64.getEncoder().encode(bytes));
 			
 			messageDigest = MessageDigest.getInstance("SHA-512");
 			messageDigest.reset();
+			messageDigest.update(salt.getBytes());
 			messageDigest.update(mixPassword.getBytes("utf8"));
 			String enPassword = String.format("%0128x", new BigInteger(1, messageDigest.digest()));
 			tbm.setmPw(enPassword);
@@ -180,13 +181,14 @@ public class TBController {
 		String mixPassword = tbm.getmPw();
 		MessageDigest messageDigest;
 		try {
-/*			SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
+			SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
 			byte[] bytes = new byte[16];
 			random.nextBytes(bytes);
-			String salt = new String(Base64.getEncoder().encode(bytes));*/
+			String salt = new String(Base64.getEncoder().encode(bytes));
 			
 			messageDigest = MessageDigest.getInstance("SHA-512");
 			messageDigest.reset();
+			messageDigest.update(salt.getBytes());
 			messageDigest.update(mixPassword.getBytes("utf8"));
 			String enPassword = String.format("%0128x", new BigInteger(1, messageDigest.digest()));
 			tbm.setmPw(enPassword);
@@ -207,8 +209,15 @@ public class TBController {
 		String mixPassword = tbm.getmPw();
 		MessageDigest messageDigest;
 		try {
+			
+			SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
+			byte[] bytes = new byte[16];
+			random.nextBytes(bytes);
+			String salt = new String(Base64.getEncoder().encode(bytes));
+			
 			messageDigest = MessageDigest.getInstance("SHA-512");
 			messageDigest.reset();
+			messageDigest.update(salt.getBytes());
 			messageDigest.update(mixPassword.getBytes("utf8"));
 			String enPassword = String.format("%0128x", new BigInteger(1, messageDigest.digest()));
 			tbm.setmPw(enPassword);
@@ -306,8 +315,14 @@ public class TBController {
 		String mixPassword = tbm.getmPw();
 		MessageDigest messageDigest;
 		try {			
+			SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
+			byte[] bytes = new byte[16];
+			random.nextBytes(bytes);
+			String salt = new String(Base64.getEncoder().encode(bytes));
+			
 			messageDigest = MessageDigest.getInstance("SHA-512");
 			messageDigest.reset();
+			messageDigest.update(salt.getBytes());
 			messageDigest.update(mixPassword.getBytes("utf8"));
 			String enPassword = String.format("%0128x", new BigInteger(1, messageDigest.digest()));
 			tbm.setmPw(enPassword);
@@ -338,8 +353,14 @@ public class TBController {
 		String mixPassword = tbm.getmPw();
 		MessageDigest messageDigest;
 		try {			
+			SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
+			byte[] bytes = new byte[16];
+			random.nextBytes(bytes);
+			String salt = new String(Base64.getEncoder().encode(bytes));
+			
 			messageDigest = MessageDigest.getInstance("SHA-512");
 			messageDigest.reset();
+			messageDigest.update(salt.getBytes());
 			messageDigest.update(mixPassword.getBytes("utf8"));
 			String enPassword = String.format("%0128x", new BigInteger(1, messageDigest.digest()));
 			tbm.setmPw(enPassword);

@@ -36,10 +36,10 @@
 			}
 			,success:function(data, textStatus){
 				if(data != ""){
-					$("#msg").text("사용중인 아이디입니다.")
+					$("#msg").text("☓사용중인 아이디입니다.")
 					$("#msg").css("color", "#b3130b") 
 				}else{
-					$("#msg").text("사용가능한 아이디 입니다.")
+					$("#msg").text("✓사용가능한 아이디 입니다.")
 					$("#msg").css("color", "#0f851a")
 				}
 			}
@@ -58,11 +58,11 @@
 			}
 			,success:function(data, textStatus){
 				if(data != ""){
-					$("#msg1").text("사용중인 닉네임입니다.")
+					$("#msg1").text("☓사용중인 닉네임입니다.")
 					$("#msg1").css("color", "#b3130b")
 
 				}else{
-					$("#msg1").text("사용가능한 닉네임 입니다.")
+					$("#msg1").text("✓사용가능한 닉네임 입니다.")
 					$("#msg1").css("color", "#0f851a")
 				}
 			}
@@ -113,8 +113,11 @@
                             </td>
                         </tr>
         				<tr>
+        					<th></th>
         					<td>
+        						<div style="font-size: 12px;">
         						<span id="msg"></span>
+        						</div>
 							</td>
         				</tr>
                         <tr>
@@ -148,8 +151,11 @@
                             </td>
                         </tr>
         				<tr>
+        					<th></th>
         					<td>
+        						<div style="font-size: 12px;">
         						<span id="msg1"></span>
+        						</div>
 							</td>
         				</tr>                        
                         <tr>

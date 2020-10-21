@@ -865,14 +865,14 @@ function nameRules() {
 	const nameMessage2 = document.querySelector(".name__message2");
 	if (nameWrite != "") {
 		//문자 길이 2 ~ 6자
-		if (nameWrite.length < 2 || nameWrite.length > 6) {
+		if (nameWrite.length < 2 || nameWrite.length > 10) {
 			nameMessage.style.display = "block";
-			nameMessage.innerHTML = `<span>☓ 2자 ~ 6자 입력</span>`;
+			nameMessage.innerHTML = `<span>☓ 2자 ~ 10자 입력</span>`;
 			nameMessage.style.color = "#b3130b";
 			nameMessage.style.fontSize = "12px";
 		} else {
 			nameMessage.style.display = "block";
-			nameMessage.innerHTML = `<span>✓ 2자 ~ 6자 입력</span>`;
+			nameMessage.innerHTML = `<span>✓ 2자 ~ 10자 입력</span>`;
 			nameMessage.style.color = "#0f851a";
 			nameMessage.style.fontSize = "12px";
 		}
@@ -911,13 +911,13 @@ function nameRules() {
 
 function pwRules() {
 	const pwWrite = document.querySelector("#pw__write").value;
-	const patternHard = /^(?=.*\d)(?=.*[a-zA-Z])[A-Za-z\d`~!@#$%^&*+=-]$/;
+	const patternHard = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{10,16}$/;
 	const write__message = document.querySelector(".write__message");
 	const write__message1 = document.querySelector(".write__message1");
 	const write__message2 = document.querySelector(".write__message2");
 	if (pwWrite != "") {
 		//문자 길이 10자 이상
-		if (pwWrite.length < 10 || pwWrite.length > 17) {
+		if (pwWrite.length < 9 || pwWrite.length > 17) {
 			write__message.style.display = "block";
 			write__message.innerHTML = `<span>☓ 10자 ~ 16자 입력</span>`;
 			write__message.style.color = "#b3130b";
@@ -931,12 +931,12 @@ function pwRules() {
 
 		if (pwWrite.search(/\s/) != -1 || patternHard.test(pwWrite)) {
 			write__message1.style.display = "block";
-			write__message1.innerHTML = `<span>☓ 영문/숫자/특수문자 사용가능 (공백제외)</span>`;
+			write__message1.innerHTML = `<span>☓ 영문/숫자/특수문자 조합 사용 (공백제외)</span>`;
 			write__message1.style.color = "#b3130b";
 			write__message1.style.fontSize = "12px";
 		} else {
 			write__message1.style.display = "block";
-			write__message1.innerHTML = `<span>✓ 영문/숫자/특수문자 사용가능 (공백제외)</span>`;
+			write__message1.innerHTML = `<span>✓ 영문/숫자/특수문자 조합 사용 (공백제외)</span>`;
 			write__message1.style.color = "#0f851a";
 			write__message1.style.fontSize = "12px";
 		}

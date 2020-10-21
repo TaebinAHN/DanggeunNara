@@ -72,6 +72,14 @@
                                     </div>
                                 </div>
                             </a>
+                            <c:if test="${sessionScope.mId != bPost.mid}">
+			                    <div class="to-buy-list__text">
+			                        <strong>구매 내역이 없어요 !</strong>
+			                        <a href="toBuyBoard.do">
+			                            <p>구경가기</p>
+			                        </a>
+			                    </div>        
+                            </c:if>                            
                             </c:if>
                             <c:set var="num" value="${num - 1}"></c:set>
                         </c:forEach>
