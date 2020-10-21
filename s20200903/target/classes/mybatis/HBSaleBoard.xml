@@ -1,9 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-
 <mapper namespace="HBSaleBoard">
+
+	<!-- 판매글  Total-->
 	<select id="HBTotal" resultType="int">
 		select count(*)
 		from post
@@ -11,29 +13,31 @@
 		bid=1
 	</select>
 	
-
+	<!-- 판매글  List-->
 	<select id="HBListAll" parameterType="HBSaleBoard" resultType="HBSaleBoard">
 		select *
 		from (select rownum rn, a.*
 		from (select * from HBJoin where bid=1 order by pnum desc) a)
 		where rn between #{start} and #{end}
-		
-
 	</select>
+	
+	<!-- 판매글 상세보기 -->	
 	<select id="HBSaleBoardSelOne" parameterType="HBSaleBoard" resultType="HBSaleBoard">
 		select * From HBJoin Where bid=#{bid} and pnum=#{pnum} 
 	</select>
-
+	
+	<!-- 판매글  조회수-->
 	<update id="updateViewCnt">
 		update post set phit=phit+1 where pnum=#{pnum} and
 		bid=1
 	</update>
 	
-
-	<select id="total" resultType="int">
+	
+<!-- 	<select id="total" resultType="int">
 		select count(*) from post
-	</select>
-
+	</select> -->
+	
+	
 	<select id="selectManager" resultType="HBSaleBoard">
 		select *
 		from post
@@ -46,12 +50,10 @@
 			SELECT NVL(MAX(PNUM),0)+1 FROM post WHERE BID=1
 		</selectKey>
 		<![CDATA[ INSERT INTO post
-		VALUES(#{bid}, #{pnum}, #{mid}, #{ctcode},  1, #{ptitle}, #{pprice}, sysdate, #{pcontent}, #{phit}, #{ppicks}, 
-
+		VALUES(1, #{pnum}, #{mid}, #{ctcode}, #{pscode}, #{ptitle}, #{pprice}, sysdate, #{pcontent}, #{phit}, #{ppicks}, 
 			     #{pimg1}, #{pimg2}, #{pimg3}, #{pimg4}, #{pimg5})
 			     ]]>
 	</insert>
-
 
 	<select id="HBSaleBoardUpdate" parameterType="HBSaleBoard" resultType="HBSaleBoard">
 		select * From HBJoin where bid=1 and pnum=#{pnum}
@@ -67,6 +69,9 @@
 		delete from post where
 		bid=1 and pnum=#{pnum}
 	</delete>
+	
+
+
+
 
 </mapper>
-
