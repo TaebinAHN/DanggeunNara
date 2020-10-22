@@ -146,23 +146,21 @@ public class TBController {
 	@RequestMapping(value="userInfoUpdate")
 	public String userInfoUpdate (HttpServletRequest request, HttpServletResponse response, TBMember tbm, Model model) throws IOException {
 		PrintWriter pw = response.getWriter();
-		String mixPassword = tbm.getmPw();
 		MessageDigest messageDigest;
 		try {
-			SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
+/*			SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
 			byte[] bytes = new byte[16];
 			random.nextBytes(bytes);
-			String salt = new String(Base64.getEncoder().encode(bytes));
+			String salt = new String(Base64.getEncoder().encode(bytes));*/
+			
+			String mixPassword = tbm.getmPw();
 			
 			messageDigest = MessageDigest.getInstance("SHA-512");
-			messageDigest.reset();
-			messageDigest.update(salt.getBytes());
-			messageDigest.update(mixPassword.getBytes("utf8"));
+			messageDigest.update(mixPassword.getBytes());
+//			messageDigest.update(salt.getBytes());
 			String enPassword = String.format("%0128x", new BigInteger(1, messageDigest.digest()));
 			tbm.setmPw(enPassword);
-			System.out.println(mixPassword);
-			System.out.println(messageDigest);
-//			System.out.println(salt);
+
 			System.out.println("enPassword ==>" + enPassword);
 			response.setContentType("text/html charset=UTF-8");
 			int result = ts.userInfoUpdate(tbm);
@@ -178,18 +176,19 @@ public class TBController {
 	
 	@RequestMapping (value="joinMember.do", method=RequestMethod.POST)
 	public String joinMember(TBMember tbm ,Model model) throws UnsupportedEncodingException {
-		String mixPassword = tbm.getmPw();
+
 		MessageDigest messageDigest;
 		try {
-			SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
+/*			SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
 			byte[] bytes = new byte[16];
 			random.nextBytes(bytes);
-			String salt = new String(Base64.getEncoder().encode(bytes));
+			String salt = new String(Base64.getEncoder().encode(bytes));*/
+			
+			String mixPassword = tbm.getmPw();
 			
 			messageDigest = MessageDigest.getInstance("SHA-512");
-			messageDigest.reset();
-			messageDigest.update(salt.getBytes());
-			messageDigest.update(mixPassword.getBytes("utf8"));
+			messageDigest.update(mixPassword.getBytes());
+//			messageDigest.update(salt.getBytes());
 			String enPassword = String.format("%0128x", new BigInteger(1, messageDigest.digest()));
 			tbm.setmPw(enPassword);
 			System.out.println(mixPassword);
@@ -206,21 +205,23 @@ public class TBController {
 	@RequestMapping (value="loginMember", method=RequestMethod.POST)
 	public String loginMember(HttpServletRequest request, HttpServletResponse response ,TBMember tbm, Model model) throws UnsupportedEncodingException, ServletException, IOException {	
 		String mNick = ts.getMnick(tbm);
-		String mixPassword = tbm.getmPw();
 		MessageDigest messageDigest;
 		try {
 			
-			SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
+/*			SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
 			byte[] bytes = new byte[16];
 			random.nextBytes(bytes);
-			String salt = new String(Base64.getEncoder().encode(bytes));
+			String salt = new String(Base64.getEncoder().encode(bytes));*/
+			
+			String mixPassword = tbm.getmPw();
 			
 			messageDigest = MessageDigest.getInstance("SHA-512");
-			messageDigest.reset();
-			messageDigest.update(salt.getBytes());
-			messageDigest.update(mixPassword.getBytes("utf8"));
+			messageDigest.update(mixPassword.getBytes());
+//			messageDigest.update(salt.getBytes());
 			String enPassword = String.format("%0128x", new BigInteger(1, messageDigest.digest()));
+			
 			tbm.setmPw(enPassword);
+			
 			int result = ts.loginMember(tbm);
 			System.out.println("tbm.getmPw => " + tbm.getmPw());
 			System.out.println("mNick" + mNick);
@@ -312,18 +313,18 @@ public class TBController {
 		response.setContentType("text/html charset=UTF-8");
 		PrintWriter pw = response.getWriter();
 		
-		String mixPassword = tbm.getmPw();
 		MessageDigest messageDigest;
 		try {			
-			SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
+/*			SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
 			byte[] bytes = new byte[16];
 			random.nextBytes(bytes);
-			String salt = new String(Base64.getEncoder().encode(bytes));
+			String salt = new String(Base64.getEncoder().encode(bytes));*/
+			
+			String mixPassword = tbm.getmPw();
 			
 			messageDigest = MessageDigest.getInstance("SHA-512");
-			messageDigest.reset();
-			messageDigest.update(salt.getBytes());
-			messageDigest.update(mixPassword.getBytes("utf8"));
+			messageDigest.update(mixPassword.getBytes());
+//			messageDigest.update(salt.getBytes());
 			String enPassword = String.format("%0128x", new BigInteger(1, messageDigest.digest()));
 			tbm.setmPw(enPassword);
 			
@@ -346,22 +347,22 @@ public class TBController {
 
 	@RequestMapping (value="passwdUpdate", method=RequestMethod.GET)
 	public String passwdUpdateGET(HttpServletRequest request, HttpServletResponse response, TBMember tbm, Model model) throws ServletException, IOException  {
+		MessageDigest messageDigest;
 
 		response.setContentType("text/html charset=UTF-8");
 		PrintWriter pw = response.getWriter();
 		
-		String mixPassword = tbm.getmPw();
-		MessageDigest messageDigest;
-		try {			
-			SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
+		try {					
+/*			SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
 			byte[] bytes = new byte[16];
 			random.nextBytes(bytes);
-			String salt = new String(Base64.getEncoder().encode(bytes));
+			String salt = new String(Base64.getEncoder().encode(bytes));*/
+			
+			String mixPassword = tbm.getmPw();
 			
 			messageDigest = MessageDigest.getInstance("SHA-512");
-			messageDigest.reset();
-			messageDigest.update(salt.getBytes());
-			messageDigest.update(mixPassword.getBytes("utf8"));
+			messageDigest.update(mixPassword.getBytes());
+//			messageDigest.update(salt.getBytes());
 			String enPassword = String.format("%0128x", new BigInteger(1, messageDigest.digest()));
 			tbm.setmPw(enPassword);
 			
@@ -374,7 +375,7 @@ public class TBController {
 				pw.println("<script>alert('변경실패. 다시 입력해주세요.'); history.go(-1);</script>");
 				pw.flush();
 				System.out.println("passwdUpdate result 값 : " + result);
-				return "redirect:TBfindPwUpdate.do";
+				return "TBfindPwUpdate";
 			}
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
