@@ -1,10 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="includeJSP.jsp" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">﻿
+$(function(){
+	$('.comment__info--update').on('click',function(e){//댓글 수정창 추가
+    	var div = $(this).closest('li').find('div');
+    
+    	var leng = div.length;
+
+    	for(var i = 0; i < leng; i++){
+    	console.log(div[i])
+    	}
+
+    	div[2].innerHTML= 	'<div class="comment__update-container">'+
+						'	<textarea id="comment__update--textarea" name="cCmnt"></textarea>'+
+						'	<input class="comment__update-btn" type="submit" value="댓글 수정"/>'+
+						'</div>';
+	})
+	
+	$('.comment__info--comment').on('click',function(e){//답글 작성란 추가
+    	var div = $(this).closest('li').find('div');
+    
+    	var leng = div.length;
+
+    	for(var i = 0; i < leng; i++){
+    	console.log(div[i])
+    	}
+
+    	div[3].innerHTML= 	'<div class="comment__reply-container">'+
+							'	<textarea id="comment__reply--textarea" name="cCmnt"></textarea>'+
+						'	<input class="comment__reply-btn" type="submit" value="답글 남기기"/>'+
+						'</div>';
+	})
+})
+</script>
 <title>불량거래후기 :: 당근나라</title>
 </head>
 <body>
@@ -89,218 +123,65 @@
 							onclick="location.href='JHbadReviewBoardUpdateForm.do?pNum=${jhBoard.pNum}'"/>
 				</c:if>
 			</div>
-			<!-- 댓글 부분 -->
-                <div class="bad-review-board-read__comment">
-                    <strong class="comment__title"
-                        >댓글 <span class="comment__count">10</span></strong
-                    >
-                    <textarea
-                        id="comment__textarea"
-                        placeholder="댓글을 작성해주세요"
-                    ></textarea>
-                    <input
-                        class="comment__submit-btn"
-                        type="submit"
-                        value="댓글 남기기"
-                    />
-                    <ul class="comment__container">
-                        <li id="comment__main">
-                            <div class="comment__nick-name">닉네임</div>
-                            <p class="comment__content">댓글 들어가는곳</p>
-                            <div class="comment__info">
-                                <span class="comment__info--date"
-                                    >2020.10.05</span
-                                >
-                                <a class="comment__info--comment" href="#none"
-                                    >답글쓰기</a
-                                >
-                                <a
-                                    class="comment__info--update"
-                                    href="#none"
-                                    onclick="commentUpdate()"
-                                    >수정</a
-                                >
-                                <a class="comment__info--delete" href="#none"
-                                    >삭제</a
-                                >
-                            </div>
-
-                            <!-- 댓글 수정누르면 나올 수 있게 -->
-                            <!-- <div class="comment__update-container">
-                                <span class="comment__update--nick-name">
-                                    @댓글작성자닉네임</span
-                                >
-                                <textarea id="comment__update--textarea">
-댓글내용 가져오기</textarea
-                                >
-                                <input
-                                    class="comment__update-btn"
-                                    type="submit"
-                                    value="댓글 수정"
-                                />
-                            </div>
-                        </li> -->
-                            <!-- 댓글 수정누르면 나올 수 있게 -->
-
-                            <!-- 답글일경우에 -->
-                        </li>
-
-                        <li id="comment__sub">
-                            <div class="comment__nick-name">닉네임</div>
-                            <p class="comment__content">
-                                <span class="comment__content--nick-name">
-                                    @답글대상닉네임</span
-                                >답글 들어가는곳
-                            </p>
-                            <div class="comment__info">
-                                <span class="comment__info--date"
-                                    >2020.10.05</span
-                                >
-                                <a class="comment__info--reply" href="#none"
-                                    >답글쓰기</a
-                                >
-                                <a
-                                    class="comment__info--update"
-                                    href="#none"
-                                    onclick="commentUpdate()"
-                                    >수정</a
-                                >
-                                <a class="comment__info--delete" href="#none"
-                                    >삭제</a
-                                >
-                            </div>
-                        </li>
-                        <!-- 답글일경우에 -->
-
-                        <!-- 답글작성시 활성화 -->
-                        <li id="comment__reply">
-                            <div class="comment__reply-container">
-                                <span class="comment__reply--nick-name">
-                                    @답글대상닉네임</span
-                                >
-                                <textarea
-                                    id="comment__reply--textarea"
-                                    placeholder="답글을 남겨주세요"
-                                ></textarea>
-                                <input
-                                    class="comment__reply-btn"
-                                    type="submit"
-                                    value="답글 남기기"
-                                />
-                            </div>
-                        </li>
-                        <!-- 답글작성시 활성화 -->
-
-                        <li id="comment__main">
-                            <div class="comment__nick-name">닉네임</div>
-                            <p class="comment__content">댓글 들어가는곳</p>
-                            <div class="comment__info">
-                                <span class="comment__info--date"
-                                    >2020.10.05</span
-                                >
-                                <a class="comment__info--comment" href="#none"
-                                    >답글쓰기</a
-                                >
-                                <a
-                                    class="comment__info--update"
-                                    href="#none"
-                                    onclick="commentUpdate()"
-                                    >수정</a
-                                >
-                                <a class="comment__info--delete" href="#none"
-                                    >삭제</a
-                                >
-                            </div>
-                        </li>
-                        <li id="comment__sub">
-                            <div class="comment__nick-name">닉네임</div>
-                            <p class="comment__content">
-                                <span class="comment__content--nick-name">
-                                    @답글대상닉네임</span
-                                >답글 들어가는곳
-                            </p>
-                            <div class="comment__info">
-                                <span class="comment__info--date"
-                                    >2020.10.05</span
-                                >
-                                <a class="comment__info--comment" href="#none"
-                                    >답글쓰기</a
-                                >
-                                <a
-                                    class="comment__info--update"
-                                    href="#none"
-                                    onclick="commentUpdate()"
-                                    >수정</a
-                                >
-                                <a class="comment__info--delete" href="#none"
-                                    >삭제</a
-                                >
-                            </div>
-                        </li>
-                        <li id="comment__sub">
-                            <div class="comment__nick-name">닉네임</div>
-                            <p class="comment__content">
-                                <span class="comment__content--nick-name">
-                                    @답글대상닉네임</span
-                                >답글 들어가는곳
-                            </p>
-                            <div class="comment__info">
-                                <span class="comment__info--date"
-                                    >2020.10.05</span
-                                >
-                                <a class="comment__info--comment" href="#none"
-                                    >답글쓰기</a
-                                >
-                                <a
-                                    class="comment__info--update"
-                                    href="#none"
-                                    onclick="commentUpdate()"
-                                    >수정</a
-                                >
-                                <a class="comment__info--delete" href="#none"
-                                    >삭제</a
-                                >
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="comment__page-num-container">
-                        <ul class="page-num-container">
-                            <a href="#">
-                                <li
-                                    class="page-num-container__left-btn page-num-container__btn"
-                                >
-                                    <i class="fas fa-chevron-left"></i>
-                                </li>
-                            </a>
-                            <a href="#">
-                                <li class="page-num-container__num">1</li>
-                            </a>
-                            <!-- 더미데이터 -->
-                            <a href="#">
-                                <li class="page-num-container__num">2</li>
-                            </a>
-                            <a href="#">
-                                <li class="page-num-container__num">3</li>
-                            </a>
-                            <a href="#">
-                                <li class="page-num-container__num">4</li>
-                            </a>
-                            <a href="#">
-                                <li class="page-num-container__num">5</li>
-                            </a>
-                            <!-- 더미데이터 -->
-                            <a href="#">
-                                <li
-                                    class="page-num__right-btn page-num-container__btn"
-                                >
-                                    <i class="fas fa-chevron-right"></i>
-                                </li>
-                            </a>
-                        </ul>
-                    </div>
-                </div>
-	</div>
-</article>
+			<!-- 댓글 부분 -->			
+			<div class="bad-review-board-read__comment">
+				<strong class="comment__title">댓글 <span class="comment__count">${jhCtotal}</span></strong>
+			<!-- 댓글 작성 부분 -->
+				<form name="JHbrBoardCommWrite" action="JHbrBoardCommWrite.do?pNum=${jhBoard.pNum}" method="post">
+				<textarea
+					id="comment__textarea"
+					placeholder="댓글을 작성해주세요"
+					name="cCmnt"></textarea>
+				<input
+					class="comment__submit-btn"
+					type="submit"
+					value="댓글 남기기"/>
+				</form>                      
+			<!-- 댓글 리스트 -->				
+					<ul class="comment__container" id="comment_area">
+					<c:forEach var="jhComments" items="${jhComments }">
+					<input type="hidden" id="cNum" value="${jhComments.cNum}">               	
+						<li <c:if test="${jhComments.cLevel == 0}">id="comment__main"</c:if>
+							<c:if test="${jhComments.cLevel == 1}">id="comment__sub"</c:if>
+							<c:if test="${jhComments.cLevel > 1}">id="comment__subsub"</c:if>>												
+							<div class="comment__nick-name">${jhComments.mNick}
+							<c:if test="${jhComments.cLevel == 0}">
+								<p class="comment__content">${jhComments.cCmnt}</p>
+							</c:if>
+							<c:if test="${jhComments.cLevel != 0}">						
+								<p class="comment__content">
+									<span class="comment__content--nick-name"></span>${jhComments.cCmnt}
+								</p>
+							</c:if>
+							</div>	
+							<div class="comment__info">
+								<span class="comment__info--date">${jhComments.cDate}</span>
+									<a class="comment__info--comment"
+										href="#none"
+									>답글쓰기</a>
+									<a	class="comment__info--update"
+										href="#none"
+									>수정</a>
+									<a	class="comment__info--delete"
+										href="JHbrBoardCommDelete.do?cNum=${jhComments.cNum}&pNum=${jhBoard.pNum}"
+									>삭제</a>
+							</div>																		
+							<!-- 댓글 수정 창 -->
+							<form action="JHbrBoardCommUpdate.do?cNum=${jhComments.cNum}&pNum=${jhBoard.pNum}" method="post">
+								<div>
+								</div>
+							</form>
+							<!-- 답글 작성창 -->
+							<form action="JHbrBoardCommRe.do?cLot=${jhComments.cLot}&pNum=${jhBoard.pNum}&cSeq=${jhComments.cSeq}&cLevel=${jhComments.cLevel}" method="post">
+								<div>
+								</div>
+							</form>
+						</li>                      					
+					</c:forEach>
+				</ul>
+			</div>
+		</div>
+	</article>
 <%@include file="footer.jsp"%>
 </body>
 </html>
