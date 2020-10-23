@@ -190,7 +190,7 @@ public class NEController {
 		
 		NEJoin neJoin = new NEJoin();
 		// bId, pNum은 Dao에서 DB연결을 통해 set 
-		neJoin.setMid("user@naver.com");	// 통합 후 neJoin.setMid((String) request.getSession().getAttribute("mId"));
+		neJoin.setmId("user@naver.com");	// 통합 후 neJoin.setMid((String) request.getSession().getAttribute("mId"));
 		neJoin.setCtcode(Integer.parseInt(request.getParameter("ctcode")));
 		neJoin.setPprice(Integer.parseInt(request.getParameter("pprice")));
 		neJoin.setPtitle(request.getParameter("ptitle"));
@@ -281,7 +281,7 @@ public class NEController {
 		String uploadPath = "C:\\당근\\DanggeunNara\\s20200903\\src\\main\\webapp\\resources\\image";
 		
 		// bId, pNum은 Dao에서 DB연결을 통해 set
-		neJoin.setMid("user@naver.com");	// 통합 후 neJoin.setMid((String) request.getSession().getAttribute("mid"));
+		neJoin.setmId("user@naver.com");	// 통합 후 neJoin.setMid((String) request.getSession().getAttribute("mId"));
 		neJoin.setPscode(Integer.parseInt(request.getParameter("pscode")));
 		neJoin.setCtcode(Integer.parseInt(request.getParameter("ctcode")));
 		neJoin.setPprice(Integer.parseInt(request.getParameter("pprice")));

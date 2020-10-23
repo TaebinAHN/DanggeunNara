@@ -36,7 +36,7 @@
                 </li>
                 <li><a href="list.do">판매중 이에요.</a></li>
                 <li><a href="#">나눔중 이에요.</a></li>
-                <li><a href="buylist.do">구매합니다 ~!</a></li>
+                <li><a href="buylist.do?mId=${sessionScope.mId }">구매합니다 ~!</a></li>
             </ul>
         </aside>
 </body>

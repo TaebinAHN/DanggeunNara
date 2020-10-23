@@ -45,147 +45,76 @@
                     </div> -->
                     <!-- 판매내역 있을떄 -->
                     <!-- 각 최신글 3개만 띄어주시면 됩니다 -->
+                    <c:if test="${sessionScope.mId != null }">
                     <div class="to-sale-list__content">
                         <!-- 태그 안에 있는 더미 데이터들은 틀을 보기 위함이며 실제 작업시엔 해당 데이터를 불러 올 수 있도록 변경 부탁드립니다. -->
+                            <c:forEach var="sPost" items="${hblist }">
                         <article class="to-sale-list__article">
-                            <c:forEach var="bPost" items="${blist }">
-    						<c:if test="${sessionScope.mId == NEPost.mid}">   
-                            <a href="../board/toSaleBoardRead.html">
+    						<c:if test="${sessionScope.mId == sPost.mid}">   
+                            <a href="toSaleBoardRead.do">
                                 <div class="to-sale-list__content--thumbnail">
                                     <img src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/3c06cb158997b8cd4061052c6b457887e4c60496704b6149d4197a6d791ad261.webp?q=82&s=300x300&t=crop"
                                         alt="thumbnail" />
                                 </div>
                                 <div class="to-sale-list__content--text">
                                     <h1 class="to-sale-list__content--text__title">
-                                        ${NEPost.ptitle}
+                                        ${sPost.ptitle}
                                     </h1>
                                     <p class="to-sale-list__content--text__address">
-                                        ${NEPost.maddr}
+                                        ${sPost.maddr}
                                     </p>
                                     <div class="to-sale-list__content--text__date">
                                         <div class="to-sale-list__content--date">
-                                            ${NEPost.pdate} 
+                                            ${sPost.pdate} 
                                         </div>
                                         <div class="to-sale-list__content--hit">
-                                            ${NEPost.phit}
+                                            ${sPost.phit}
                                         </div>
                                     </div>
                                     <div class="to-sale-list__content--text__price">
                                         <div class="to-sale-list__content--price">
-                                            ${NEPost.pprice}
+                                            ${sPost.pprice}
                                         </div>
                                         <div class="to-sale-list__content--picks">
                                             <img src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/like-8111aa74d4b1045d7d5943a901896992574dd94c090cef92c26ae53e8da58260.svg"
                                                 alt="picks" />
-                                            ${NEPost.ppicks}
+                                            ${sPost.ppicks}
                                         </div>
                                     </div>
                                 </div>
                             </a>
                         </c:if>
+                        </article>
                         </c:forEach>
-                        </article>
-                        <!-- 이 아래부턴 삭제 부탁드립니다. -->
-                        <article class="to-sale-list__article">
-                            <a href="../board/toSaleBoardRead.html">
-                                <div class="to-sale-list__content--thumbnail">
-                                    <img src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/74ead2897bfdc979dfdc817ea9c966c5dfd876d7479410549c8ceefc29271ebf.webp?q=82&s=300x300&t=crop"
-                                        alt="thumbnail" />
-                                </div>
-                                <div class="to-sale-list__content--text">
-                                    <h1 class="to-sale-list__content--text__title">
-                                        스위스크로스 캠핑체어 팝니다.
-                                    </h1>
-                                    <p class="to-sale-list__content--text__address">
-                                        서울 송파구 석촌동
-                                    </p>
-                                    <div class="to-sale-list__content--text__date">
-                                        <div class="to-sale-list__content--date">
-                                            2020.09.25
-                                        </div>
-                                        <div class="to-sale-list__content--hit">
-                                            조회수 30
-                                        </div>
-                                    </div>
-                                    <div class="to-sale-list__content--text__price">
-                                        <div class="to-sale-list__content--price">
-                                            20,000원
-                                        </div>
-                                        <div class="to-sale-list__content--picks">
-                                            <img src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/like-8111aa74d4b1045d7d5943a901896992574dd94c090cef92c26ae53e8da58260.svg"
-                                                alt="picks" />
-                                            1
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </article>
-                        <article class="to-sale-list__article">
-                            <a href="../board/toSaleBoardRead.html">
-                                <div class="to-sale-list__content--thumbnail">
-                                    <img src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/e109941c1a68f4bef813c0a46f20ab1060b67f92c7510a14c83cdb76ef77ba1d.webp?q=82&s=300x300&t=crop"
-                                        alt="thumbnail" />
-                                </div>
-                                <div class="to-sale-list__content--text">
-                                    <h1 class="to-sale-list__content--text__title">
-                                        6단 미니벨로 자전거 짐받이, 싸게팔아요
-                                    </h1>
-                                    <p class="to-sale-list__content--text__address">
-                                        서울 송파구 석촌동
-                                    </p>
-                                    <div class="to-sale-list__content--text__date">
-                                        <div class="to-sale-list__content--date">
-                                            2020.09.22
-                                        </div>
-                                        <div class="to-sale-list__content--hit">
-                                            조회수 142
-                                        </div>
-                                    </div>
-                                    <div class="to-sale-list__content--text__price">
-                                        <div class="to-sale-list__content--price">
-                                            60,000원
-                                        </div>
-                                        <div class="to-sale-list__content--picks">
-                                            <img src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/like-8111aa74d4b1045d7d5943a901896992574dd94c090cef92c26ae53e8da58260.svg"
-                                                alt="picks" />
-                                            25
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </article>
-                    </div>
+                      	<c:set var="num" value="${num - 1}"></c:set>
+                    </div> 
+                        <c:if test="${sPost.mid == null }">
+			            <div class="to-buy-list__text">
+			            <strong>구매 내역이 없어요 !</strong>
+				            <a href="toBuyBoard.do">
+				            	<p>구경가기</p>
+				            </a>
+			            </div>                               
+                        </c:if>                      
+                    </c:if>
+                     
+                                     
                     <div class="to-sale-list__page-num-container">
                         <ul class="page-num-container">
-                            <a href="#">
-                                <li class="page-num-container__left-btn page-num-container__btn">
-                                    <i class="fas fa-chevron-left"></i>
-                                </li>
-                            </a>
-                            <a href="#">
-                                <li class="page-num-container__num">1</li>
-                            </a>
-                            <!-- 더미데이터 -->
-                            <a href="#">
-                                <li class="page-num-container__num">2</li>
-                            </a>
-                            <a href="#">
-                                <li class="page-num-container__num">3</li>
-                            </a>
-                            <a href="#">
-                                <li class="page-num-container__num">4</li>
-                            </a>
-                            <a href="#">
-                                <li class="page-num-container__num">5</li>
-                            </a>
-                            <!-- 더미데이터 -->
-                            <a href="#">
-                                <li class="page-num__right-btn page-num-container__btn">
-                                    <i class="fas fa-chevron-right"></i>
-                                </li>
-                            </a>
+                        	<c:if test="${pg.endPage > pg.totalPage }">
+							<a href="TBtoSaleListUp.do?currentPage=${pg.startPage-pg.pageBlock}&mId=${sessionScope.mId}"><li class="page-num-container__left-btn page-num-container__btn">
+                                   <i class="fas fa-chevron-left"></i></li></a>
+                            </c:if>
+							<c:forEach var="i" begin="${pg.startPage }" end="${pg.endPage }">
+								<a href="TBtoSaleListUp.do?currentPage=${i}&mId=${sessionScope.mId}"><li class="page-num-container__num">${i}</li></a>
+							</c:forEach>
+							<c:if test="${pg.endPage < pg.totalPage }">
+							<a href="TBtoSaleListUp.do?currentPage=${pg.startPage+pg.pageBlock}&mId=${sessionScope.mId}"><li class="page-num-container__right-btn page-num-container__btn">
+                                   <i class="fas fa-chevron-right"></i></li></a>
+                            </c:if>
                         </ul>
                     </div>
+                   
             </div>
             <div class="to-sale-list__container">
                 <h2 class="to-sale-list__title">거래중</h1>

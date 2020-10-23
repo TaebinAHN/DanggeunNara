@@ -71,7 +71,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 
-
+	<select id="TBSaletotal" resultType="int">
+     	select count(*) from post where bid=1
+    </select>
+ 
+    <select id="toSaleList" parameterType="HBSaleBoard" resultType="HBSaleBoard">
+		SELECT * 
+		FROM 
+			(SELECT rownum rn, a.*
+			 FROM (SELECT *    
+				  FROM hbjoin 
+				  WHERE bid=1
+				  ORDER BY pnum desc) a)
+		WHERE rn BETWEEN #{start} AND #{end}
+    </select>	
 
 
 </mapper>

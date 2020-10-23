@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import oracle.java.s20200903.dao.TBDao;
+import oracle.java.s20200903.model.HBSaleBoard;
 import oracle.java.s20200903.model.NEPost;
 import oracle.java.s20200903.model.TBMember;
 
@@ -27,11 +28,6 @@ public class TBServiceImpl implements TBService {
 	}
 
 
-	@Override
-	public int TBBuytotal() {
-		
-		return td.TBBuytotal();
-	}
 
 
 	@Override
@@ -146,11 +142,31 @@ public class TBServiceImpl implements TBService {
 		return td.mlfReset(tbm);
 	}
 
+	@Override
+	public int TBBuytotal(HttpServletRequest request, NEPost np) {
+		String mId = request.getParameter("mId");
+		np.setmId(mId);
+		System.out.println("TBBuytotal servi" + mId);
+		return td.TBBuytotal(request, np);
+	}
 
 	@Override
 	public List<NEPost> toBuyList(NEPost np) {
 		// TODO Auto-generated method stub
 		return td.toBuyList(np);
+	}
+
+
+	@Override
+	public int TBSaletotal() {
+		return td.TBSaletotal();
+	}
+
+
+	@Override
+	public List<HBSaleBoard> toSaleList(HBSaleBoard hsb) {
+		// TODO Auto-generated method stub
+		return td.toSaleList(hsb);
 	}
 
 

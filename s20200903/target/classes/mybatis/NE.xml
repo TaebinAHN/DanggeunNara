@@ -10,7 +10,7 @@
 		SELECT * 
 		FROM 
 			(SELECT rownum rn, a.*
-			 FROM (SELECT bid, pnum, mid, ctcode, pscode, ptitle, pprice, TO_CHAR(pdate,'yyyy-mm-dd') pdate, pcontent, phit, ppicks, pimg1, pimg2, pimg3, pimg4, pimg5, maddr, mnick, msweet, ctkinds    
+			 FROM (SELECT bid, pnum, mId, ctcode, pscode, ptitle, pprice, TO_CHAR(pdate,'yyyy-mm-dd') pdate, pcontent, phit, ppicks, pimg1, pimg2, pimg3, pimg4, pimg5, maddr, mnick, msweet, ctkinds    
 				  FROM pmcjoin 
 				  WHERE bid=2 
 				  ORDER BY pnum desc) a)
@@ -96,7 +96,7 @@
 	
 	<insert id="NEInsertBuyPost" parameterType="NEJoin">
 		INSERT INTO post
-		VALUES(2, #{pnum}, #{mid}, #{ctcode}, 1, #{ptitle}, #{pprice}, sysdate, #{pcontent}, 0, 0, 
+		VALUES(2, #{pnum}, #{mId}, #{ctcode}, 1, #{ptitle}, #{pprice}, sysdate, #{pcontent}, 0, 0, 
 			     #{pimg1}, #{pimg2}, #{pimg3}, #{pimg4}, #{pimg5})
 	</insert>
 	<!-- <if test="pimg2!=null"> #{pimg2},</if>
@@ -132,13 +132,13 @@
 		AND pnum=#{pnum}
 	</update>
 	<select id="TBBuytotal" resultType="int">
-     	select count(*) from post where bid=2 
+     	select count(*) from pmcjoin where mId=#{mId} and bid=2
     </select>
     <select id="toBuyList" parameterType="NEPost" resultType="NEPost">
 		SELECT * 
 		FROM 
 			(SELECT rownum rn, a.*
-			 FROM (SELECT bid, pnum, mid, ctcode, pscode, ptitle, pprice, TO_CHAR(pdate,'yyyy-mm-dd') pdate, pcontent, phit, ppicks, pimg1, pimg2, pimg3, pimg4, pimg5, maddr, mnick, msweet, ctkinds    
+			 FROM (SELECT bid, pnum, mId, ctcode, pscode, ptitle, pprice, TO_CHAR(pdate,'yyyy-mm-dd') pdate, pcontent, phit, ppicks, pimg1, pimg2, pimg3, pimg4, pimg5, maddr, mnick, msweet, ctkinds    
 				  FROM pmcjoin 
 				  WHERE bid=2
 				  ORDER BY pnum desc) a)

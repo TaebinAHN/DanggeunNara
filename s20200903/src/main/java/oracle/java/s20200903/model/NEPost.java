@@ -4,7 +4,7 @@ public class NEPost {
 	
 	private int bid;
 	private int pnum;
-	private String mid;
+	private String mId;
 	private int ctcode; 	
 	private int pstatus; 	// 1.거래가능 2.거래중 3.거래완료
 	private String ptitle;
@@ -90,11 +90,11 @@ public class NEPost {
 	public void setPnum(int pnum) {
 		this.pnum = pnum;
 	}
-	public String getMid() {
-		return mid;
+	public String getmId() {
+		return mId;
 	}
-	public void setMid(String mid) {
-		this.mid = mid;
+	public void setmId(String mId) {
+		this.mId = mId;
 	}
 	public int getCtcode() {
 		return ctcode;

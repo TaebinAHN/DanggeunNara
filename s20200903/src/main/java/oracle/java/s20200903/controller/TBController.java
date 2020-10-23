@@ -30,11 +30,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import oracle.java.s20200903.model.HBSaleBoard;
 import oracle.java.s20200903.model.NEPost;
 import oracle.java.s20200903.model.TBMember;
 import oracle.java.s20200903.service.TBService;
+import oracle.java.s20200903.service.TBtoListPaging;
 import scala.util.hashing.Hashing;
-import oracle.java.s20200903.service.TBPaging;
 
 @Controller
 public class TBController {
@@ -128,11 +129,11 @@ public class TBController {
 		return "TBpicksList";
 	}
 	
-	@RequestMapping(value="TBtoSaleList")
+/*	@RequestMapping(value="TBtoSaleList")
 	public String TBtoSaleList (TBMember tbm, Model model) {
 		
 		return "TBtoSaleList";
-	}
+	}*/
 	
 /*	@RequestMapping (value="TBtoBuyList")
 	public String TBtoBuyList(TBMember tbm, Model model) {
@@ -433,23 +434,43 @@ public class TBController {
 	
 	@RequestMapping(value="TBtoBuyListUp") 
 	public String toBuyList(HttpServletRequest request, TBMember tbm, NEPost np, String currentPage, Model model) {
+		String mId = request.getParameter("mId");
+		int Buytotal = ts.TBBuytotal(request, np);
+		
 		HttpSession session = request.getSession();
 		session.setAttribute("mId", tbm.getmId());
-		System.out.println("toBuyList mId => " + tbm.getmId());
-		int Buytotal = ts.TBBuytotal();
+
+		
+		System.out.println("toBuyList mId => " + mId);
 		System.out.println("total=>" + Buytotal);
-		TBPaging pg = new TBPaging(Buytotal, currentPage);
+		TBtoListPaging pg = new TBtoListPaging(Buytotal, currentPage);
 		np.setStart(pg.getStart());
 		np.setEnd(pg.getEnd());
 		List<NEPost> blist = ts.toBuyList(np);
-
+			
 		model.addAttribute("blist", blist);
 		model.addAttribute("pg", pg);
 		
 		return "TBtoBuyList";
 	}
 
-	
+	@RequestMapping(value="TBtoSaleListUp") 
+	public String toSaleList(HttpServletRequest request, TBMember tbm, HBSaleBoard hsb, String currentPage, Model model) {
+		HttpSession session = request.getSession();
+		session.setAttribute("mId", tbm.getmId());
+		System.out.println("toSaleList mId => " + tbm.getmId());
+		int Saletotal = ts.TBSaletotal();
+		System.out.println("total=>" + Saletotal);
+		TBtoListPaging pg = new TBtoListPaging(Saletotal, currentPage);
+		hsb.setStart(pg.getStart());
+		hsb.setEnd(pg.getEnd());
+		List<HBSaleBoard> hblist = ts.toSaleList(hsb);
+
+		model.addAttribute("hblist", hblist);
+		model.addAttribute("pg", pg);
+		
+		return "TBtoSaleList";
+	}
 	
 	// 중복검사 AJAX
 	

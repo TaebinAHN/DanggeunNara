@@ -74,7 +74,7 @@
 	                                    	<a href="adminList.do?mId=${sessionScope.mId}"><li>회원관리페이지</li></a>
 	                                    </c:if>
 	                                    <a href="TBpicksList.do?mId=${sessionScope.mId}"><li>관심내역</li></a>
-	                                    <a href="TBtoSaleList.do?mId=${sessionScope.mId}"><li>판매내역</li></a>
+	                                    <a href="TBtoSaleListUp.do?mId=${sessionScope.mId}"><li>판매내역</li></a>
 	                                    <a href="TBtoBuyListUp.do?mId=${sessionScope.mId}"><li>구매내역</li></a>
 	                                    <a href="TBLogout.do"><li>로그아웃</li></a>
 	                                    

@@ -46,10 +46,11 @@
                     <!-- 구매내역 있을때 -->
                     <!-- 각 최신글 3개만 띄어주시면 됩니다 -->
                     <div class="to-buy-list__content">
+                    <input type="hidden" name="mId" id="mId" value="${sessionScope.mId}">
+                    <c:forEach var="bPost" items="${blist }">
                         <!-- 태그 안에 있는 더미 데이터들은 틀을 보기 위함이며 실제 작업시엔 해당 데이터를 불러 올 수 있도록 변경 부탁드립니다. -->
                         <article class="to-buy-list__article">
-                        <c:forEach var="bPost" items="${blist }">
-                        	<c:if test="${sessionScope.mId == bPost.mid }">
+                    <c:if test="${sessionScope.mId == bPost.mId }">
                             <a href="toBuyBoardRead.do">
                                 <div class="to-buy-list__content--thumbnail">
                                     <img src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/3c06cb158997b8cd4061052c6b457887e4c60496704b6149d4197a6d791ad261.webp?q=82&s=300x300&t=crop"
@@ -72,7 +73,7 @@
                                     </div>
                                 </div>
                             </a>
-                            <c:if test="${sessionScope.mId != bPost.mid}">
+                            <c:if test="${sessionScope.mId != bPost.mId}">
 			                    <div class="to-buy-list__text">
 			                        <strong>구매 내역이 없어요 !</strong>
 			                        <a href="toBuyBoard.do">
@@ -80,20 +81,24 @@
 			                        </a>
 			                    </div>        
                             </c:if>                            
-                            </c:if>
                             <c:set var="num" value="${num - 1}"></c:set>
-                        </c:forEach>
+                            </c:if>
                         </article>
+                        </c:forEach>
                     </div>
                     <div class="to-buy-list__page-num-container">
                         <ul class="page-num-container">
-							<a href="TBtoBuyListUp.do?currentPage=${pg.startPage-pg.pageBlock}&mId=${sessionScope.mId}"><li class="page-num-container__left-btn page-num-container__btn">
+                       		<c:if test="${pg.endPage > pg.totalPage }">
+							<a href="TBtoBuyListUp.do?mId=${sessionScope.mId}&currentPage=${pg.startPage-pg.pageBlock}"><li class="page-num-container__left-btn page-num-container__btn">
                                    <i class="fas fa-chevron-left"></i></li></a>
+                            </c:if>
 							<c:forEach var="i" begin="${pg.startPage }" end="${pg.endPage }">
-								<a href="TBtoBuyListUp.do?currentPage=${i}&mId=${sessionScope.mId}"><li class="page-num-container__num">${i}</li></a>
+								<a href="TBtoBuyListUp.do?mId=${sessionScope.mId}&currentPage=${i}"><li class="page-num-container__num">${i}</li></a>
 							</c:forEach>
-							<a href="TBtoBuyListUp.do?currentPage=${pg.startPage+pg.pageBlock}&mId=${sessionScope.mId}"><li class="page-num-container__right-btn page-num-container__btn">
+							<c:if test="${pg.endPage < pg.totalPage }">
+							<a href="TBtoBuyListUp.do?mId=${sessionScope.mId}&currentPage=${pg.startPage+pg.pageBlock}"><li class="page-num-container__right-btn page-num-container__btn">
                                    <i class="fas fa-chevron-right"></i></li></a>
+                            </c:if>
                         </ul>
                     </div>
             </div>

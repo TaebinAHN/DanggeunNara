@@ -11,7 +11,7 @@ public class TBMember {
 	private String mAddr2;
 	private int mLevel;
 	private int mStatus;
-	private double mSweet;
+	private int mSweet;
 	private String mTel;
 	private Date mDate;
 	private String mMail;
@@ -85,10 +85,10 @@ public class TBMember {
 	public void setmLevel(int mLevel) {
 		this.mLevel = mLevel;
 	}
-	public double getmSweet() {
+	public int getmSweet() {
 		return mSweet;
 	}
-	public void setmSweet(double mSweet) {
+	public void setmSweet(int mSweet) {
 		this.mSweet = mSweet;
 	}
 	public Date getmDate() {

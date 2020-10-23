@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import oracle.java.s20200903.model.HBSaleBoard;
 import oracle.java.s20200903.model.NEPost;
 import oracle.java.s20200903.model.TBMember;
 
@@ -32,17 +33,6 @@ public class TBDaoImpl implements TBDao {
 		return session.selectList("MemberAll", tbm);
 	}
 
-	@Override
-	public int TBBuytotal() {
-		int result = 0;
-		try {
-			result = session.selectOne("NE.TBBuytotal");
-			System.out.println("result =>"+result);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		return result;
-	}
 
 	@Override
 	public int joinMember(TBMember tbm)  {
@@ -183,10 +173,37 @@ public class TBDaoImpl implements TBDao {
 	}
 
 	@Override
+	public int TBBuytotal(HttpServletRequest request, NEPost np) {
+		String mId = request.getParameter("mId");
+		np.setmId(mId);
+		System.out.println("TBBuytotal dao" + mId);
+		return session.selectOne("NE.TBBuytotal", np);
+	}
+	
+	@Override
 	public List<NEPost> toBuyList(NEPost np) {
 		// TODO Auto-generated method stub
-		return session.selectList("NE.toBuyList", np);
-	} 
+		return session.selectList("toBuyList", np);
+	}
+
+	@Override
+	public int TBSaletotal() {
+		int result = 0;
+		try {
+			result = session.selectOne("TBSaletotal");
+			System.out.println("result =>" + result);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+	
+	@Override
+	public List<HBSaleBoard> toSaleList(HBSaleBoard sb) {
+		// TODO Auto-generated method stub
+		return session.selectList("toSaleList", sb);
+	}
+
 
 
 }
