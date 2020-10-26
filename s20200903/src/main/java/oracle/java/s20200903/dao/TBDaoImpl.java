@@ -173,28 +173,37 @@ public class TBDaoImpl implements TBDao {
 	}
 
 	@Override
-	public int TBBuytotal(HttpServletRequest request, NEPost np) {
+	public int TBBuytotalA(HttpServletRequest request, NEPost np) {
 		String mId = request.getParameter("mId");
 		np.setmId(mId);
-		System.out.println("TBBuytotal dao" + mId);
-		return session.selectOne("NE.TBBuytotal", np);
+		return session.selectOne("NE.TBBuytotalA", np);
 	}
 	
 	@Override
-	public List<NEPost> toBuyList(NEPost np) {
+	public List<NEPost> toBuyListA(NEPost np) {
 		// TODO Auto-generated method stub
-		return session.selectList("toBuyList", np);
+		return session.selectList("toBuyListA", np);
+	}
+	
+	
+	@Override
+	public int TBBuytotalB(HttpServletRequest request, NEPost np) {
+		String mId = request.getParameter("mId");
+		np.setmId(mId);
+		return session.selectOne("NE.TBBuytotalB", np);
+	}
+	
+	
+	@Override
+	public List<NEPost> toBuyListB(NEPost np) {
+		
+		return session.selectList("toBuyListB", np);
 	}
 
 	@Override
 	public int TBSaletotal() {
 		int result = 0;
-		try {
-			result = session.selectOne("TBSaletotal");
-			System.out.println("result =>" + result);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
+		result = session.selectOne("TBSaletotalA");
 		return result;
 	}
 	

@@ -6,12 +6,12 @@
 
 	<!-- 나눔 글 total -->
 	<select id="total_Sharing" resultType="int">
-		select count(*) from post where bId=3
+		SELECT count(*) FROM post WHERE bId=3
 	</select>
 	
 	<!-- 공지사항 글 total -->
 	<select id="total_Notice" resultType="int">
-		select count(*) from post where bId=0
+		SELECT count(*) FROM post WHERE bId=0
 	</select>
 
 	<!-- 나눔 글 목록 출력 -->
@@ -33,7 +33,7 @@
 
 	<!-- 나눔 글 상세보기 -->
 	<select id="selectSharingDetail" parameterType="JYPost" resultType="JYPost">
-		select * From JYJoin where bId=#{bId} and pNum=#{pNum}
+		SELECT * FROM JYJoin WHERE bId=3 AND pNum=#{pNum}
 	</select>
 
 	<!-- 나눔 글 등록 -->
@@ -46,20 +46,20 @@
 	 
 	<!-- 나눔 글 수정 화면 출력  -->
 	<select id="updateSharingForm" parameterType="JYPost" resultType="JYPost">
-		select * From JYJoin where bId=3 and pNum=#{pNum}
+		SELECT * FROM JYJoin WHERE bId=3 AND pNum=#{pNum}
 	</select>
 	
 	<!-- 나눔 글 수정 -->
 	<update id="updateSharing" parameterType="JYPost">
-		update post set pTitle=#{pTitle}, pContent=#{pContent}, ctCode=#{ctCode}, psCode=#{psCode},
-		pImg1=#{pImg1}, pImg2=#{pImg2}, pImg3=#{pImg3}, pImg4=#{pImg4}, pImg5=#{pImg5}
-		where bId=#{bId} and pNum=#{pNum}		
- 
+		UPDATE post 
+		SET pTitle=#{pTitle}, pContent=#{pContent}, ctCode=#{ctCode}, psCode=#{psCode},
+			pImg1=#{pImg1}, pImg2=#{pImg2}, pImg3=#{pImg3}, pImg4=#{pImg4}, pImg5=#{pImg5}
+		WHERE bId=3 AND pNum=#{pNum}	
 	</update>
 	
 	<!-- 나눔글 삭제 -->
 	<delete id="deleteSharing" parameterType="JYPost">
-		delete from post where bId=#{bId} and pNum=#{pNum}
+		DELETE FROM post WHERE bId=3 AND pNum=#{pNum}
 	</delete>
 	
 
@@ -67,7 +67,7 @@
 	<!-- 공지사항 글목록 출력 -->
 	<select id="selectNotice" parameterType="JYPost" resultType="JYPost">
     <![CDATA[
-      select * from (select rownum rn, a.* from (select * from post where bid=0) a) 
+      SELECT * FROM (select rownum rn, a.* from (select * from post where bid=0) a) 
       where rn >= #{start} and rn <= #{end}   	
       order by pNum desc
       ]]>
@@ -76,7 +76,7 @@
 	<!-- 공지사항 글 상세보기 -->
 	<select id="selectNoticeDetail" parameterType="JYPost"
 		resultType="JYPost">
-		select * From post where bId=#{bId} and pNum=#{pNum}
+		SELECT * FROM post WHERE bId=#{bId} AND pNum=#{pNum}
 	</select>
 
 	<!-- 공지사항 등록 -->
@@ -89,19 +89,20 @@
 
 	<!-- 공지사항 수정 화면 출력 -->
 	<select id="updateNoticeForm" parameterType="JYPost" resultType="JYPost">
-		select * From post where bId=#{bId} and pNum=#{pNum}
+		SELECT * FROM post WHERE bId=0 AND pNum=#{pNum}
 	</select>
 
 	<!-- 공지사항 수정 -->
 	<update id="updateNotice" parameterType="JYPost">
-		update post set pTitle=#{pTitle}, pContent=#{pContent},
-		pImg1=#{pImg1}, pImg2=#{pImg2}, pImg3=#{pImg3}, pImg4=#{pImg4}, pImg5=#{pImg5}
-		where bId=#{bId} and pNum=#{pNum}		
+		UPDATE post 
+		SET pTitle=#{pTitle}, pContent=#{pContent},
+			pImg1=#{pImg1}, pImg2=#{pImg2}, pImg3=#{pImg3}, pImg4=#{pImg4}, pImg5=#{pImg5}
+		WHERE bId=0 and pNum=#{pNum}		
  
 	</update>
 	
 	<delete id="deleteNotice" parameterType="JYPost">
-		delete from post where bId=#{bId} and pNum=#{pNum}
+		DELETE FROM post WHERE bId=0 AND pNum=#{pNum}
 	</delete>
 
 

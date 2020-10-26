@@ -34,217 +34,124 @@
         <div class="to-buy-list">
             <h1 class="list-title">내 구매내역</h1>
             <div class="to-buy-list__container">
-                <h2 class="to-buy-list__title">거래가능</h1>
-                    <!-- 각 최신글 3개만 띄어주시면 됩니다 -->
-                    <!-- 구매내역 없을때 띄우기 -->
-                    <!-- <div class="to-buy-list__text">
-                        <strong>구매 내역이 없어요 !</strong>
-                        <a href="../board/toBuyBoard.html"
-                            ><p>구경가기</p>
-                        </a>
-                    </div> -->
-                    <!-- 구매내역 있을때 -->
-                    <!-- 각 최신글 3개만 띄어주시면 됩니다 -->
+                <h2 class="to-buy-list__title">거래가능</h2>
                     <div class="to-buy-list__content">
                     <input type="hidden" name="mId" id="mId" value="${sessionScope.mId}">
-                    <c:forEach var="bPost" items="${blist }">
-                        <!-- 태그 안에 있는 더미 데이터들은 틀을 보기 위함이며 실제 작업시엔 해당 데이터를 불러 올 수 있도록 변경 부탁드립니다. -->
-                        <article class="to-buy-list__article">
-                    <c:if test="${sessionScope.mId == bPost.mId }">
-                            <a href="toBuyBoardRead.do">
-                                <div class="to-buy-list__content--thumbnail">
-                                    <img src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/3c06cb158997b8cd4061052c6b457887e4c60496704b6149d4197a6d791ad261.webp?q=82&s=300x300&t=crop"
-                                        alt="thumbnail" />
-                                </div>
-                                <div class="to-buy-list__content--text">
-                                    <h1 class="to-buy-list__content--text__title">
-                                        ${bPost.ptitle}
-                                    </h1>
-                                    <p class="to-buy-list__content--text__address">
-                                        ${bPost.maddr}
-                                    </p>
-                                    <div class="to-buy-list__content--text__date">
-                                        <div class="to-buy-list__content--date">
-                                         ${bPost.pdate} 
-                                        </div>
-                                        <div class="to-buy-list__content--hit">
-                                         ${bPost.phit}
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <c:if test="${sessionScope.mId != bPost.mId}">
-			                    <div class="to-buy-list__text">
-			                        <strong>구매 내역이 없어요 !</strong>
-			                        <a href="toBuyBoard.do">
-			                            <p>구경가기</p>
-			                        </a>
-			                    </div>        
-                            </c:if>                            
-                            <c:set var="num" value="${num - 1}"></c:set>
-                            </c:if>
-                        </article>
-                        </c:forEach>
-                    </div>
+	                <c:forEach var="bPostA" items="${blistA}">
+	                	<article class="to-buy-list__article">
+	                	<c:set var="num" value="${num - 1}" />                
+						<c:if test="${sessionScope.mId == bPostA.mId}">
+	                        	<a href="toBuyBoardRead.do">
+	                                <div class="to-buy-list__content--thumbnail">
+	                                    <img src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/3c06cb158997b8cd4061052c6b457887e4c60496704b6149d4197a6d791ad261.webp?q=82&s=300x300&t=crop"
+	                                        alt="thumbnail" />
+	                                </div>
+	                                <div class="to-buy-list__content--text">
+	                                    <h1 class="to-buy-list__content--text__title">
+	                                        ${bPostA.ptitle}
+	                                    </h1>
+	                                    <p class="to-buy-list__content--text__address">
+	                                        ${bPostA.maddr}
+	                                    </p>
+	                                    <div class="to-buy-list__content--text__date">
+	                                        <div class="to-buy-list__content--date">
+	                                         ${bPostA.pdate} 
+	                                        </div>
+	                                        <div class="to-buy-list__content--hit">
+	                                         ${bPostA.phit}
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </a>
+                        	</c:if>
+							</article>
+                        </c:forEach>                          	
+						</div>
+	                    	<c:if test="${sessionScope.mId != bPostA.mId}">
+	                    		<c:if test="${BuytotalA == 0 }">                   		
+									<div class="to-buy-list__text">
+										<strong>구매 내역이 없어요 !</strong>
+										<a href="toBuyBoard.do">
+										<p>구경가기</p>
+										</a>
+									</div>								
+								</c:if>                   
+	                        </c:if>
                     <div class="to-buy-list__page-num-container">
                         <ul class="page-num-container">
-                       		<c:if test="${pg.endPage > pg.totalPage }">
-							<a href="TBtoBuyListUp.do?mId=${sessionScope.mId}&currentPage=${pg.startPage-pg.pageBlock}"><li class="page-num-container__left-btn page-num-container__btn">
+                       		<c:if test="${pgA.endPage > pgA.totalPage }">
+							<a href="TBtoBuyListUp.do?mId=${sessionScope.mId}&currentPage=${pgA.startPage-pgA.pageBlock}"><li class="page-num-container__left-btn page-num-container__btn">
                                    <i class="fas fa-chevron-left"></i></li></a>
                             </c:if>
-							<c:forEach var="i" begin="${pg.startPage }" end="${pg.endPage }">
+							<c:forEach var="i" begin="${pgA.startPage }" end="${pgA.endPage }">
 								<a href="TBtoBuyListUp.do?mId=${sessionScope.mId}&currentPage=${i}"><li class="page-num-container__num">${i}</li></a>
 							</c:forEach>
-							<c:if test="${pg.endPage < pg.totalPage }">
-							<a href="TBtoBuyListUp.do?mId=${sessionScope.mId}&currentPage=${pg.startPage+pg.pageBlock}"><li class="page-num-container__right-btn page-num-container__btn">
+							<c:if test="${pgA.endPage < pgA.totalPage }">
+							<a href="TBtoBuyListUp.do?mId=${sessionScope.mId}&currentPage=${pgA.startPage+pgA.pageBlock}"><li class="page-num-container__right-btn page-num-container__btn">
                                    <i class="fas fa-chevron-right"></i></li></a>
                             </c:if>
                         </ul>
                     </div>
             </div>
             <div class="to-buy-list__container">
-                <h2 class="to-buy-list__title">거래중</h1>
-                    <!-- 각 최신글 3개만 띄어주시면 됩니다 -->
-                    <!-- 구매내역 없을때 띄우기 -->
-                    <div class="to-buy-list__text">
-                        <strong>구매 내역이 없어요 !</strong>
-                        <a href="toBuyBoard.do">
-                            <p>구경가기</p>
-                        </a>
-                    </div>
-                    <!-- 구매내역 있을때 -->
-                    <!-- <div class="to-buy-list__content">
-                        <article class="to-buy-list__article">
-                            <a href="../board/toSharingBoardRead.html">
-                                <div class="to-buy-list__content--thumbnail">
-                                    <img
-                                        src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/3c06cb158997b8cd4061052c6b457887e4c60496704b6149d4197a6d791ad261.webp?q=82&s=300x300&t=crop"
-                                        alt="thumbnail"
-                                    />
-                                </div>
-                                <div class="to-buy-list__content--text">
-                                    <h1
-                                        class="to-buy-list__content--text__title"
-                                    >
-                                        5단 서랍장 입니다
-                                    </h1>
-                                    <p
-                                        class="to-buy-list__content--text__address"
-                                    >
-                                        서울 송파구 석촌동
-                                    </p>
-                                    <div
-                                        class="to-buy-list__content--text__date"
-                                    >
-                                        <div class="to-buy-list__content--date">
-                                            2020.09.26
-                                        </div>
-                                        <div class="to-buy-list__content--hit">
-                                            조회수 30
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </article>
-                        <article class="to-buy-list__article">
-                            <a href="../board/toSharingBoardRead.html">
-                                <div class="to-buy-list__content--thumbnail">
-                                    <img
-                                        src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/74ead2897bfdc979dfdc817ea9c966c5dfd876d7479410549c8ceefc29271ebf.webp?q=82&s=300x300&t=crop"
-                                        alt="thumbnail"
-                                    />
-                                </div>
-                                <div class="to-buy-list__content--text">
-                                    <h1
-                                        class="to-buy-list__content--text__title"
-                                    >
-                                        스위스크로스 캠핑체어 팝니다.
-                                    </h1>
-                                    <p
-                                        class="to-buy-list__content--text__address"
-                                    >
-                                        서울 송파구 석촌동
-                                    </p>
-                                    <div
-                                        class="to-buy-list__content--text__date"
-                                    >
-                                        <div class="to-buy-list__content--date">
-                                            2020.09.25
-                                        </div>
-                                        <div class="to-buy-list__content--hit">
-                                            조회수 30
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </article>
-                        <article class="to-buy-list__article">
-                             <a href="../board/toSharingBoardRead.html">
-                                <div class="to-buy-list__content--thumbnail">
-                                    <img
-                                        src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/e109941c1a68f4bef813c0a46f20ab1060b67f92c7510a14c83cdb76ef77ba1d.webp?q=82&s=300x300&t=crop"
-                                        alt="thumbnail"
-                                    />
-                                </div>
-                                <div class="to-buy-list__content--text">
-                                    <h1
-                                        class="to-buy-list__content--text__title"
-                                    >
-                                        6단 미니벨로 자전거 짐받이, 싸게팔아요
-                                    </h1>
-                                    <p
-                                        class="to-buy-list__content--text__address"
-                                    >
-                                        서울 송파구 석촌동
-                                    </p>
-                                    <div
-                                        class="to-buy-list__content--text__date"
-                                    >
-                                        <div class="to-buy-list__content--date">
-                                            2020.09.22
-                                        </div>
-                                        <div class="to-buy-list__content--hit">
-                                            조회수 142
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </article>
-                    </div>
+                <h2 class="to-buy-list__title">거래중</h2>
+                	<div class="to-buy-list__content">
+	                <c:forEach var="bPostB" items="${blistB }">
+	                        <article class="to-buy-list__article">
+	                <c:set var="num" value="${num - 1}"></c:set>                
+						<c:if test="${sessionScope.mId == bPostB.mId}">
+	                        	<a href="toBuyBoardRead.do">
+	                                <div class="to-buy-list__content--thumbnail">
+	                                    <img src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/3c06cb158997b8cd4061052c6b457887e4c60496704b6149d4197a6d791ad261.webp?q=82&s=300x300&t=crop"
+	                                        alt="thumbnail" />
+	                                </div>
+	                                <div class="to-buy-list__content--text">
+	                                    <h1 class="to-buy-list__content--text__title">
+	                                        ${bPostB.ptitle}
+	                                    </h1>
+	                                    <p class="to-buy-list__content--text__address">
+	                                        ${bPostB.maddr}
+	                                    </p>
+	                                    <div class="to-buy-list__content--text__date">
+	                                        <div class="to-buy-list__content--date">
+	                                         ${bPostB.pdate} 
+	                                        </div>
+	                                        <div class="to-buy-list__content--hit">
+	                                         ${bPobPostBst.phit}
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </a>
+                        	</c:if>
+						</article>
+                        </c:forEach>                          	
+	                    	<c:if test="${sessionScope.mId != bPostB.mId}">
+	                    		<c:if test="${BuytotalB == 0 }">                   		
+									<div class="to-buy-list__text">
+										<strong>구매 내역이 없어요 !</strong>
+										<a href="toBuyBoard.do">
+										<p>구경가기</p>
+										</a>
+									</div>								
+								</c:if>                   
+	                        </c:if>
+                </div>
                     <div class="to-buy-list__page-num-container">
                         <ul class="page-num-container">
-                            <a href="#">
-                                <li
-                                    class="page-num-container__left-btn page-num-container__btn"
-                                >
-                                    <i class="fas fa-chevron-left"></i>
-                                </li>
-                            </a>
-                            <a href="#">
-                                <li class="page-num-container__num">1</li>
-                            </a>
-                            <a href="#">
-                                <li class="page-num-container__num">2</li>
-                            </a>
-                            <a href="#">
-                                <li class="page-num-container__num">3</li>
-                            </a>
-                            <a href="#">
-                                <li class="page-num-container__num">4</li>
-                            </a>
-                            <a href="#">
-                                <li class="page-num-container__num">5</li>
-                            </a>
-                            <a href="#">
-                                <li
-                                    class="page-num__right-btn page-num-container__btn"
-                                >
-                                    <i class="fas fa-chevron-right"></i>
-                                </li>
-                            </a>
+                       		<c:if test="${pgB.endPage > pgB.totalPage }">
+							<a href="TBtoBuyListUp.do?mId=${sessionScope.mId}&currentPage=${pgB.startPage-pgB.pageBlock}"><li class="page-num-container__left-btn page-num-container__btn">
+                                   <i class="fas fa-chevron-left"></i></li></a>
+                            </c:if>
+							<c:forEach var="i" begin="${pgB.startPage }" end="${pgB.endPage }">
+								<a href="TBtoBuyListUp.do?mId=${sessionScope.mId}&currentPage=${i}"><li class="page-num-container__num">${i}</li></a>
+							</c:forEach>
+							<c:if test="${pgB.endPage < pgB.totalPage }">
+							<a href="TBtoBuyListUp.do?mId=${sessionScope.mId}&currentPage=${pgB.startPage+pgB.pageBlock}"><li class="page-num-container__right-btn page-num-container__btn">
+                                   <i class="fas fa-chevron-right"></i></li></a>
+                            </c:if>
                         </ul>
-                    </div> -->
-            </div>
+                    </div>	                        
+                </div>
             <div class="to-buy-list__container">
                 <h2 class="to-buy-list__title">거래완료</h1>
                     <!-- 각 최신글 3개만 띄어주시면 됩니다 -->
@@ -255,138 +162,6 @@
                             <p>구경가기</p>
                         </a>
                     </div>
-                    <!-- 구매내역 있을때 -->
-                    <!-- <div class="to-buy-list__content">
-                        <article class="to-buy-list__article">
-                            <a href="../board/toSharingBoardRead.html">
-                                <div class="to-buy-list__content--thumbnail">
-                                    <img
-                                        src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/3c06cb158997b8cd4061052c6b457887e4c60496704b6149d4197a6d791ad261.webp?q=82&s=300x300&t=crop"
-                                        alt="thumbnail"
-                                    />
-                                </div>
-                                <div class="to-buy-list__content--text">
-                                    <h1
-                                        class="to-buy-list__content--text__title"
-                                    >
-                                        5단 서랍장 입니다
-                                    </h1>
-                                    <p
-                                        class="to-buy-list__content--text__address"
-                                    >
-                                        서울 송파구 석촌동
-                                    </p>
-                                    <div
-                                        class="to-buy-list__content--text__date"
-                                    >
-                                        <div class="to-buy-list__content--date">
-                                            2020.09.26
-                                        </div>
-                                        <div class="to-buy-list__content--hit">
-                                            조회수 30
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </article>
-                        <article class="to-buy-list__article">
-                            <a href="../board/toSharingBoardRead.html">
-                                <div class="to-buy-list__content--thumbnail">
-                                    <img
-                                        src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/74ead2897bfdc979dfdc817ea9c966c5dfd876d7479410549c8ceefc29271ebf.webp?q=82&s=300x300&t=crop"
-                                        alt="thumbnail"
-                                    />
-                                </div>
-                                <div class="to-buy-list__content--text">
-                                    <h1
-                                        class="to-buy-list__content--text__title"
-                                    >
-                                        스위스크로스 캠핑체어 팝니다.
-                                    </h1>
-                                    <p
-                                        class="to-buy-list__content--text__address"
-                                    >
-                                        서울 송파구 석촌동
-                                    </p>
-                                    <div
-                                        class="to-buy-list__content--text__date"
-                                    >
-                                        <div class="to-buy-list__content--date">
-                                            2020.09.25
-                                        </div>
-                                        <div class="to-buy-list__content--hit">
-                                            조회수 30
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </article>
-                        <article class="to-buy-list__article">
-                             <a href="../board/toSharingBoardRead.html">
-                                <div class="to-buy-list__content--thumbnail">
-                                    <img
-                                        src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/e109941c1a68f4bef813c0a46f20ab1060b67f92c7510a14c83cdb76ef77ba1d.webp?q=82&s=300x300&t=crop"
-                                        alt="thumbnail"
-                                    />
-                                </div>
-                                <div class="to-buy-list__content--text">
-                                    <h1
-                                        class="to-buy-list__content--text__title"
-                                    >
-                                        6단 미니벨로 자전거 짐받이, 싸게팔아요
-                                    </h1>
-                                    <p
-                                        class="to-buy-list__content--text__address"
-                                    >
-                                        서울 송파구 석촌동
-                                    </p>
-                                    <div
-                                        class="to-buy-list__content--text__date"
-                                    >
-                                        <div class="to-buy-list__content--date">
-                                            2020.09.22
-                                        </div>
-                                        <div class="to-buy-list__content--hit">
-                                            조회수 142
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </article>
-                    </div>
-                    <div class="to-buy-list__page-num-container">
-                        <ul class="page-num-container">
-                            <a href="#">
-                                <li
-                                    class="page-num-container__left-btn page-num-container__btn"
-                                >
-                                    <i class="fas fa-chevron-left"></i>
-                                </li>
-                            </a>
-                            <a href="#">
-                                <li class="page-num-container__num">1</li>
-                            </a>
-                            <a href="#">
-                                <li class="page-num-container__num">2</li>
-                            </a>
-                            <a href="#">
-                                <li class="page-num-container__num">3</li>
-                            </a>
-                            <a href="#">
-                                <li class="page-num-container__num">4</li>
-                            </a>
-                            <a href="#">
-                                <li class="page-num-container__num">5</li>
-                            </a>
-                            <a href="#">
-                                <li
-                                    class="page-num__right-btn page-num-container__btn"
-                                >
-                                    <i class="fas fa-chevron-right"></i>
-                                </li>
-                            </a>
-                        </ul>
-                    </div> -->
             </div>
             <div class="to-buy-list__container">
                 <h2 class="to-buy-list__title">당도측정</h1>
@@ -396,146 +171,6 @@
                         <strong>측정을 기다리고있는 내역이 없습니다 !</strong>
                     </div> -->
                     <!-- 피거래자 입장에서 거래가 완료됐을경우 띄우기 -->
-                    <div class="to-buy-list__content">
-                        <article class="to-buy-list__article">
-                            <a href="toSharingBoardRead.do">
-                                <div class="to-buy-list__content--thumbnail">
-                                    <img src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/3c06cb158997b8cd4061052c6b457887e4c60496704b6149d4197a6d791ad261.webp?q=82&s=300x300&t=crop"
-                                        alt="thumbnail" />
-                                </div>
-                                <div class="to-buy-list__content--text">
-                                    <h1 class="to-buy-list__content--text__title">
-                                        ${NEPost.ptitle}
-                                    </h1>
-                                    <p class="to-buy-list__content--text__address">
-                                        서울 송파구 석촌동
-                                    </p>
-                                    <div class="to-buy-list__content--text__date">
-                                        <div class="to-buy-list__content--date">
-                                            2020.09.26
-                                        </div>
-                                        <div class="to-buy-list__content--hit">
-                                            조회수 30
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </a>
-                            <div class="sweet-rating__container">
-                                <p class="sweet-rating-link">당도측정</p>
-                                <!-- 측정 완료후 해당 게시글 리스트 x -->
-                                <input class="sweet-rating-btn" type="button" value="완료">
-                                <div class="sweet-rating">
-                                    <a href="#" class="on"><i class="fas fa-carrot"></i></a>
-                                    <a href="#" class="on"><i class="fas fa-carrot"></i></a>
-                                    <a href="#" class="on"><i class="fas fa-carrot"></i></a>
-                                    <a href="#"><i class="fas fa-carrot"></i></a>
-                                    <a href="#"><i class="fas fa-carrot"></i></a>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="to-buy-list__article">
-                            <a href="../board/toSharingBoardRead.html">
-                                <div class="to-buy-list__content--thumbnail">
-                                    <img src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/74ead2897bfdc979dfdc817ea9c966c5dfd876d7479410549c8ceefc29271ebf.webp?q=82&s=300x300&t=crop"
-                                        alt="thumbnail" />
-                                </div>
-                                <div class="to-buy-list__content--text">
-                                    <h1 class="to-buy-list__content--text__title">
-                                        스위스크로스 캠핑체어 팝니다.
-                                    </h1>
-                                    <p class="to-buy-list__content--text__address">
-                                        서울 송파구 석촌동
-                                    </p>
-                                    <div class="to-buy-list__content--text__date">
-                                        <div class="to-buy-list__content--date">
-                                            2020.09.25
-                                        </div>
-                                        <div class="to-buy-list__content--hit">
-                                            조회수 30
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </a>
-                            <div class="sweet-rating__container">
-                                <p class="sweet-rating-link">당도측정</p>
-                                <input class="sweet-rating-btn" type="button" value="완료">
-                                <div class="sweet-rating">
-                                    <a href="#" class="on"><i class="fas fa-carrot"></i></a>
-                                    <a href="#" class="on"><i class="fas fa-carrot"></i></a>
-                                    <a href="#" class="on"><i class="fas fa-carrot"></i></a>
-                                    <a href="#"><i class="fas fa-carrot"></i></a>
-                                    <a href="#"><i class="fas fa-carrot"></i></a>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="to-buy-list__article">
-                            <a href="../board/toSharingBoardRead.html">
-                                <div class="to-buy-list__content--thumbnail">
-                                    <img src="https://dnvefa72aowie.cloudfront.net/origin/article/202009/e109941c1a68f4bef813c0a46f20ab1060b67f92c7510a14c83cdb76ef77ba1d.webp?q=82&s=300x300&t=crop"
-                                        alt="thumbnail" />
-                                </div>
-                                <div class="to-buy-list__content--text">
-                                    <h1 class="to-buy-list__content--text__title">
-                                        6단 미니벨로 자전거 짐받이, 싸게팔아요
-                                    </h1>
-                                    <p class="to-buy-list__content--text__address">
-                                        서울 송파구 석촌동
-                                    </p>
-                                    <div class="to-buy-list__content--text__date">
-                                        <div class="to-buy-list__content--date">
-                                            2020.09.22
-                                        </div>
-                                        <div class="to-buy-list__content--hit">
-                                            조회수 142
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </a>
-                            <div class="sweet-rating__container">
-                                <p class="sweet-rating-link">당도측정</p>
-                                <input class="sweet-rating-btn" type="button" value="완료">
-                                <div class="sweet-rating">
-                                    <a href="#" class="on"><i class="fas fa-carrot"></i></a>
-                                    <a href="#" class="on"><i class="fas fa-carrot"></i></a>
-                                    <a href="#" class="on"><i class="fas fa-carrot"></i></a>
-                                    <a href="#"><i class="fas fa-carrot"></i></a>
-                                    <a href="#"><i class="fas fa-carrot"></i></a>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="to-buy-list__page-num-container">
-                        <ul class="page-num-container">
-                            <a href="#">
-                                <li class="page-num-container__left-btn page-num-container__btn">
-                                    <i class="fas fa-chevron-left"></i>
-                                </li>
-                            </a>
-                            <a href="#">
-                                <li class="page-num-container__num">1</li>
-                            </a>
-                            <a href="#">
-                                <li class="page-num-container__num">2</li>
-                            </a>
-                            <a href="#">
-                                <li class="page-num-container__num">3</li>
-                            </a>
-                            <a href="#">
-                                <li class="page-num-container__num">4</li>
-                            </a>
-                            <a href="#">
-                                <li class="page-num-container__num">5</li>
-                            </a>
-                            <a href="#">
-                                <li class="page-num__right-btn page-num-container__btn">
-                                    <i class="fas fa-chevron-right"></i>
-                                </li>
-                            </a>
-                        </ul>
-                    </div>
                 
             </div>
         </div>

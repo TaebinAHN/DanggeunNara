@@ -432,24 +432,35 @@ public class TBController {
 		
 	}
 	
-	@RequestMapping(value="TBtoBuyListUp") 
-	public String toBuyList(HttpServletRequest request, TBMember tbm, NEPost np, String currentPage, Model model) {
+	@RequestMapping(value="TBtoBuyListUp", method=RequestMethod.GET) 
+	public String toBuyListA(HttpServletRequest request, TBMember tbm, NEPost np, String currentPage, Model model) {
 		String mId = request.getParameter("mId");
-		int Buytotal = ts.TBBuytotal(request, np);
-		
+
 		HttpSession session = request.getSession();
 		session.setAttribute("mId", tbm.getmId());
 
+		// 나의 구매 목록 (거래 가능)
+		List<NEPost> blistA = ts.toBuyListA(np);
+		int BuytotalA = ts.TBBuytotalA(request, np);
+		TBtoListPaging pgA = new TBtoListPaging(BuytotalA, currentPage);
+		np.setStart(pgA.getStart());
+		np.setEnd(pgA.getEnd());
+		System.out.println("TBBuytotalA =>" + BuytotalA);
 		
-		System.out.println("toBuyList mId => " + mId);
-		System.out.println("total=>" + Buytotal);
-		TBtoListPaging pg = new TBtoListPaging(Buytotal, currentPage);
-		np.setStart(pg.getStart());
-		np.setEnd(pg.getEnd());
-		List<NEPost> blist = ts.toBuyList(np);
-			
-		model.addAttribute("blist", blist);
-		model.addAttribute("pg", pg);
+		// 나의 구매 목록 (거래 중)
+		List<NEPost> blistB = ts.toBuyListB(np);
+		int BuytotalB = ts.TBBuytotalB(request, np);
+		TBtoListPaging pgB = new TBtoListPaging(BuytotalB, currentPage);
+		np.setStart(pgB.getStart());
+		np.setEnd(pgB.getEnd());
+		System.out.println("TBBuytotalB =>" + BuytotalB);
+		
+		model.addAttribute("blistA", blistA);
+		model.addAttribute("pgA", pgA);
+		model.addAttribute("BuytotalA", BuytotalA);
+		model.addAttribute("blistB", blistB);
+		model.addAttribute("pgB", pgB);
+		model.addAttribute("BuytotalB", BuytotalB);
 		
 		return "TBtoBuyList";
 	}
@@ -461,6 +472,7 @@ public class TBController {
 		System.out.println("toSaleList mId => " + tbm.getmId());
 		int Saletotal = ts.TBSaletotal();
 		System.out.println("total=>" + Saletotal);
+		
 		TBtoListPaging pg = new TBtoListPaging(Saletotal, currentPage);
 		hsb.setStart(pg.getStart());
 		hsb.setEnd(pg.getEnd());

@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>글수정하기 :: 당근나라</title>
         <link rel="stylesheet" href="css/common.css" />
-        <script src="javascript/common.js" defer></script>
+        <!-- <script src="javascript/common.js" defer></script> -->
         <script
             src="https://kit.fontawesome.com/797af710b1.js"crossorigin="anonymous" defer></script>
         <script
@@ -16,87 +16,19 @@
         <link
             rel="shortcut icon"
             type="image/x-icon"
-            href="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fcz9VUi%2FbtqJt0b2VUe%2FiiBIEnDkufPInk4hKsunE1%2Fimg.png"
-        />
+            href="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fcz9VUi%2FbtqJt0b2VUe%2FiiBIEnDkufPInk4hKsunE1%2Fimg.png"/>
         <link
-            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
-            rel="stylesheet"
-        />
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap"/>
     </head>
+    
+    <script type="text/javascript">
+    
+    </script>
 
     <body>
-        <!-- 메뉴 고정바 -->
-        <header class="header">
-            <div class="header__fixed-bar">
-                <section class="header__fixed-bar-logo section-logo">
-                    <a href="../main/main.html">
-                        <img
-                            src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FSQxEt%2FbtqJs5kkQnP%2FhvX1kh8aeqli9J93tF5qV1%2Ftfile.svg"
-                            alt="당근나라"
-                        />
-                    </a>
-                </section>
-                <section class="header__fixed-bar-search section-search">
-                    <div
-                        class="header__fixed-bar-search-container"
-                        tabindex="4"
-                    >
-                        <input
-                            class="search-input"
-                            type="text"
-                            placeholder="동네 이름, 물품명 등을 검색해보세요!"
-                        />
-                        <input
-                            type="image"
-                            class="search-icon"
-                            src="https://img.icons8.com/ios-glyphs/30/000000/search.png"
-                        />
-                    </div>
-                    <!-- 검색시 검색창 밑에 뜨는 키워드 추천란 입니다 -->
-                    <div class="search-keyword">
-                        <span class="keyword-title">추천</span>
-                        <span class="keyword-contnet">
-                            <a href="#none">분당 유모차</a>
-                            <a href="#none">키즈카페</a>
-                            <a href="#none">화분</a>
-                            <a href="#none">강남 명품가방</a>
-                            <a href="#none">잠실 냉장고</a>
-                            <a href="#none">인천 마우스</a>
-                        </span>
-                    </div>
-                    <!-- 5~6개 정도 표시해주면 될듯합니다 -->
-                </section>
-                <section class="header__fixed-bar-nav section-nav">
-                    <nav class="header__fixed-bar-nav-container">
-                        <ul class="header__fixed-bar-nav-list nav-list">
-                            <li class="nav-list-content">
-                                <a href="../member/join.html">회원가입</a>
-                            </li>
-                            <li class="nav-list-content">
-                                <a href="../member/login.html">로그인</a>
-                            </li>
-                            <li class="nav-list-content">
-                                <a href="#">지도로 보기</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </section>
-            </div>
-        </header>
-        <!-- 메뉴 목록 리스트 -->
-        <aside class="fixed__list">
-            <ul>
-				<li><a href="JYnoticeBoard.do">공지사항</a></li>
-				<li><a href="blackListBoard.html">검거완료 !</a></li>
-				<li><a href="badReviewBoard.html">불량거래 후기</a></li>
-				<li><a href="toSaleBoard.html">판매중 이에요.</a></li>
-				<li><a href="JYtoSharingBoard.do">나눔중 이에요.</a></li>
-				<li><a href="toBuyBoard.html">구매합니다 ~!</a></li>
-            </ul>
-        </aside>
         
         <!-- 섹션 시작 -->
-        <form action="JYtoSharingBoardUpdate.do" method="post" name="frm">
+        <form action="JYtoSharingBoardUpdate.do" method="post" enctype="multipart/form-data">
         <article class="article">
             <div class="article__sharing-board-update">
                 <!-- 게시글에대한 카테고리 불러오기 -->
@@ -125,8 +57,8 @@
 					 	<option value="3" >거래완료</option> 
                     </select>
                     
-                    <input class="sharing-board-update__category--text category-input" type="text"
-                       name="mId" value="${jyPost.mId }" required>
+                   <%--  <input class="sharing-board-update__category--text category-input" type="text"
+                       name="mId" value="${jyPost.mId }" required> --%>
                        
                     </input>
                 </div>
@@ -141,63 +73,72 @@
                     </div>
                 </div>
                 <div class="sharing-board-update__image">
-                    <div class="sharing-board-update__image--title">
-                        사진 첨부
-                    </div>
+                    <div class="sharing-board-update__image--title">사진 첨부</div>
                     <div class="sharing-board-update__image--container">
-                        <!-- 이미지경로 받아오기 -->
+                    
+                    <!-- 이미지경로 받아오기 -->
                         <div class="image--input-container">
-                            <label class="image--input-label">
-                                <div class="image--input-button button-1">
-                     
-                                    <div class="del-btn"></div>
-                                </div>
-                               <input class="image--input image-1" type="file" accept=".jpg, .jpeg, .png" 
-								 name="pImg1" value="${jyPost.pImg1}"/>
+                            <label class="image--input-label">    
+                                                   
+						<div class="image--input-button button-1">
+                        	<img class="update-image1 image-1" src="/s20200903/resources/image/${jyPost.pImg1}" alt="이미지1"/>
+                            <div class="del-btn1 del-btn"></div>
+                        </div>
+                            <input name ="img" class="image--input image-1" type="file" accept=".jpg, .jpeg, .png"/>
                             </label>
                         </div>
+                        
+                        
                         <div class="image--input-container">
                             <label class="image--input-label">
                                 <div class="image--input-button button-2">
-                             
-                                    <div class="del-btn"></div>
+                                <c:if test="${jyPost.pImg2 != 'null' && jyPost.pImg2 != null}">
+                                    <img class="update-image2 image-2" src="/s20200903/resources/image/${jyPost.pImg2}" alt="이미지2"/>
+                                    <div class="del-btn2 del-btn"></div>
+                                </c:if>
                                 </div>
-                                <input class="image--input image-2" type="file" accept=".jpg, .jpeg, .png" 
-								name="pImg2" value="${jyPost.pImg2}"/>
+                                <input name ="img" class="image--input image-2" type="file" accept=".jpg, .jpeg, .png"/>
                             </label>
                         </div>
+                        
+                        
                         <div class="image--input-container">
                             <label class="image--input-label">
                                 <div class="image--input-button button-3">
-                                  
-                                    <div class="del-btn"></div>
+                                <c:if test='${jyPost.pImg3 != "null" && jyPost.pImg3 != null}'>
+                                    <img class="update-image3 image-3" src="/s20200903/resources/image/${jyPost.pImg3 }" alt="이미지3"/>
+                                    <div class="del-btn3 del-btn"></div>
+                                </c:if>
                                 </div>
-                                <input class="image--input image-3" type="file" accept=".jpg, .jpeg, .png" 
-								name="pImg3" value="${jyPost.pImg3}"/>
+                                <input name ="img" class="image--input image-3" type="file" accept=".jpg, .jpeg, .png"/>
                             </label>
-                        </div>
+                        </div
+                        >
                         <div class="image--input-container">
                             <label class="image--input-label">
                                 <div class="image--input-button button-4">
                                     <div class="image--input-button button-3">
-                                   
-                                        <div class="del-btn"></div>
+                                    <c:if test='${jyPost.pImg4 != "null" && jyPost.pImg4 != null}'>
+                                        <img class="update-image4 image-4" src="/s20200903/resources/image/${jyPost.pImg4 }" alt="이미지4"/>
+                                        <div class="del-btn4 del-btn"></div>
+                                    </c:if>
                                     </div>
                                 </div>
-                              <input class="image--input image-4" type="file" accept=".jpg, .jpeg, .png" 
-								name="pImg4" value="${jyPost.pImg4}"/>
+                                <input name ="img" class="image--input image-4" type="file" accept=".jpg, .jpeg, .png"/>
                             </label>
                         </div>
                         <div class="image--input-container">
                             <label class="image--input-label">
                                 <div class="image--input-button button-5">
-                                    
-                                    <div class="del-btn"></div>
+                                <c:if test='${jyPost.pImg5 != "null" && jyPost.pImg5 != null}'>
+                                    <img class="update-image5 image-5" src="/s20200903/resources/image/${jyPost.pImg5 }" alt="이미지5"/>
+                                    <div class="del-btn5 del-btn"></div>
+                                </c:if>
                                 </div>
-                               <input class="image--input image-5" type="file" accept=".jpg, .jpeg, .png" 
-								name="pImg5" value="${jyPost.pImg5}"/>
+                                <input name ="img" class="image--input image-5" type="file" accept=".jpg, .jpeg, .png"/>
                             </label>
                         </div>
+                        
                     </div>
                 </div>
                 <div class="sharing-board-update__title">
@@ -209,9 +150,10 @@
 					   name="pContent" value="${jyPost.pContent}" required/>
                  
                 </div>
-                <input type="hidden" name="bId" value="${jyPost.bId}"/> <!-- 게시판 구분코드 공지사항 = 0 -->
+                <%-- <input type="hidden" name="bId" value="${jyPost.bId}"/> <!-- 게시판 구분코드 공지사항 = 0 --> --%>
 				<input type="hidden" name="pNum" value="${jyPost.pNum}"/>
-	
+				<input type="hidden" name="mId"/>
+			
 	
                 
                 <div class="sharing-board-update__btn-container">
@@ -222,103 +164,6 @@
             </div>
         </article>
 </form>
-        <!-- 하단 카피라이트 -->
-        <footer class="footer">
-            <div class="footer-container">
-                <div class="footer-top">
-                    <div class="footer-top-logo"></div>
-                    <ul class="footer-top-list">
-                        <li class="footer-top-list-content">
-                            <a href="https://www.daangn.com/trust"
-                                >믿을 수 있는 중고거래</a
-                            >
-                        </li>
-                        <li class="footer-top-list-content">
-                            <a href="https://www.daangn.com/wv/faqs">
-                                자주 묻는 질문</a
-                            >
-                        </li>
-                    </ul>
-                    <ul class="footer-top-list">
-                        <li class="footer-top-list-content">
-                            <a href="https://www.notion.so/3d0197c137ec43d18ff739b5b254a3c8/" >
-                                회사 소개
-                            </a>
-                        </li>
-                        <li class="footer-top-list-content">
-                            <a href="https://ad.daangn.com/"> 광고주센터 </a>
-                        </li>
-                        <li class="footer-top-list-content">
-                            <a href="https://town.daangn.com/"> 동네가게 </a>
-                        </li>
-                    </ul>
-                    <ul class="footer-top-list">
-                        <li class="footer-top-list-content">
-                            <a href="https://www.daangn.com/policy/terms">
-                                이용약관
-                            </a>
-                        </li>
-                        <li class="footer-top-list-content">
-                            <a href="https://www.daangn.com/policy/privacy">
-                                개인정보 취급방침
-                            </a>
-                        </li>
-                        <li class="footer-top-list-content">
-                            <a href="https://www.daangn.com/policy/location">
-                                위치기반서비스 이용약관
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="footer-bottom">
-                    <div class="footer-bottom-copyright">
-                        <ul class="footer-bottom-list-container">
-                            <li class="footer-bottom-list-conent">
-                                <address>고객문의 cs@daangnservice.com</address>
-                                <address>제휴문의 contact@daangn.com</address>
-                            </li>
-                            <li class="footer-bottom-list-conent">
-                                <address>
-                                    사업자 등록번호 : 375-87-000-88
-                                </address>
-                                <address>
-                                    서울특별시 구로구 디지털로 30길 28 609호
-                                </address>
-                            </li>
-                            <li class="footer-bottom-list-conent">
-                                ©Danggeun Market Inc.
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="footer-bottom-sns">
-                        <ul class="footer-bottom-sns-container">
-                            <li class="sns-icon">
-                                <a href="https://www.facebook.com/daangn">
-                                    <img
-                                        src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/footer/icon-facebook-0563f4a93852d073b41f13b8bcabb03d47af3bb3a6755cdfedd8a73686c7f18c.svg"
-                                    />
-                                </a>
-                            </li>
-                            <li class="sns-icon">
-                                <a
-                                    href="https://www.instagram.com/daangnmarket/"
-                                >
-                                    <img
-                                        src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/footer/icon-instagram-2f6c88a461597907c114b7ce28eab053fcae791ed26417915fefb6f7c9f95756.svg"
-                                    />
-                                </a>
-                            </li>
-                            <li class="sns-icon">
-                                <a href="https://blog.naver.com/daangn">
-                                    <img
-                                        src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/footer/icon-blog-e1b0d512d1766a6962ec5bbb5b0803d2a6a9c55ad97db5ba9eebb76013caceba.svg"
-                                    />
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </footer>
+       <%@ include file="footer.jsp" %>
     </body>
 </html>

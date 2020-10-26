@@ -131,17 +131,31 @@
 		WHERE bid = 2
 		AND pnum=#{pnum}
 	</update>
-	<select id="TBBuytotal" resultType="int">
-     	select count(*) from pmcjoin where mId=#{mId} and bid=2
+	<select id="TBBuytotalA" resultType="int">
+     	select count(*) from post where mId=#{mId} and bid=2 and pscode=1
     </select>
-    <select id="toBuyList" parameterType="NEPost" resultType="NEPost">
+    <select id="toBuyListA" parameterType="NEPost" resultType="NEPost">
 		SELECT * 
 		FROM 
 			(SELECT rownum rn, a.*
-			 FROM (SELECT bid, pnum, mId, ctcode, pscode, ptitle, pprice, TO_CHAR(pdate,'yyyy-mm-dd') pdate, pcontent, phit, ppicks, pimg1, pimg2, pimg3, pimg4, pimg5, maddr, mnick, msweet, ctkinds    
-				  FROM pmcjoin 
-				  WHERE bid=2
+			 FROM (SELECT * 
+				  FROM post 
+				  WHERE bid=2 and mId=#{mId} and pscode=1
 				  ORDER BY pnum desc) a)
 		WHERE rn BETWEEN #{start} AND #{end}
     </select>
+	<select id="TBBuytotalB" resultType="int">
+     	select count(*) from post where mId=#{mId} and bid=2 and pscode=2
+    </select>
+     
+    <select id="toBuyListB" parameterType="NEPost" resultType="NEPost">
+		SELECT * 
+		FROM 
+			(SELECT rownum rn, a.*
+			 FROM (SELECT * 
+				  FROM post 
+				  WHERE bid=2 and mId=#{mId} and pscode=2
+				  ORDER BY pnum desc) a)
+		WHERE rn BETWEEN #{start} AND #{end}
+    </select>    
 </mapper>

@@ -48,7 +48,7 @@
 									<span>${jhBoard.pDate}
 										<div class="vertical"></div> 조회수 ${jhBoard.pHit }
 										<div class="vertical"></div> 댓글
-										<div class="board__cotent--reply-count">2</div>
+										<div class="board__cotent--reply-count">${jhBoard.cCount }</div>
 									</span>
 								</div>
 							</div>

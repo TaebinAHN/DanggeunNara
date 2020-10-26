@@ -41,14 +41,15 @@
 }
 
 .to-buy-list__content {
-    align-items: center;
     box-sizing: border-box;
     display: flex;
+    align-items : center;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
 .to-buy-list__content .to-buy-list__article {
+	margin : auto;
     margin-bottom: 2rem;
     width: 12rem;
 }

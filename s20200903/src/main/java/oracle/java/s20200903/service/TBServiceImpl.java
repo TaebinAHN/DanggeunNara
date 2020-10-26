@@ -21,23 +21,17 @@ public class TBServiceImpl implements TBService {
 	private TBDao td;
 	
 	
-	@Override
+/*	@Override
 	public List<TBMember> list(TBMember tbm) {
 		// TODO Auto-generated method stub
 		return td.list(tbm);
-	}
-
-
-
+	}*/
 
 	@Override
 	public int joinMember(TBMember tbm) {
 		// TODO Auto-generated method stub
 		return td.joinMember(tbm);
 	}
-
-
-
 
 	@Override
 	public String idCheck(String mId) {
@@ -143,31 +137,41 @@ public class TBServiceImpl implements TBService {
 	}
 
 	@Override
-	public int TBBuytotal(HttpServletRequest request, NEPost np) {
+	public int TBBuytotalA(HttpServletRequest request, NEPost np) {
 		String mId = request.getParameter("mId");
 		np.setmId(mId);
-		System.out.println("TBBuytotal servi" + mId);
-		return td.TBBuytotal(request, np);
+		return td.TBBuytotalA(request, np);
 	}
-
 	@Override
-	public List<NEPost> toBuyList(NEPost np) {
-		// TODO Auto-generated method stub
-		return td.toBuyList(np);
+	public List<NEPost> toBuyListA(NEPost np) {
+		
+		return td.toBuyListA(np);
 	}
-
-
+	
 	@Override
-	public int TBSaletotal() {
-		return td.TBSaletotal();
+	public int TBBuytotalB(HttpServletRequest request, NEPost np) {
+		String mId = request.getParameter("mId");
+		np.setmId(mId);
+		return td.TBBuytotalB(request, np);
 	}
-
+	@Override
+	public List<NEPost> toBuyListB(NEPost np) {
+		
+		return td.toBuyListB(np);
+	}
 
 	@Override
 	public List<HBSaleBoard> toSaleList(HBSaleBoard hsb) {
 		// TODO Auto-generated method stub
 		return td.toSaleList(hsb);
 	}
+	
+	@Override
+	public int TBSaletotal() {
+		return td.TBSaletotal();
+	}
+
+
 
 
 

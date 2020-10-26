@@ -94,8 +94,13 @@ public class JYController {
 
 		// String uploadPath =
 		// "C:\\Spring-Project\\s20200903\\src\\main\\webapp\\resources\\image";
-		String uploadPath = "D:\\Spring\\springSrc\\s20200903\\src\\main\\webapp\\resources\\image";
-
+		//String uploadPath = "C:\\Users\\user\\Documents\\GitHub\\DanggeunNara\\s20200903\\src\\main\\webapp\\resources\\image";
+		String uploadPath = "J:\\SprPrj\\DanggeunNara\\s20200903\\src\\main\\webapp\\resources\\image";
+		//!!!경로 자기 설정에 맞게 바꿔줘야함!!!!
+		// server.xml에 
+		//<Context docBase="C:/Users/user/Documents/GitHub/DanggeunNara/s20200903/src/main/webapp/resources/image" path="/image" reloadable="true"/> 
+		//추가 해줘야함
+		
 		JYPost jyPost = new JYPost();
 		//// 통합 후 neJoin.setMid((String) request.getSession().getAttribute("mid"));
 		jyPost.setmId("user@naver.com");
@@ -130,8 +135,6 @@ public class JYController {
 			return "redirect:JYtoSharingBoard.do";
 		} else {
 			System.out.println("나눔 글 등록 실패");
-			model.addAttribute("msg", " 나눔 글 등록 실패");
-
 			return "forward:JYtoSharingBoardWrite.do";
 		}
 	}
@@ -140,11 +143,9 @@ public class JYController {
 	public String uploadFile(String originalName, byte[] fileData, String uploadPath) throws Exception {
 
 		UUID uid = UUID.randomUUID();
-
 		File fileDirectory = new File(uploadPath);
 
 		// 업로드한 파일이 없을 경우 저장하지 않음
-
 		if (originalName.equals("") || originalName == null) {
 			return "null";
 		} else {
@@ -167,6 +168,7 @@ public class JYController {
 		int bId = Integer.parseInt(request.getParameter("bId"));
 		int pNum = Integer.parseInt(request.getParameter("pNum"));
 		// String mId= request.getParameter("mId");
+		
 
 		jyPost.setbId(bId);
 		jyPost.setpNum(pNum);
@@ -182,18 +184,59 @@ public class JYController {
 
 	// 나눔 글 수정
 	@RequestMapping(value = "JYtoSharingBoardUpdate", method = RequestMethod.POST)
-	public String updateSharing(Model model, JYPost jyPost) {
+	public String updateSharing(HttpServletRequest request, @RequestParam("img") MultipartFile[] uploadFile, Model model) throws Exception{
+		System.out.println("JYtoSharingBoardUpdate============");
+		
+		JYPost jyPost = new JYPost();
+		System.out.println("pNum--------->"+Integer.parseInt(request.getParameter("pNum")));
 
+		int pNum = Integer.parseInt(request.getParameter("pNum"));
+		System.out.println("ctcode==>"+Integer.parseInt(request.getParameter("ctCode")));
+		System.out.println("psCode==>"+Integer.parseInt(request.getParameter("psCode")));
+		jyPost.setpNum(pNum);
+		JYPost resultJyPost = jyService.selectSharingDetail(jyPost);
+		
+		//String uploadPath = "C:\\Users\\user\\Documents\\GitHub\\DanggeunNara\\s20200903\\src\\main\\webapp\\resources\\image";
+		String uploadPath = "J:\\SprPrj\\DanggeunNara\\s20200903\\src\\main\\webapp\\resources\\image";
+		
+		//// 통합 후 neJoin.setMid((String) request.getSession().getAttribute("mid"));
+
+		jyPost.setmId("user@naver.com");
+		jyPost.setCtCode(Integer.parseInt(request.getParameter("ctCode")));
+		jyPost.setPsCode(Integer.parseInt(request.getParameter("psCode")));
+		jyPost.setpTitle(request.getParameter("pTitle"));
+		jyPost.setpContent(request.getParameter("pContent"));
+		
+		
+		for(int i=0; i<uploadFile.length; i++) {
+			MultipartFile img = uploadFile[i];
+			logger.info("upload File Name : " + img.getOriginalFilename());
+			logger.info("upload File Size : " + img.getSize());
+			
+			if(img.getSize()!=0) {	//새로 첨부된 파일이 있을 시 새로 set
+				String savedName = uploadFile(img.getOriginalFilename(), img.getBytes(), uploadPath);
+				if(i==0) { jyPost.setpImg1(savedName); System.out.println(savedName);}
+				if(i==1) jyPost.setpImg2(savedName);
+				if(i==2) jyPost.setpImg3(savedName);
+				if(i==3) jyPost.setpImg4(savedName);
+				if(i==4) jyPost.setpImg5(savedName);	
+			} else {				// 새로 첨부된 파일이 없을 시 기존의 img정보 저장
+				if(i==0) jyPost.setpImg1(resultJyPost.getpImg1());
+				if(i==1) jyPost.setpImg2(resultJyPost.getpImg2());
+				if(i==2) jyPost.setpImg3(resultJyPost.getpImg3());
+				if(i==3) jyPost.setpImg4(resultJyPost.getpImg4());
+				if(i==4) jyPost.setpImg5(resultJyPost.getpImg5());
+			}	
+		}
+		
 		int result = jyService.updateSharing(jyPost);
 		model.addAttribute("result", result);
-
+				
 		if (result > 0) {
 			System.out.println("나눔 글 수정 성공");
 			return "redirect:JYtoSharingBoard.do";
 		} else {
 			System.out.println("나눔 글 수정 실패");
-			model.addAttribute("msg", " 나눔 글 수정 실패");
-
 			return "forward:JYtoSharingBoardUpdate.do";
 		}
 
@@ -258,8 +301,10 @@ public class JYController {
 
 		// String uploadPath =
 		// "C:\\Spring-Project\\s20200903\\src\\main\\webapp\\resources\\image";
-		String uploadPath = "D:\\Spring\\springSrc\\s20200903\\src\\main\\webapp\\resources\\image";
+		//String uploadPath = "C:\\Users\\user\\Documents\\GitHub\\DanggeunNara\\s20200903\\src\\main\\webapp\\resources\\image";
+		String uploadPath = "J:\\SprPrj\\DanggeunNara\\s20200903\\src\\main\\webapp\\resources\\image";
 
+	
 		JYPost jyPost = new JYPost();
 		//// 통합 후 neJoin.setMid((String) request.getSession().getAttribute("mid"));
 		jyPost.setmId("admin");
@@ -319,7 +364,7 @@ public class JYController {
 	}
 
 	// 공지사항 수정
-	@RequestMapping(value = "JYnoticeBoardUpdate", method = RequestMethod.POST)
+/*	@RequestMapping(value = "JYnoticeBoardUpdate", method = RequestMethod.POST)
 	public String updateNotice(Model model, JYPost jyPost) {
 		System.out.println("controller updateNotice start...");
 
@@ -336,7 +381,68 @@ public class JYController {
 			return "forward:JYnoticeBoardUpdate.do";
 		}
 
-	}
+	}*/
+	
+	// 공지사항 수정
+	@RequestMapping(value = "JYnoticeBoardUpdate", method = RequestMethod.POST)
+		public String updateNotice(HttpServletRequest request, @RequestParam("img") MultipartFile[] uploadFile, Model model) throws Exception{
+			System.out.println("updateNotice============");
+			
+			JYPost jyPost = new JYPost();
+			
+			System.out.println("pNum--------->"+Integer.parseInt(request.getParameter("pNum")));
+			int pNum = Integer.parseInt(request.getParameter("pNum"));
+			jyPost.setpNum(pNum);
+			
+			JYPost resultJyPost = jyService.selectNoticeDetail(jyPost);
+			
+			//String uploadPath = "C:\\Users\\user\\Documents\\GitHub\\DanggeunNara\\s20200903\\src\\main\\webapp\\resources\\image";
+			String uploadPath = "J:\\SprPrj\\DanggeunNara\\s20200903\\src\\main\\webapp\\resources\\image";
+			
+			//// 통합 후 neJoin.setMid((String) request.getSession().getAttribute("mid"));
+
+			jyPost.setmId("admin");
+			jyPost.setpTitle(request.getParameter("pTitle"));
+			jyPost.setpContent(request.getParameter("pContent"));
+			
+			
+			for(int i=0; i<uploadFile.length; i++) {
+				MultipartFile img = uploadFile[i];
+				logger.info("upload File Name : " + img.getOriginalFilename());
+				logger.info("upload File Size : " + img.getSize());
+				
+				if(img.getSize()!=0) {	//새로 첨부된 파일이 있을 시 새로 set
+					String savedName = uploadFile(img.getOriginalFilename(), img.getBytes(), uploadPath);
+					if(i==0) { jyPost.setpImg1(savedName); System.out.println(savedName);}
+					if(i==1) jyPost.setpImg2(savedName);
+					if(i==2) jyPost.setpImg3(savedName);
+					if(i==3) jyPost.setpImg4(savedName);
+					if(i==4) jyPost.setpImg5(savedName);	
+				} else {				// 새로 첨부된 파일이 없을 시 기존의 img정보 저장
+					if(i==0) jyPost.setpImg1(resultJyPost.getpImg1());
+					if(i==1) jyPost.setpImg2(resultJyPost.getpImg2());
+					if(i==2) jyPost.setpImg3(resultJyPost.getpImg3());
+					if(i==3) jyPost.setpImg4(resultJyPost.getpImg4());
+					if(i==4) jyPost.setpImg5(resultJyPost.getpImg5());
+				}	
+			}
+			
+			int result = jyService.updateNotice(jyPost);
+			model.addAttribute("result", result);
+					
+			if (result > 0) {
+				System.out.println("공지사항 수정 성공");
+				return "redirect:JYnoticeBoard.do";
+			} else {
+				System.out.println("공지사항 수정 실패");
+				model.addAttribute("msg", " 공지사항 수정 실패");
+
+				return "forward:JYnoticeBoardUpdate.do";
+			}
+
+		}
+	
+	
 
 	// 공지사항 삭제
 	@RequestMapping(value = "deleteNotice")
@@ -344,5 +450,9 @@ public class JYController {
 		int result = jyService.deleteNotice(jyPost);
 		return "redirect:JYnoticeBoard.do";
 	}
+	
+	
+	//첨부파일 삭제
+	
 
 }

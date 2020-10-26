@@ -11,6 +11,7 @@ public class NEPost {
 	private int pprice;
 	private String pdate;
 	private String pcontent;
+	private int pscode;
 	private int phit;
 	private int ppicks;
 	private String pimg1;
@@ -34,6 +35,12 @@ public class NEPost {
 	
 	
 	
+	public int getPscode() {
+		return pscode;
+	}
+	public void setPscode(int pscode) {
+		this.pscode = pscode;
+	}
 	public String getMsweet() {
 		return msweet;
 	}

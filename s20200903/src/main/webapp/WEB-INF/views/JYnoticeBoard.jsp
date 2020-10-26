@@ -71,7 +71,8 @@
 								</div>
 								<div class="board__content--thumbnail">
 									<!-- 해당 게시글의 썸네일을 불러올 수 있도록 하기 -->
-									<img class="thumbnail" src="/image/${jyPost.pImg1 }" alt="img-thumbnail"/>
+									<img class="thumbnail" src="/s20200903/resources/image/${jyPost.pImg1}" alt="img-thumbnail"/>
+									
 								</div>
 							</article>
 					

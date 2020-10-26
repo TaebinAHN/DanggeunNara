@@ -28,8 +28,10 @@ public interface TBDao {
 	int					checkMlf(TBMember tbm);
 	String				getMnick(TBMember tbm);
 	int					mlfReset(TBMember tbm);
-	int					TBBuytotal(HttpServletRequest request, NEPost np);
-	List<NEPost> 		toBuyList(NEPost np);
+	int					TBBuytotalA(HttpServletRequest request, NEPost np);
+	List<NEPost> 		toBuyListA(NEPost np);
+	int					TBBuytotalB(HttpServletRequest request, NEPost np);
+	List<NEPost>		toBuyListB(NEPost np);
 	int					TBSaletotal();
 	List<HBSaleBoard>	toSaleList(HBSaleBoard sb);
 }
