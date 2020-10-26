@@ -4,8 +4,11 @@
 
 	<!-- 불량거래 게시판 가져옴 페이징 해서 -->
 	<select id="BRBoardAll" parameterType="JHBoard" resultType="JHBoard">
-		SELECT * FROM (SELECT rownum rn, a.* FROM
+		<!-- SELECT * FROM (SELECT rownum rn, a.* FROM
 		(SELECT p.* , m.mNick FROM post p,member m WHERE p.mId = m.mId and bId = 4 ORDER BY pNum desc) a ORDER BY pNum desc)
+		WHERE rn BETWEEN #{start} and #{end} -->
+		SELECT * FROM (SELECT rownum rn, a.* FROM( SELECT p.* , m.mNick ,(SELECT COUNT(*) FROM comments c WHERE c.pNum=p.pNum)as cCount
+		FROM post p, member m WHERE p.mId = m.mId and p.bId = 4 ORDER BY p.pNum desc) a ORDER BY pNum desc)
 		WHERE rn BETWEEN #{start} and #{end}
 	</select>
 	<!-- 페이징 처리 및 게시글 추가시 게시글번호 +1 하기 위한 게시글 총 갯수 -->
@@ -38,4 +41,42 @@
 		UPDATE post SET pTitle = #{pTitle} ,pDate = SYSDATE, pContent = #{pContent},
 		pImg1 = #{pImg1}, pImg2 = #{pImg2}, pImg3 = #{pImg3}, pImg4 = #{pImg4}, pImg5 = #{pImg5} where bid = 4 AND pNum = #{pNum}
 	</update>
+	
+	<!-- 댓글 관련 SQL -->
+	
+	<!-- 댓글 총 갯수 -->
+	<select id="jhCtotal" resultType="int">
+		select count(*) from comments WHERE pNum = #{pNum}
+	</select>
+	<!-- 댓글 리스트-->
+	<select id="jhCommentsAll" resultType="JHBoard">
+		select rownum rn ,a.* from (select c.*, m.mNick from comments c, member m where m.mId = c.mId and c.pNum = #{pNum} order by c.cLot ,c.cSeq) a 
+	</select>
+	<!-- 댓글 등록 -->
+	<insert id="jhBRCommentsInsert" parameterType="JHBoard">
+		insert into comments values ((SELECT NVL(MAX(cNum) + 1, 1) FROM comments WHERE bId = 4), 4, #{pNum}, (SELECT NVL(MAX(cLot) + 1, 1) FROM comments WHERE bId = 4 and pNum = #{pNum}),
+        0, #{mId}, #{cCmnt}, sysdate, 0)
+	</insert>
+	<!-- 댓글 삭제 -->
+	<delete id="jhCommentsDelete" parameterType="int">
+		DELETE from comments where cNum = #{cNum}
+	</delete>	
+	<!-- 댓글 수정 -->
+	<update id="jhCommentsUpdate" parameterType="JHBoard">
+		UPDATE comments SET cCmnt = #{cCmnt}, cDate = sysdate WHERE bId=4 AND cNum=#{cNum}
+	</update>
+	
+	
+	<!-- 답글 등록시 다른 댓글 + 답글들 seq + 1 -->
+	<update id="jhCommentsReplySeqUp" parameterType="JHBoard">
+		<![CDATA[ UPDATE comments SET cSeq = cSeq+1 WHERE cLot=#{cLot} AND cSeq > #{cSeq}]]>
+	</update>
+	<!-- 답글 등록 -->
+	<insert id="jhCommentsReplyInsert" parameterType="JHBoard">
+		insert into comments values ((SELECT NVL(MAX(cNum) + 1, 1) FROM comments WHERE bId = 4), 4, #{pNum}, #{cLot}, (SELECT NVL(MAX(cSeq) + 1, 1) FROM comments WHERE bId = 4 and pNum = #{pNum} And cLot = #{cLot}), #{mId}, #{cCmnt}, sysdate, (#{cLevel}+1))
+	</insert>
+	<!-- 답글 의 답글 등록 -->
+	<insert id="jhCommentsReReInsert" parameterType="JHBoard">
+		insert into comments values ((SELECT NVL(MAX(cNum) + 1, 1) FROM comments WHERE bId = 4), 4, #{pNum}, #{cLot}, (#{cSeq}+1), #{mId}, #{cCmnt}, sysdate, (#{cLevel}+1))
+	</insert>	
 </mapper>
