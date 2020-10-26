@@ -10,9 +10,9 @@ public class JHBoard {
 	private int pNum;			//게시글 번호
 	private String mId;			//회원 아이디
 	private int cTcode;			//카테고리 코드					//사용안함
-	private int pStatus;		//거래 상태 코드					//사용안함
+	private int pStatus;		//거래 상태 코드				//사용안함
 	private String pTitle;		//게시글 제목
-	private int pPrice;			//물품가격						//사용안함
+	private int pPrice;			//물품가격					//사용안함
 	private String pDate;		//게시글 등록 일자
 	private String pContent;	//게시글 내용
 	private int pHit;			//게시글 조회수
@@ -24,11 +24,14 @@ public class JHBoard {
 	private String pImg5;		//게시글 이미지5
 	
 	//Comment
-	private int cNum;			//댓글 번호
+	private int cNum;			//댓글 고유 번호
+	private int cLot;			//댓글 그룹 번호
+	private int cSeq;			//댓글 그룹내 순서
 	private String cCmnt;		//댓글 내용
 	private Date cDate;			//댓글 작성 일시
-	private int cLevel;			//댓글 등급(0 댓글/1 대댓글/2대대댓글....)
-	
+	private int cLevel;			//댓글 등급(0 댓글/1 답글/2답글 의 답글....)
+	private int cCount;			//개시판 댓글 개수
+		
 	//member join
 	private String mNick;		//회원 닉네임
 	private String mAddr;		//회원 주소
@@ -46,6 +49,24 @@ public class JHBoard {
 		this.img = img;
 	}
 	
+	public int getcCount() {
+		return cCount;
+	}
+	public void setcCount(int cCount) {
+		this.cCount = cCount;
+	}
+	public int getcLot() {
+		return cLot;
+	}
+	public void setcLot(int cLot) {
+		this.cLot = cLot;
+	}
+	public int getcSeq() {
+		return cSeq;
+	}
+	public void setcSeq(int cSeq) {
+		this.cSeq = cSeq;
+	}
 	public int getbId() {
 		return bId;
 	}

@@ -4,9 +4,7 @@ import java.io.File;
 import java.util.List;
 import java.util.UUID;
 
-import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,10 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import oracle.java.s20200903.model.JHBoard;
-import oracle.java.s20200903.model.NEJoin;
-import oracle.java.s20200903.model.TBMember;
 import oracle.java.s20200903.service.JHService;
-import oracle.java.s20200903.service.TBService;
 import oracle.java.s20200903.service.JHPaging;
 
 @Controller
@@ -53,14 +48,21 @@ public class JHController {
 	}
 	
 	@RequestMapping(value="JHbadReviewBoardRead")
-	public String jhRead(HttpServletRequest request , int pNum, Model model) {
+	public String jhRead(HttpServletRequest request, String currentPage, JHBoard jhb , int pNum, Model model) {
 		System.out.println("JHController jhRead start");
 		//게시글 조회수 증가
 		jhs.jhHitUp(pNum);
 		//게시글 불러옴
 		JHBoard jhBoard = jhs.jhRead(pNum);
-		//게시글 model에 추가
+		//댓글 총 갯수
+		int jhCtotal = jhs.jhCtotal(pNum);
+		System.out.println("jhCtotal: " + jhCtotal);
+		//댓글 불러옴
+		List<JHBoard> jhComments = jhs.jhComments(pNum);
+		//게시글 model에 추가, 댓글 추가, 페이징 추가
 		model.addAttribute("jhBoard", jhBoard);
+		model.addAttribute("jhCtotal", jhCtotal);
+		model.addAttribute("jhComments", jhComments);
 		//badReviewBoardRead.jsp로 이동
 		return"JHbadReviewBoardRead";
 	}
@@ -189,12 +191,14 @@ public class JHController {
 		JHBoard jhBoard = jhs.jhRead(pNum);	//원래 글 이미지, 제목, 내용 가져옴
 		
 		JHBoard jhb = new JHBoard();		
-		jhb.setmId(request.getParameter("mId"));	//(String) request.getSession().getAttribute("mid");
-		System.out.println("mId" + request.getParameter("mId"));
+		//jhb.setmId(jhBoard.getmId());
+		System.out.println("mId: " + jhBoard.getmId());
+		jhb.setpNum(pNum);
+		System.out.println("pNum: " + pNum);
 		jhb.setpTitle(request.getParameter("pTitle"));
-		System.out.println("pTitle" + request.getParameter("pTitle"));
+		System.out.println("pTitle: " + request.getParameter("pTitle"));
 	    jhb.setpContent(request.getParameter("pContent"));
-	    System.out.println("pContent" + request.getParameter("pContent"));
+	    System.out.println("pContent: " + request.getParameter("pContent"));
 		
 		for(int i = 0; i<uploadFile.length; i++) {
 			MultipartFile img = uploadFile[i];
@@ -202,46 +206,127 @@ public class JHController {
 			System.out.println("upload File Size : " + img.getSize());
 			
 			//if => 새로 첨부된 파일이 있을 시 새로 set //else => 새로 첨부된 파일이 없을 시 기존의 img정보 저장
-				if(i==0 && img.getSize()!=0) { 
+				if(i==0 ) { 
+					if(img.getSize()!=0) {
 						String savedName = uploadFile(img.getOriginalFilename(), img.getBytes(), uploadPath);
-						System.out.println(savedName);
+						System.out.println("savedName: " + savedName);
 						String imgData = context + fileSave + "/" + savedName;
-						System.out.println(imgData);
+						System.out.println("imgData: " + imgData);
 						jhb.setpImg1(imgData);
-				} else {jhb.setpImg1(jhBoard.getpImg1());}
-				if(i==1 && img.getSize()!=0) { 
+						}else {System.out.println("수정 이미지 없음"); jhb.setpImg1(jhBoard.getpImg1());}			
+				} 
+				if(i==1) { 
+					if(img.getSize()!=0) {
 						String savedName = uploadFile(img.getOriginalFilename(), img.getBytes(), uploadPath);
-						System.out.println(savedName);
+						System.out.println("savedName: " + savedName);
 						String imgData = context + fileSave + "/" + savedName;
-						System.out.println(imgData);
+						System.out.println("imgData: " + imgData);
 						jhb.setpImg2(imgData);
-				} else { jhb.setpImg2(jhBoard.getpImg2());}
-				if(i==2 && img.getSize()!=0) {
+						}else {System.out.println("수정 이미지 없음"); jhb.setpImg2(jhBoard.getpImg2());}
+				} 
+				if(i==2) {
+					if(img.getSize()!=0) {
 						String savedName = uploadFile(img.getOriginalFilename(), img.getBytes(), uploadPath);
-						System.out.println(savedName);
+						System.out.println("savedName: " + savedName);
 						String imgData = context + fileSave + "/" + savedName;
-						System.out.println(imgData);
+						System.out.println("imgData: " + imgData);
 						jhb.setpImg3(imgData);
-				} else { jhb.setpImg3(jhBoard.getpImg3());}
-				if(i==3 && img.getSize()!=0) {
+						}else {System.out.println("수정 이미지 없음"); jhb.setpImg3(jhBoard.getpImg3());}
+				} 
+				if(i==3) {
+					if(img.getSize()!=0) {
 						String savedName = uploadFile(img.getOriginalFilename(), img.getBytes(), uploadPath);
-						System.out.println(savedName);
+						System.out.println("savedName: " + savedName);
 						String imgData = context + fileSave + "/" + savedName;
-						System.out.println(imgData);
+						System.out.println("imgData: " + imgData);
 						jhb.setpImg4(imgData);
-				} else { jhb.setpImg4(jhBoard.getpImg4());}
-				if(i==4 && img.getSize()!=0) {
+						}else {System.out.println("수정 이미지 없음"); jhb.setpImg4(jhBoard.getpImg4());}
+				} 
+				if(i==4) {
+					if(img.getSize()!=0) {
 						String savedName = uploadFile(img.getOriginalFilename(), img.getBytes(), uploadPath);
-						System.out.println(savedName);
+						System.out.println("savedName: " + savedName);
 						String imgData = context + fileSave + "/" + savedName;
-						System.out.println(imgData);
+						System.out.println("imgData: " + imgData);
 						jhb.setpImg5(imgData);
-				} else { jhb.setpImg5(jhBoard.getpImg5());}	
+						}else {System.out.println("수정 이미지 없음"); jhb.setpImg5(jhBoard.getpImg5());}
+				} 	
 		}
 		
 	    int result = jhs.jhUpdate(jhb);
 	    System.out.println("result: " + result);
 		if (result > 0) {System.out.println("글수정 성공"); return "redirect:JHbadReviewBoard.do";}
 		else { System.out.println("글수정 실패"); return "forward:JHbadReviewBoardUpdateForm.do";}
+	}
+	
+	 //댓글 등록
+	@RequestMapping(value="JHbrBoardCommWrite")
+	public String jhCommentWrite(HttpServletRequest request, int pNum, JHBoard jhb, Model model) {
+		jhb.setpNum(pNum);
+		System.out.println("pNum: " + pNum);
+		jhb.setmId((String) request.getSession().getAttribute("mId"));
+		System.out.println("mId: " + (String) request.getSession().getAttribute("mId"));
+		jhb.setcCmnt(request.getParameter("cCmnt"));
+		System.out.println("cCmnt: " + request.getParameter("cCmnt"));
+		
+		int result = jhs.jhCommInsert(jhb);
+		if (result > 0) {System.out.println("댓글 입력 성공"); return "forward:JHbadReviewBoardRead.do";}
+		else { System.out.println("댓글 입력 실패"); return "forward:JHbadReviewBoardRead.do";}
+	}
+	
+	@RequestMapping(value="JHbrBoardCommDelete")
+	public String jhCommentDelete(int cNum, int pNum, Model model) {
+		System.out.println("JHController jhCommentDelete start");
+		System.out.println("댓글 고유 번호: " + cNum);
+		//댓글 삭제
+		int k = jhs.jhCommDelete(cNum);
+		System.out.println("k ->" + k);	//성공시 k = 1
+		//JHbadReviewBoard.do 실행
+		return"forward:JHbadReviewBoardRead.do";
+	}
+	
+	@RequestMapping(value="JHbrBoardCommUpdate")
+	public String jhCommentUpdate(HttpServletRequest request, int pNum, int cNum, JHBoard jhb, Model model) {
+		System.out.println("JHController jhCommentUpdate start");
+		
+		jhb.setcNum(cNum);
+		System.out.println("cNum: " + cNum);
+		jhb.setcCmnt(request.getParameter("cCmnt"));
+		System.out.println("cCmnt: " + request.getParameter("cCmnt"));
+		
+		//댓글 수정
+		int k = jhs.jhCommUpdate(jhb);
+		System.out.println("k ->" + k);	//성공시 k = 1
+		//JHbadReviewBoard.do 실행
+		return"forward:JHbadReviewBoardRead.do";
+	}
+	@RequestMapping(value="JHbrBoardCommRe")
+	public String jhCommentcomment(HttpServletRequest request,int cLevel,int cSeq, int pNum, int cLot, JHBoard jhb, Model model) {
+		
+		jhb.setmId((String) request.getSession().getAttribute("mId"));
+		System.out.println("mId: " + (String) request.getSession().getAttribute("mId"));
+		jhb.setcCmnt(request.getParameter("cCmnt"));
+		System.out.println("cCmnt: " + request.getParameter("cCmnt"));
+		jhb.setcSeq(cSeq);
+		System.out.println("cSeq: " + cSeq);
+		jhb.setcLot(cLot);
+		System.out.println("cNum: " + cLot);
+		jhb.setcNum(pNum);
+		System.out.println("pNum: " + pNum);
+		jhb.setcLevel(cLevel);
+		System.out.println("cLevel: " + cLevel);
+		
+		if (cLevel > 0) {//하위 답글들 cSeq + 1
+			int ReUp = jhs.jhCommReseqUp(jhb);
+			System.out.println("ReUp ->" + ReUp);//성공시 k = 1		
+			//답글의 답글 작성
+			int REREin = jhs.jhCommReReInsert(jhb);
+			System.out.println("REREin ->" + REREin);
+		} else {	//답글 작성
+			int kk = jhs.jhCommReInsert(jhb);
+			System.out.println("kk ->" + kk);	//성공시 kk = 1
+		}
+		//JHbadReviewBoard.do 실행
+		return"forward:JHbadReviewBoardRead.do";
 	}
 }

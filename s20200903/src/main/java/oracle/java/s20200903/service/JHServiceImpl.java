@@ -61,4 +61,52 @@ public class JHServiceImpl implements JHService {
 		// TODO Auto-generated method stub
 		return jhd.jhMember(mId);
 	}
+
+	@Override
+	public List<JHBoard> jhComments(int pNum) {
+		System.out.println("JHServiceImpl jhComments");
+		return jhd.jhComments(pNum);
+	}
+
+	@Override
+	public int jhCtotal(int pNum) {
+		System.out.println("JHServiceImpl jhCtotal");
+		return jhd.jhCtotal(pNum);
+	}
+
+	@Override
+	public int jhCommInsert(JHBoard jhb) {
+		System.out.println("JHServiceImpl jhCommInsert");
+		return jhd.jhCommInsert(jhb);
+	}
+
+	@Override
+	public int jhCommDelete(int cNum) {
+		System.out.println("JHServiceImpl jhCommDelete");
+		return jhd.jhCommDelete(cNum);
+	}
+
+	@Override
+	public int jhCommUpdate(JHBoard jhb) {
+		System.out.println("JHServiceImpl jhCommUpdate");
+		return jhd.jhCommUpdate(jhb);
+	}
+
+	@Override
+	public int jhCommReseqUp(JHBoard jhb) {
+		System.out.println("JHServiceImpl jhCommReseqUp");
+		return jhd.jhCommReseqUp(jhb);
+	}
+
+	@Override
+	public int jhCommReInsert(JHBoard jhb) {
+		System.out.println("JHServiceImpl jhCommReInsert");
+		return jhd.jhCommReInsert(jhb);
+	}
+
+	@Override
+	public int jhCommReReInsert(JHBoard jhb) {
+		System.out.println("JHServiceImpl jhCommReReInsert");
+		return jhd.jhCommReReInsert(jhb);
+	}
 }

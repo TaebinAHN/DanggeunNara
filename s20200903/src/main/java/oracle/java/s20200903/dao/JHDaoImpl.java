@@ -49,6 +49,7 @@ public class JHDaoImpl implements JHDao {
 	@Override
 	public int jhDelete(int pNum) {
 		System.out.println("JHDaoImpl jhDelete start..");
+		System.out.println("pNum" + pNum);
 		int dn = 0;
 		try {
 			dn  = session.delete("jhBRBoardDelete", pNum);
@@ -73,9 +74,7 @@ public class JHDaoImpl implements JHDao {
 		System.out.println("JHDaoImpl jhHitUp start..");
 		int a = 0;
 		a = session.update("jhBRreadCount", pNum);
-		System.out.println("조회수 증가 a: " + a);
-		
-		
+		System.out.println("조회수 증가 a: " + a);		
 	}
 
 	@Override
@@ -89,5 +88,55 @@ public class JHDaoImpl implements JHDao {
 		System.out.println("JHDaoImpl jhMember start..");
 		return session.selectOne("jhmemberselect", mId);
 	}
+
+	@Override
+	public List<JHBoard> jhComments(int pNum) {
+		System.out.println("JHDaoImpl jhComments start..");
+		return session.selectList("jhCommentsAll", pNum);
+	}
+
+	@Override
+	public int jhCtotal(int pNum) {
+		System.out.println("JHDaoImpl jhCtotal start..");
+		return session.selectOne("jhCtotal", pNum);
+	}
+
+	@Override
+	public int jhCommInsert(JHBoard jhb) {
+		System.out.println("JHDaoImpl jhCommInsert start..");
+		return session.insert("jhBRCommentsInsert",jhb);
+	}
+
+	@Override
+	public int jhCommDelete(int cNum) {
+		System.out.println("JHDaoImpl jhCommDelete start..");
+		return session.delete("jhCommentsDelete", cNum);
+	}
+
+	@Override
+	public int jhCommUpdate(JHBoard jhb) {
+		System.out.println("JHDaoImpl jhCommUpdate start..");
+		return session.update("jhCommentsUpdate", jhb);
+	}
+	
+	@Override
+	public int jhCommReseqUp(JHBoard jhb) {
+		System.out.println("JHDaoImpl jhCommReseqUp start..");
+		return session.update("jhCommentsReplySeqUp", jhb);
+	}
+
+	@Override
+	public int jhCommReInsert(JHBoard jhb) {
+		System.out.println("JHDaoImpl jhCommReInsert start..");
+		return session.insert("jhCommentsReplyInsert",jhb);
+	}
+
+	@Override
+	public int jhCommReReInsert(JHBoard jhb) {
+		System.out.println("JHDaoImpl jhCommReReInsert start..");
+		return session.insert("jhCommentsReReInsert",jhb);
+	}
+
+	
 
 }
