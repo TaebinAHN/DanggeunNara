@@ -40,7 +40,7 @@
                         name="ctcode"
                         required
                     >
-                        <option value="${sb.ctcode}" disabled selected hidden>
+                        <option value="${sb.ctCode}" disabled selected hidden>
                             카테고리
                         </option>
                         <option value="1">디지털/가전</option>
@@ -82,7 +82,7 @@
                             class="sale-board-write__price--input"
                             type="text"
                             placeholder="가격을 입력해주세요"
-                            name="pprice"
+                            name="pPrice"
                             required
                         />
                     </div>
@@ -96,7 +96,7 @@
                                 <input
                                     class="image--input image-1"
                                     type="file"
-                                    id="pimg1"
+                                    id="pImg1"
                                     name="file"
                                     accept=".jpg, .jpeg, .png"
                                 />
@@ -108,7 +108,7 @@
                                 <input
                                     class="image--input image-2"
                                     type="file"
-                                    id="pimg2"
+                                    id="pImg2"
                                     name="file1"
                                     accept=".jpg, .jpeg, .png"
                                 />
@@ -120,7 +120,7 @@
                                 <input
                                     class="image--input image-3"
                                     type="file"
-                                    id="pimg3"
+                                    id="pImg3"
                                     name="file2"
                                     accept=".jpg, .jpeg, .png"
                                 />
@@ -132,7 +132,7 @@
                                 <input
                                     class="image--input image-4"
                                     type="file"
-                                    id="pimg4"
+                                    id="pImg4"
                                     name="file3"
                                     accept=".jpg, .jpeg, .png"
                                 />
@@ -144,7 +144,7 @@
                                 <input
                                     class="image--input image-5"
                                     type="file"
-                                    id="pimg5"
+                                    id="pImg5"
                                     name="file4"
                                     accept=".jpg, .jpeg, .png"
                                 />
@@ -156,8 +156,8 @@
                     <textarea
                         class="sale-board-write__title--textarea"
                         placeholder="제목을 입력해주세요"
-                        id="ptitle"
-                        name="ptitle"
+                        id="pTitle"
+                        name="pTitle"
                         required
                     ></textarea>
                 </div>
@@ -165,8 +165,8 @@
                     <textarea
                         class="sale-board-write__content--textarea"
                         placeholder="내용을 입력해주세요"
-                        name="pcontent"
-                        id="pcontent"
+                        name="pContent"
+                        id="pContent"
                         required
                     ></textarea>
                 </div>

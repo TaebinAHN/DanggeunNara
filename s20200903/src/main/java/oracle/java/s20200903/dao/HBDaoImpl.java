@@ -35,12 +35,12 @@ public class HBDaoImpl implements HBDao {
 	public HBSaleBoard HBSaleBoardRead(HBSaleBoard sb) {
 		// TODO Auto-generated method stub
 		System.out.println("HBDaoImpl HBSaleBoardRead start...");
-		System.out.println("HBDaoImpl HBSaleBoardRead start... bid : " + sb.getBid() + ", pnum" + sb.getPnum());
+		System.out.println("HBDaoImpl HBSaleBoardRead start... bid : " + sb.getbId() + ", pnum" + sb.getpNum());
 		HBSaleBoard sb1 = new HBSaleBoard();
 		try {
 			sb1 = sqlSessionTemplate.selectOne("HBSaleBoardSelOne", sb);
-			System.out.println("HBDaoImpl HBSaleBoardRead getpTitle -> " + sb1.getPtitle());
-			System.out.println("HBDaoImpl HBSaleBoardRead getpTitle -> Pimg2 : " + sb1.getPimg2());
+			System.out.println("HBDaoImpl HBSaleBoardRead getpTitle -> " + sb1.getpTitle());
+			System.out.println("HBDaoImpl HBSaleBoardRead getpTitle -> Pimg2 : " + sb1.getpImg2());
 		} catch (Exception e) {
 			System.out.println("HBDaoImpl HBSaleBoardRead Exception -> " + e.getMessage());
 		}
@@ -48,10 +48,10 @@ public class HBDaoImpl implements HBDao {
 	}
 	
 	@Override
-	public void updateViewCnt(int pnum) {
+	public void updateViewCnt(int pNum) {
 		// TODO Auto-generated method stub
 		System.out.println("HBDaoImpl HBSaleBoardPhitUpdate start...");
-		sqlSessionTemplate.update("updateViewCnt", pnum);
+		sqlSessionTemplate.update("updateViewCnt", pNum);
 	}
 
 
@@ -91,16 +91,16 @@ public class HBDaoImpl implements HBDao {
 	@Override
 	public HBSaleBoard HBSaleBoardUpdate(HBSaleBoard sb) {
 		// TODO Auto-generated method stub
-		HBSaleBoard resultSb = new HBSaleBoard();
+		HBSaleBoard resultSb1 = new HBSaleBoard();
 		
 		try {
-			resultSb = sqlSessionTemplate.selectOne("HBSaleBoardUpdate", sb);
-			System.out.println("HBDaoImpl HBSaleBoardUpdate start -> " + resultSb);
+			resultSb1 = sqlSessionTemplate.selectOne("HBSaleBoardUpdate", sb);
+			System.out.println("HBDaoImpl HBSaleBoardUpdate start -> " + resultSb1);
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("HBDaoImpl HBSaleBoardUpdate start -> " + e.getMessage());
 		}
-		return resultSb;
+		return resultSb1;
 	}
 	
 	
@@ -119,6 +119,40 @@ public class HBDaoImpl implements HBDao {
 			System.out.println("HBDaoImpl update start...." + e.getMessage());
 		}
 		return result;
+	}
+
+	@Override
+	public int likeUpdate(HBSaleBoard sb) {
+		System.out.println("HBDaoImpl HBSaleBoardPhitUpdate start...");
+		return sqlSessionTemplate.update("updateViewCnt", sb);
+	}
+
+/*	@Override
+	public void like_checkupdate(int pnum) {
+		// TODO Auto-generated method stub
+		System.out.println("HBDaoImpl HBSaleBoardPhitUpdate start...");
+		sqlSessionTemplate.update("like_checkupdate", pnum);
+	}*/
+
+	@Override
+	public void dlike_checkUpdate(HBSaleBoard sb) {
+		// TODO Auto-generated method stub
+		System.out.println("HBDaoImpl HBSaleBoardPhitUpdate start...");
+		sqlSessionTemplate.update("dlike_checkupdate", sb);
+	}
+
+	@Override
+	public void likeUpdateCnt(int pNum) {
+		// TODO Auto-generated method stub
+		System.out.println("HBDaoImpl HBSaleBoardPhitUpdate start...");
+		sqlSessionTemplate.update("likeUpdateCnt", pNum);
+	}
+
+	@Override
+	public void dlikeUpdateCnt(int pNum) {
+		// TODO Auto-generated method stub
+		System.out.println("HBDaoImpl HBSaleBoardPhitUpdate start...");
+		sqlSessionTemplate.update("dlikeUpdateCnt", pNum);
 	}
 
 

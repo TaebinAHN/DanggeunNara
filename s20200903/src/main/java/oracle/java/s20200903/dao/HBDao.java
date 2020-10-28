@@ -18,6 +18,11 @@ public interface HBDao {
 	HBSaleBoard         HBSaleBoardUpdate(HBSaleBoard sb);
 	int                 update(HBSaleBoard sb);
 	int                 delete(HBSaleBoard sb);
+	int                 likeUpdate(HBSaleBoard sb);
+//	void                like_checkupdate(int pnum);
+	void                dlike_checkUpdate(HBSaleBoard sb);
+	void                likeUpdateCnt(int pnum);
+	void                dlikeUpdateCnt(int pnum);
 	
 	
 	

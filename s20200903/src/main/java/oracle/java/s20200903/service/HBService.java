@@ -17,6 +17,9 @@ public interface HBService {
 	HBSaleBoard          HBSaleBoardUpdate(HBSaleBoard sb);
 	int                  update(HBSaleBoard sb);
 	int                  delete(HBSaleBoard sb);
+	int                  likeUpdate(HBSaleBoard sb);
+//	void                 like_checkUpdate(HBSaleBoard sb);
+	void                 dlike_checkUpdate(HBSaleBoard sb);
 
 	
 	

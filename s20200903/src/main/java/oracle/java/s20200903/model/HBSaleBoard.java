@@ -6,22 +6,22 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class HBSaleBoard {
 
-	private int pnum;
-	private int bid;
-	private String mid;
-	private int ctcode;
-	private int pscode;
-	private String ptitle;
-	private int pprice;
-	private Date pdate;
-	private String pcontent;
-	private int phit;
-	private int ppicks;
-	private String pimg1;
-	private String pimg2;
-	private String pimg3;
-	private String pimg4;
-	private String pimg5;
+	private int pNum;
+	private int bId;
+	private String mId;
+	private int ctCode;
+	private int psCode;
+	private String pTitle;
+	private int pPrice;
+	private Date pDate;
+	private String pContent;
+	private int pHit;
+	private int pPicks;
+	private String pImg1;
+	private String pImg2;
+	private String pImg3;
+	private String pImg4;
+	private String pImg5;
 
 	private MultipartFile file;
 	
@@ -32,192 +32,259 @@ public class HBSaleBoard {
 	private int end;
 	
 	
-	private String mnick;
-	private String mname;
-	private String maddr;
-	private String mstatus;
-	private int mlevel;
-	private String ctkinds;	
-	private String pstatus;
-		
+	private String mNick;
+	private String mName;
+	private String mAddr;
+	private String mSatus;
+	private int mLevel;
+	private String ctKinds;	
+	private String pStatus;
 	
+	private int pLike_check;
+
+	public int getpNum() {
+		return pNum;
+	}
+
+	public void setpNum(int pNum) {
+		this.pNum = pNum;
+	}
+
+	public int getbId() {
+		return bId;
+	}
+
+	public void setbId(int bId) {
+		this.bId = bId;
+	}
+
+	public String getmId() {
+		return mId;
+	}
+
+	public void setmId(String mId) {
+		this.mId = mId;
+	}
+
+	public int getCtCode() {
+		return ctCode;
+	}
+
+	public void setCtCode(int ctCode) {
+		this.ctCode = ctCode;
+	}
+
+	public int getPsCode() {
+		return psCode;
+	}
+
+	public void setPsCode(int psCode) {
+		this.psCode = psCode;
+	}
+
+	public String getpTitle() {
+		return pTitle;
+	}
+
+	public void setpTitle(String pTitle) {
+		this.pTitle = pTitle;
+	}
+
+	public int getpPrice() {
+		return pPrice;
+	}
+
+	public void setpPrice(int pPrice) {
+		this.pPrice = pPrice;
+	}
+
+	public Date getpDate() {
+		return pDate;
+	}
+
+	public void setpDate(Date pDate) {
+		this.pDate = pDate;
+	}
+
+	public String getpContent() {
+		return pContent;
+	}
+
+	public void setpContent(String pContent) {
+		this.pContent = pContent;
+	}
+
+	public int getpHit() {
+		return pHit;
+	}
+
+	public void setpHit(int pHit) {
+		this.pHit = pHit;
+	}
+
+	public int getpPicks() {
+		return pPicks;
+	}
+
+	public void setpPicks(int pPicks) {
+		this.pPicks = pPicks;
+	}
+
+	public String getpImg1() {
+		return pImg1;
+	}
+
+	public void setpImg1(String pImg1) {
+		this.pImg1 = pImg1;
+	}
+
+	public String getpImg2() {
+		return pImg2;
+	}
+
+	public void setpImg2(String pImg2) {
+		this.pImg2 = pImg2;
+	}
+
+	public String getpImg3() {
+		return pImg3;
+	}
+
+	public void setpImg3(String pImg3) {
+		this.pImg3 = pImg3;
+	}
+
+	public String getpImg4() {
+		return pImg4;
+	}
+
+	public void setpImg4(String pImg4) {
+		this.pImg4 = pImg4;
+	}
+
+	public String getpImg5() {
+		return pImg5;
+	}
+
+	public void setpImg5(String pImg5) {
+		this.pImg5 = pImg5;
+	}
+
 	public MultipartFile getFile() {
 		return file;
 	}
+
 	public void setFile(MultipartFile file) {
 		this.file = file;
 	}
-	
 
-	public String getMname() {
-		return mname;
-	}
-	public void setMname(String mname) {
-		this.mname = mname;
-	}
-	public String getMstatus() {
-		return mstatus;
-	}
-	public void setMstatus(String mstatus) {
-		this.mstatus = mstatus;
-	}
-	public String getMnick() {
-		return mnick;
-	}
-	public void setMnick(String mnick) {
-		this.mnick = mnick;
-	}
-	public String getMaddr() {
-		return maddr;
-	}
-	public void setMaddr(String maddr) {
-		this.maddr = maddr;
-	}
-	public int getMlevel() {
-		return mlevel;
-	}
-	public void setMlevel(int mlevel) {
-		this.mlevel = mlevel;
-	}
-	public String getCtkinds() {
-		return ctkinds;
-	}
-	public void setCtkinds(String ctkinds) {
-		this.ctkinds = ctkinds;
-	}
-	public String getPstatus() {
-		return pstatus;
-	}
-	public void setPstatus(String pstatus) {
-		this.pstatus = pstatus;
-	}
-	public int getPnum() {
-		return pnum;
-	}
-	public void setPnum(int pnum) {
-		this.pnum = pnum;
-	}
-	public int getBid() {
-		return bid;
-	}
-	public void setBid(int bid) {
-		this.bid = bid;
-	}
-	public String getMid() {
-		return mid;
-	}
-	public void setMid(String mid) {
-		this.mid = mid;
-	}
-	public int getCtcode() {
-		return ctcode;
-	}
-	public void setCtcode(int ctcode) {
-		this.ctcode = ctcode;
-	}
-	public int getPscode() {
-		return pscode;
-	}
-	public void setPscode(int pscode) {
-		this.pscode = pscode;
-	}
-	public String getPtitle() {
-		return ptitle;
-	}
-	public void setPtitle(String ptitle) {
-		this.ptitle = ptitle;
-	}
-	public int getPprice() {
-		return pprice;
-	}
-	public void setPprice(int pprice) {
-		this.pprice = pprice;
-	}
-	public Date getPdate() {
-		return pdate;
-	}
-	public void setPdate(Date pdate) {
-		this.pdate = pdate;
-	}
-	public String getPcontent() {
-		return pcontent;
-	}
-	public void setPcontent(String pcontent) {
-		this.pcontent = pcontent;
-	}
-	public int getPhit() {
-		return phit;
-	}
-	public void setPhit(int phit) {
-		this.phit = phit;
-	}
-	public int getPpicks() {
-		return ppicks;
-	}
-	public void setPpicks(int ppicks) {
-		this.ppicks = ppicks;
-	}
-	public String getPimg1() {
-		return pimg1;
-	}
-	public void setPimg1(String pimg1) {
-		this.pimg1 = pimg1;
-	}
-	public String getPimg2() {
-		return pimg2;
-	}
-	public void setPimg2(String pimg2) {
-		this.pimg2 = pimg2;
-	}
-	public String getPimg3() {
-		return pimg3;
-	}
-	public void setPimg3(String pimg3) {
-		this.pimg3 = pimg3;
-	}
-	public String getPimg4() {
-		return pimg4;
-	}
-	public void setPimg4(String pimg4) {
-		this.pimg4 = pimg4;
-	}
-	public String getPimg5() {
-		return pimg5;
-	}
-	public void setPimg5(String pimg5) {
-		this.pimg5 = pimg5;
-	}
 	public String getSertch() {
 		return sertch;
 	}
+
 	public void setSertch(String sertch) {
 		this.sertch = sertch;
 	}
+
 	public String getKeyword() {
 		return keyword;
 	}
+
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
+
 	public String getPageNum() {
 		return pageNum;
 	}
+
 	public void setPageNum(String pageNum) {
 		this.pageNum = pageNum;
 	}
+
 	public int getStart() {
 		return start;
 	}
+
 	public void setStart(int start) {
 		this.start = start;
 	}
+
 	public int getEnd() {
 		return end;
 	}
+
 	public void setEnd(int end) {
 		this.end = end;
 	}
+
+	public String getmNick() {
+		return mNick;
+	}
+
+	public void setmNick(String mNick) {
+		this.mNick = mNick;
+	}
+
+	public String getmName() {
+		return mName;
+	}
+
+	public void setmName(String mName) {
+		this.mName = mName;
+	}
+
+	public String getmAddr() {
+		return mAddr;
+	}
+
+	public void setmAddr(String mAddr) {
+		this.mAddr = mAddr;
+	}
+
+	public String getmSatus() {
+		return mSatus;
+	}
+
+	public void setmSatus(String mSatus) {
+		this.mSatus = mSatus;
+	}
+
+	public int getmLevel() {
+		return mLevel;
+	}
+
+	public void setmLevel(int mLevel) {
+		this.mLevel = mLevel;
+	}
+
+	public String getCtKinds() {
+		return ctKinds;
+	}
+
+	public void setCtKinds(String ctKinds) {
+		this.ctKinds = ctKinds;
+	}
+
+	public String getpStatus() {
+		return pStatus;
+	}
+
+	public void setpStatus(String pStatus) {
+		this.pStatus = pStatus;
+	}
+
+	public int getpLike_check() {
+		return pLike_check;
+	}
+
+	public void setpLike_check(int pLike_check) {
+		this.pLike_check = pLike_check;
+	}
 	
+	
+	
+
 	
 	
 	

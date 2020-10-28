@@ -24,11 +24,6 @@ public class FileUtils {
 
 	public List<HBSaleBoard> parseInsertFileInfo(HBSaleBoard sb, HttpServletRequest reqeust) throws Exception{
 		
-		/*
-			Iterator은 데이터들의 집합체? 에서 컬렉션으로부터 정보를 얻어올 수 있는 인터페이스입니다.
-			List나 배열은 순차적으로 데이터의 접근이 가능하지만, Map등의 클래스들은 순차적으로 접근할 수가 없습니다.
-			Iterator을 이용하여 Map에 있는 데이터들을 while문을 이용하여 순차적으로 접근합니다.
-		*/
 		
 		MultipartHttpServletRequest mpRequest=(MultipartHttpServletRequest)reqeust;
 		Iterator<String> iterator = mpRequest.getFileNames();
@@ -85,25 +80,25 @@ public class FileUtils {
 				
 				if(i==1) {
 					System.out.println("originalFileName1 : "+reName);
-					sb.setPimg1(reName);
+					sb.setpImg1(reName);
 				}
 				if(i==2) {
 					System.out.println("originalFileName2 : "+reName);
-					sb.setPimg2(reName);
+					sb.setpImg2(reName);
 				}
 				if(i==3) {
 					System.out.println("originalFileName3 : "+reName);
-					sb.setPimg3(reName);
+					sb.setpImg3(reName);
 				}
 				if(i==4) {
 					System.out.println("originalFileName4 : "+reName);
-					sb.setPimg4(reName);
+					sb.setpImg4(reName);
 				}
 				if(i==5) {
 					System.out.println("originalFileName5 : "+reName);
-					sb.setPimg5(reName);
+					sb.setpImg5(reName);
 				}
-			}
+			} 
 			i++;
 		}
 		list.add(sb);

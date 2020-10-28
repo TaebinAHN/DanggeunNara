@@ -73,9 +73,11 @@
                             <!-- 불러오는 게시글 갯수불러오기 -->
                             <span class="to-sale__count">${pg.total}</span>
                         </p>
-                        <a href="HBSaleBoardWrite.do?bid=1"
+                        <c:if test="${sessionScope.mId != null}">
+                        <a href="HBSaleBoardWrite.do?bid=1&mId=${sessionScope.mId}"
                             ><div class="to-sale__write">글작성</div></a
                         >
+                        </c:if>
                     </div>
                 </div>
                 <!-- 각 최신글 9 ~ 12개만 띄어주시면 됩니다 -->
@@ -83,35 +85,36 @@
                     <!-- 태그 안에 있는 더미 데이터들은 틀을 보기 위함이며 실제 작업시엔 해당 데이터를 불러 올 수 있도록 변경 부탁드립니다. -->
                     <c:forEach items="${list}" var="sb">
                     <article class="to-sale__article">                    	
-	                        <a href="HBSaleBoardRead.do?bid=${sb.bid}&pnum=${sb.pnum}">
+	                        <a href="HBSaleBoardRead.do?bId=${sb.bId}&pNum=${sb.pNum}&mId=${sessionScope.mId}">
 	                            <div class="to-sale__content--thumbnail">
 	                                <img
-	                                    src="/s20200903/img/sale/${sb.pimg1}"
+	                                    src="/s20200903/img/sale/${sb.pImg1}"
 	                                    alt="img-thumbnail"
 	                                />
 	                            </div>
 	                            <div class="to-sale__content--text">
 	                                <h1 class="to-sale__content--text__title">
-	                                    ${sb.ptitle}
+	                                    ${sb.pTitle}
 	                                </h1>
 	                                <div class="to-sale__content--text__date">
 	                                    <div class="to-sale__content--date">
-	                                       <fmt:formatDate value="${sb.pdate}" pattern="yyyy-MM-dd"/>
+	                                       <fmt:formatDate value="${sb.pDate}" pattern="yyyy-MM-dd"/>
 	                                    </div>
 	                                    <div class="to-sale__content--hit">
-	                                        	조회수 ${sb.phit}
+	                                        	조회수 ${sb.pHit}
 	                                    </div>
 	                                </div>
 	                                <div class="to-sale__content--text__price">
 	                                    <div class="to-sale__content--price">
-	                                        <fmt:formatNumber value="${sb.pprice}" pattern="#,###" />원
+	                                        <fmt:formatNumber value="${sb.pPrice}" pattern="#,###" />원
 	                                    </div>
 	                                    <div class="to-sale__content--picks">
 	                                        <img
 	                                            src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/like-8111aa74d4b1045d7d5943a901896992574dd94c090cef92c26ae53e8da58260.svg"
 	                                            alt="picks"
+	                                            
 	                                        />
-	                                        ${sb.ppicks}
+	                                        ${sb.pPicks}
 	                                    </div>
 	                                </div>
 	                            </div>
@@ -129,11 +132,11 @@
 						</li>
 					</a>
                     	<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
-							<a href="list.do?sword=${bid }&currentPage=${i}">
+							<a href="list.do?sword=${bId }&currentPage=${i}">
 							<li class="page-num-container__num">${i}</li>
 							</a>
 						</c:forEach>
-					<a href="list.do?sword=${bid }&currentPage=${i+1}">
+					<a href="list.do?sword=${bId }&currentPage=${i+1}">
 						<li class="page-num__right-btn page-num-container__btn">
 							<i class="fas fa-chevron-right"></i>
 						</li>

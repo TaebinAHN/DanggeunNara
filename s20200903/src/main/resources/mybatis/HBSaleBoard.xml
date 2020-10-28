@@ -10,26 +10,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*)
 		from post
 		where 
-		bid=1
+		bId=1
 	</select>
 	
 	<!-- 판매글  List-->
 	<select id="HBListAll" parameterType="HBSaleBoard" resultType="HBSaleBoard">
 		select *
 		from (select rownum rn, a.*
-		from (select * from HBJoin where bid=1 order by pnum desc) a)
+		from (select * from HBJoin where bId=1 order by pNum desc) a)
 		where rn between #{start} and #{end}
 	</select>
 	
 	<!-- 판매글 상세보기 -->	
 	<select id="HBSaleBoardSelOne" parameterType="HBSaleBoard" resultType="HBSaleBoard">
-		select * From HBJoin Where bid=#{bid} and pnum=#{pnum} 
+		select * From HBJoin Where bId=#{bId} and pNum=#{pNum} 
 	</select>
 	
 	<!-- 판매글  조회수-->
 	<update id="updateViewCnt">
-		update post set phit=phit+1 where pnum=#{pnum} and
-		bid=1
+		update post set pHit=pHit+1 where pNum=#{pNum} and
+		bId=1
 	</update>
 	
 	
@@ -41,8 +41,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectManager" resultType="HBSaleBoard">
 		select *
 		from post
-		where bid
-		in(select bid from post)
+		where bId
+		in(select bId from post)
 	</select>
 
 	<insert id="insert" parameterType="HBSaleBoard">
@@ -50,41 +50,75 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			SELECT NVL(MAX(PNUM),0)+1 FROM post WHERE BID=1
 		</selectKey>
 		<![CDATA[ INSERT INTO post
-		VALUES(1, #{pnum}, #{mid}, #{ctcode}, #{pscode}, #{ptitle}, #{pprice}, sysdate, #{pcontent}, #{phit}, #{ppicks}, 
-			     #{pimg1}, #{pimg2}, #{pimg3}, #{pimg4}, #{pimg5})
+		VALUES(1, #{pNum}, #{mId}, #{ctCode}, #{psCode}, #{pTitle}, #{pPrice}, sysdate, #{pContent}, #{pHit}, #{pPicks}, 
+			     #{pImg1}, #{pImg2}, #{pImg3}, #{pImg4}, #{pImg5}, #{pLike_check})
 			     ]]>
 	</insert>
 
 	<select id="HBSaleBoardUpdate" parameterType="HBSaleBoard" resultType="HBSaleBoard">
-		select * From HBJoin where bid=1 and pnum=#{pnum}
+		select * From HBJoin where bId=1 and pNum=#{pNum}
 	</select>
 	
 	<update id="update" parameterType="HBSaleBoard">
-		update post set ctcode=#{ctcode}, pscode=#{pscode}, pprice=#{pprice}, ptitle=#{ptitle}, pdate=sysdate, pcontent=#{pcontent},
-					pimg1=#{pimg1}, pimg2=#{pimg2}, pimg3=#{pimg3}, pimg4=#{pimg4}, pimg5=#{pimg5}
-				where bid=1 and pnum=#{pnum}
+		update post set 
+		ctCode=#{ctCode}
+		, psCode=#{psCode}
+		, pPrice=#{pPrice}
+		, pTitle=#{pTitle}
+		, pDate=sysdate
+		, pContent=#{pcontent}
+		<if test="pImg1!=null">
+			, pImg1=#{pImg1}
+		</if>
+		<if test="pImg2!=null">
+			, pImg2=#{pImg2}
+		</if>
+		<if test="pImg3!=null">
+			, pImg3=#{pImg3}
+		</if>
+		<if test="pImg4!=null">
+			, pImg4=#{pImg4}
+		</if>
+		<if test="pImg5!=null">
+			, pImg5=#{pImg5}
+		</if>
+		, pLike_check=#{pLike_check}
+		where bId=1 and pNum=#{pNum}
 	</update>
 
 	<delete id="delete" parameterType="HBSaleBoard">
 		delete from post where
-		bid=1 and pnum=#{pnum}
+		bid=1 and pNum=#{pNum}
 	</delete>
 	
-
-	<select id="TBSaletotal" resultType="int">
-     	select count(*) from post where bid=1
-    </select>
- 
-    <select id="toSaleList" parameterType="HBSaleBoard" resultType="HBSaleBoard">
-		SELECT * 
-		FROM 
-			(SELECT rownum rn, a.*
-			 FROM (SELECT *    
-				  FROM hbjoin 
-				  WHERE bid=1
-				  ORDER BY pnum desc) a)
-		WHERE rn BETWEEN #{start} AND #{end}
-    </select>	
+	<update id="likeUpdateCnt" parameterType="HBSaleBoard">
+		update post set pPicks=pPicks+1 
+		where pNum=#{pNum} and
+		bid=1
+	</update>
+	
+	<update id="dlikeUpdateCnt" parameterType="HBSaleBoard">
+		update post set pPicks=pPicks-1 
+		where pNum=#{pNum} and
+		bid=1
+	</update>
+		
+	<update id="likeUpdate" parameterType="HBSaleBoard">
+    UPDATE post
+    SET pLike_check = pLike_check + 1 
+    WHERE mId=#{mId}
+  </update>
+  
+  <update id="dlike_checkUpdate" parameterType="HBSaleBoard">
+    UPDATE post
+    SET pLike_check = pLike_check - 1 
+    WHERE mId=#{mId} AND bId=#{bId}
+  </update>
 
 
 </mapper>
+
+
+
+
+

@@ -15,7 +15,7 @@
         <script
             src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"
             defer
-        ></script>
+        ></script>        
         <link
             rel="shortcut icon"
             type="image/x-icon"
@@ -38,38 +38,38 @@
                     <div class="slider">
                         <div class="slide showing">
                             <img
-                                src="/s20200903/img/sale/${sb.pimg1}"
+                                src="/s20200903/img/sale/${sb.pImg1}"
                                 alt="img-thumbnail1"
                             />
                         </div>
-                        <c:if test="${sb.pimg2 != null }">
+                        <c:if test="${sb.pImg2 != null }">
                         <div class="slide">
                             <img
-                                src="/s20200903/img/sale/${sb.pimg2}"
+                                src="/s20200903/img/sale/${sb.pImg2}"
                                 alt="img-thumbnail2"
                             />
                         </div>
                         </c:if>
-                        <c:if test="${sb.pimg3 != null }">
+                        <c:if test="${sb.pImg3 != null }">
                         <div class="slide">
                             <img
-                                src="/s20200903/img/sale/${sb.pimg3}"
+                                src="/s20200903/img/sale/${sb.pImg3}"
                                 alt="img-thumbnail3"
                             />
                         </div>
                         </c:if>
-                        <c:if test="${sb.pimg4 != null }">
+                        <c:if test="${sb.pImg4 != null }">
                         <div class="slide">
                             <img
-                                src="/s20200903/img/sale/${sb.pimg4}"
+                                src="/s20200903/img/sale/${sb.pImg4}"
                                 alt="img-thumbnail14"
                             />
                         </div>
                         </c:if>
-                        <c:if test="${sb.pimg5 != null }">
+                        <c:if test="${sb.pImg5 != null }">
                         <div class="slide">
                             <img
-                                src="/s20200903/img/sale/${sb.pimg5}"
+                                src="/s20200903/img/sale/${sb.pImg5}"
                                 alt="img-thumbnail5"
                             />
                         </div>
@@ -103,34 +103,36 @@
                 </div>
                 <div class="sale-board-read__content">
                     <h1 class="sale-board-read__content--title">
-                        ${sb.ptitle}
+                        ${sb.pTitle}
                     </h1>
                     <div class="sale-board-read__content--detail">
                         <!-- 실제 게시글에 등록된 주소, 카테고리 -->
                         <span
                             >경기도 평택시 서정동
                             <div class="vertical"></div>
-                            	${sb.ctkinds }
+                            	${sb.ctKinds }
                             <div class="vertical"></div>
-                            	${sb.pstatus }
+                            	${sb.pStatus }
                         </span>
                     </div>
-                    <div class="sale-board-read__content--price"><fmt:formatNumber value="${sb.pprice}" pattern="#,###" />원</div>
+                    <div class="sale-board-read__content--price"><fmt:formatNumber value="${sb.pPrice}" pattern="#,###" />원</div>
                     <div class="sale-board-read__content--article">
-                       ${sb.pcontent }
+                       ${sb.pContent }
                     </div>
                     <div class="sale-board-read__content--hits">
-                        <fmt:formatDate value="${sb.pdate}" pattern="yyyy-MM-dd"/> · 조회수 ${sb.phit}
+                        <fmt:formatDate value="${sb.pDate}" pattern="yyyy-MM-dd"/> · 조회수 ${sb.pHit}
                     </div>
                     <div
-                        class="sale-board-read__content--counts picks-container"
+                        class="sale-board-read__content--counts picks-container"                        
                     >
-                        <img
-                            class="picks-ico"
-                            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iMjYiIGhlaWdodD0iMjYiCnZpZXdCb3g9IjAgMCAxNzIgMTcyIgpzdHlsZT0iIGZpbGw6IzAwMDAwMDsiPjxnIHRyYW5zZm9ybT0iIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9Im5vbnplcm8iIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtZGFzaGFycmF5PSIiIHN0cm9rZS1kYXNob2Zmc2V0PSIwIiBmb250LWZhbWlseT0ibm9uZSIgZm9udC13ZWlnaHQ9Im5vbmUiIGZvbnQtc2l6ZT0ibm9uZSIgdGV4dC1hbmNob3I9Im5vbmUiIHN0eWxlPSJtaXgtYmxlbmQtbW9kZTogbm9ybWFsIj48cGF0aCBkPSJNMCwxNzJ2LTE3MmgxNzJ2MTcyeiIgZmlsbD0ibm9uZSI+PC9wYXRoPjxnIGZpbGw9IiMwMDAwMDAiPjxwYXRoIGQ9Ik01MS4wNjI1LDI2Ljg3NWMtMjIuMjM0ODYsMCAtNDAuMzEyNSwxOC4yODc2IC00MC4zMTI1LDQwLjMxMjVjMCw3LjY4NDU3IDMuNDg1MzUsMTQuMzQwMzMgNi43MTg3NSwxOS4xNDg0NGMzLjIzMzQsNC44MDgxIDYuNTUwNzgsNy44OTQ1MyA2LjU1MDc4LDcuODk0NTNsNTguMTE3MTksNTguMjg1MTZsMy44NjMyOCwzLjg2MzI4bDMuODYzMjgsLTMuODYzMjhsNTguMTE3MTksLTU4LjI4NTE2YzAsMCAxMy4yNjk1MywtMTEuNjk0ODIgMTMuMjY5NTMsLTI3LjA0Mjk3YzAsLTIyLjAyNDkgLTE4LjA3NzY0LC00MC4zMTI1IC00MC4zMTI1LC00MC4zMTI1Yy0xOC40NTU1NywwIC0zMC4zMzkzNSwxMS4xMDY5MyAtMzQuOTM3NSwxNS43ODkwNmMtNC41OTgxNSwtNC42ODIxMyAtMTYuNDgxOTMsLTE1Ljc4OTA2IC0zNC45Mzc1LC0xNS43ODkwNnpNNTEuMDYyNSwzNy42MjVjMTYuMDYyMDEsMCAzMC45MDYyNSwxNS42MjEwOSAzMC45MDYyNSwxNS42MjEwOWw0LjAzMTI1LDQuNTM1MTZsNC4wMzEyNSwtNC41MzUxNmMwLDAgMTQuODQ0MjQsLTE1LjYyMTA5IDMwLjkwNjI1LC0xNS42MjEwOWMxNi4zNTU5NiwwIDI5LjU2MjUsMTMuNDE2NTEgMjkuNTYyNSwyOS41NjI1YzAsOC4yOTM0NiAtMTAuMDc4MTIsMTkuNDg0MzggLTEwLjA3ODEyLDE5LjQ4NDM4bC01NC40MjE4Nyw1NC40MjE4OGwtNTQuNDIxODcsLTU0LjQyMTg3YzAsMCAtMi42MDM1MiwtMi40OTg1NCAtNS4yMDcwMywtNi4zODI4MWMtMi42MDM1MiwtMy44ODQyOCAtNC44NzEwOSwtOC45NDQzMyAtNC44NzEwOSwtMTMuMTAxNTZjMCwtMTYuMTQ1OTkgMTMuMjA2NTQsLTI5LjU2MjUgMjkuNTYyNSwtMjkuNTYyNXoiPjwvcGF0aD48L2c+PC9nPjwvZz48L3N2Zz4="
-                            alt="picks"
-                        />
-                    </div>
+                    <input type="hidden" name="mId" id="mId" value="${sessionScope.mId}">
+                    <input type="hidden" name="bId" id="bId" value="${sb.bId}">
+                    <input type="hidden" name="pNum" id="pNum" value="${sb.pNum}">
+                    <img class="picks-ico"
+		     				 src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iMjYiIGhlaWdodD0iMjYiCnZpZXdCb3g9IjAgMCAxNzIgMTcyIgpzdHlsZT0iIGZpbGw6IzAwMDAwMDsiPjxnIHRyYW5zZm9ybT0iIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9Im5vbnplcm8iIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtZGFzaGFycmF5PSIiIHN0cm9rZS1kYXNob2Zmc2V0PSIwIiBmb250LWZhbWlseT0ibm9uZSIgZm9udC13ZWlnaHQ9Im5vbmUiIGZvbnQtc2l6ZT0ibm9uZSIgdGV4dC1hbmNob3I9Im5vbmUiIHN0eWxlPSJtaXgtYmxlbmQtbW9kZTogbm9ybWFsIj48cGF0aCBkPSJNMCwxNzJ2LTE3MmgxNzJ2MTcyeiIgZmlsbD0ibm9uZSI+PC9wYXRoPjxnIGZpbGw9IiMwMDAwMDAiPjxwYXRoIGQ9Ik01MS4wNjI1LDI2Ljg3NWMtMjIuMjM0ODYsMCAtNDAuMzEyNSwxOC4yODc2IC00MC4zMTI1LDQwLjMxMjVjMCw3LjY4NDU3IDMuNDg1MzUsMTQuMzQwMzMgNi43MTg3NSwxOS4xNDg0NGMzLjIzMzQsNC44MDgxIDYuNTUwNzgsNy44OTQ1MyA2LjU1MDc4LDcuODk0NTNsNTguMTE3MTksNTguMjg1MTZsMy44NjMyOCwzLjg2MzI4bDMuODYzMjgsLTMuODYzMjhsNTguMTE3MTksLTU4LjI4NTE2YzAsMCAxMy4yNjk1MywtMTEuNjk0ODIgMTMuMjY5NTMsLTI3LjA0Mjk3YzAsLTIyLjAyNDkgLTE4LjA3NzY0LC00MC4zMTI1IC00MC4zMTI1LC00MC4zMTI1Yy0xOC40NTU1NywwIC0zMC4zMzkzNSwxMS4xMDY5MyAtMzQuOTM3NSwxNS43ODkwNmMtNC41OTgxNSwtNC42ODIxMyAtMTYuNDgxOTMsLTE1Ljc4OTA2IC0zNC45Mzc1LC0xNS43ODkwNnpNNTEuMDYyNSwzNy42MjVjMTYuMDYyMDEsMCAzMC45MDYyNSwxNS42MjEwOSAzMC45MDYyNSwxNS42MjEwOWw0LjAzMTI1LDQuNTM1MTZsNC4wMzEyNSwtNC41MzUxNmMwLDAgMTQuODQ0MjQsLTE1LjYyMTA5IDMwLjkwNjI1LC0xNS42MjEwOWMxNi4zNTU5NiwwIDI5LjU2MjUsMTMuNDE2NTEgMjkuNTYyNSwyOS41NjI1YzAsOC4yOTM0NiAtMTAuMDc4MTIsMTkuNDg0MzggLTEwLjA3ODEyLDE5LjQ4NDM4bC01NC40MjE4Nyw1NC40MjE4OGwtNTQuNDIxODcsLTU0LjQyMTg3YzAsMCAtMi42MDM1MiwtMi40OTg1NCAtNS4yMDcwMywtNi4zODI4MWMtMi42MDM1MiwtMy44ODQyOCAtNC44NzEwOSwtOC45NDQzMyAtNC44NzEwOSwtMTMuMTAxNTZjMCwtMTYuMTQ1OTkgMTMuMjA2NTQsLTI5LjU2MjUgMjkuNTYyNSwtMjkuNTYyNXoiPjwvcGF0aD48L2c+PC9nPjwvZz48L3N2Zz4=' 
+		     			     alt="picks"
+		     			     />   
+                    </div>              
                 </div>
                 <div class="sale-board-read__btn-container">
                     <a href="list.do"
@@ -138,19 +140,21 @@
                             목록
                         </div></a
                     >
-                    <a href="delete.do?bid=${sb.bid }&pnum=${sb.pnum }">
+                    <c:if test="${sessionScope.mId != null}">
+                    <a href="delete.do?bId=${sb.bId }&pNum=${sb.pNum }&?mId=${sessionScope.mId}">
                     <input
                         class="sale-board-read__delete"
                         type="button"
                         value="삭제"
                         
                     /></a>
-                    <a href="HBSaleBoardUpdate.do?bid=${sb.bid }&pnum=${sb.pnum }">
+                    <a href="HBSaleBoardUpdate.do?bId=${sb.bId }&pNum=${sb.pNum }&?mId=${sessionScope.mId}">
                     <input
                         class="sale-board-read__update"
                         type="button"
                         value="수정"
                     /></a>
+                    </c:if>
                 </div>
             </div>
         </article>

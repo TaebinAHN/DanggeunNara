@@ -16,20 +16,7 @@
             src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"
             defer
         ></script>
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
-        
-         <script type="text/javascript">
-         
-       //삭제 버튼 누르면 삭제할 것이냐고 묻고 삭제한다고 하면 주소이동(BoardController의 remove 메소드 호출)
-       	$(function(){
-       		$('#btn-del').click(function(){
-       			if(confirm("Are u sure?")){
-       				self.location.href = "HBSaleBoardUpdate.do?bid=${sb.bid}&pnum=${sb.pnum}";
-       			}
-       		});
-       	});
-        </script>
-        
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>        
         <link
             rel="shortcut icon"
             type="image/x-icon"
@@ -46,8 +33,8 @@
         <article class="article">
             <div class="article__sale-board-update">   
             <form method="post" action="HBSaleBoardUpdatePro.do" enctype="multipart/form-data">   
-            	<input type="hidden" name="bid" value="${sb.bid }"/>   
-            	<input type="hidden" name="pnum" value="${sb.pnum }"/>   
+            	<input type="hidden" name="bId" value="${sb.bId }"/>   
+            	<input type="hidden" name="pNum" value="${sb.pNum }"/>   
                 <!-- 게시글에대한 카테고리 불러오기 -->
                 <div class="sale-board-update__sort">
                     <select
@@ -55,7 +42,7 @@
                         name="ctcode"
                         required
                     >
-                    	<option value="${sb.ctcode}" disabled selected hidden>${sb.ctkinds}</option>
+                    	<option value="${sb.ctcode}" disabled selected hidden>${sb.ctKinds}</option>
                         <option value="1">디지털/가전</option>
                         <option value="2">가구/인테리어</option>
                         <option value="3">유아동/유아도서</option>
@@ -75,7 +62,7 @@
                         name="pscode"
                         required
                     >
-                    	<option value="${sb.pscode }" selected hidden>${sb.pstatus}</option>
+                    	<option value="${sb.psCode }" selected hidden>${sb.psTatus}</option>
                         <option value="1">거래가능</option>
                         <option value="2">거래중</option>
                         <option value="3">거래완료</option>
@@ -120,8 +107,8 @@
                             class="sale-board-update__price--input"
                             type="text"
                             placeholder="가격을 입력하세요"
-                            value="${sb.pprice }"
-                            name="pprice"
+                            value="${sb.pPrice }"
+                            name="pPrice"
                             required
                         />
                     </div>
@@ -132,22 +119,20 @@
                         <!-- 이미지경로 받아오기 -->
                           <div class="image--input-container">
                             <label class="image--input-label">
-                                <div class="image--input-button button-1"> 
-                                <a href="javascript:" onclick="fileUploadAction();" class="my_button">                                  
-                                   <c:if test="${sb.pimg1 != null }">
+                                <div class="image--input-button button-1">                                                           
+                                   <c:if test="${sb.pImg1 != null }">
                         			 <img
-                               			 src="/s20200903/img/sale/${sb.pimg1}"
+                               			 src="/s20200903/img/sale/${sb.pImg1}"
                                 	     alt="이미지를 삽입하세요"
                              		 />
                                     </c:if>                                    
-                                    	<div class="del-btn"></div>  
-                                    	</a>                                 
+                                    	<div class="del-btn"></div>                                      	                              
                                 </div>
                                 <input
                                     class="image--input image-1"
                                     type="file"          
-                                    id="pimg1"                          
-                                    name="file"
+                                    id="pImg1"                          
+                                    name="file"                                                                        
                                     accept=".jpg, .jpeg, .png"
                                 />
                             </label>
@@ -155,9 +140,9 @@
                         <div class="image--input-container">
                             <label class="image--input-label">
                                 <div class="image--input-button button-2">                                
-                                   	<c:if test="${sb.pimg2 != null }">
+                                   	<c:if test="${sb.pImg2 != null }">
                         			 <img
-                               			 src="/s20200903/img/sale/${sb.pimg2}"
+                               			 src="/s20200903/img/sale/${sb.pImg2}"
                                 	     alt="이미지를 삽입하세요"
                              		 />
                                     </c:if>                                    
@@ -166,8 +151,8 @@
                                 <input
                                     class="image--input image-2"
                                     type="file"   
-                                    id="pimg2"                                 
-                                    name="file1"
+                                    id="pImg2"                                 
+                                    name="file1"                                    
                                     accept=".jpg, .jpeg, .png"
                                 />
                             </label>
@@ -175,9 +160,9 @@
                         <div class="image--input-container">
                             <label class="image--input-label">
                                 <div class="image--input-button button-3">
-                                    <c:if test="${sb.pimg3 != null }">
+                                    <c:if test="${sb.pImg3 != null }">
                         			 <img
-                               			 src="/s20200903/img/sale/${sb.pimg3}"
+                               			 src="/s20200903/img/sale/${sb.pImg3}"
                                 	     alt="img-thumbnail1"
                              		 />
                                     </c:if>
@@ -186,8 +171,8 @@
                                 <input
                                     class="image--input image-3"
                                     type="file"
-                                    id="pimg3"
-                                    name="file2"
+                                    id="pImg3"
+                                    name="file2"                                    
                                     accept=".jpg, .jpeg, .png"
                                 />
                             </label>
@@ -196,9 +181,9 @@
                             <label class="image--input-label">
                                 <div class="image--input-button button-4">
                                     <div class="image--input-button button-3">
-                                    <c:if test="${sb.pimg4 != null }">
+                                    <c:if test="${sb.pImg4 != null }">
                         			 <img
-                               			 src="/s20200903/img/sale/${sb.pimg4}"
+                               			 src="/s20200903/img/sale/${sb.pImg4}"
                                 	     alt="img-thumbnail1"
                              		 />
                                     </c:if>
@@ -208,7 +193,7 @@
                                 <input
                                     class="image--input image-4"
                                     type="file"
-                                    id="pimg4"
+                                    id="pImg4"
                                     name="file3"
                                     accept=".jpg, .jpeg, .png"
                                 />
@@ -217,9 +202,9 @@
                         <div class="image--input-container">
                             <label class="image--input-label">
                                 <div class="image--input-button button-5">
-                                    <c:if test="${sb.pimg5 != null }">
+                                    <c:if test="${sb.pImg5 != null }">
                         			 <img
-                               			 src="/s20200903/img/sale/${sb.pimg5}"
+                               			 src="/s20200903/img/sale/${sb.pImg5}"
                                 	     alt="img-thumbnail1"
                              		 />
                                     </c:if>
@@ -228,8 +213,8 @@
                                 <input
                                     class="image--input image-5"
                                     type="file"
-                                    value="pimg5"
-                                    name="file4"
+                                    id="pImg5"
+                                    name="file4"                                    
                                     accept=".jpg, .jpeg, .png"
                                 />
                             </label>
@@ -240,20 +225,21 @@
                     <textarea
                         class="sale-board-update__title--textarea"
                         placeholder="제목 가져오기"
-                        id="ptitle"
-                        name="ptitle"
-                        required>${sb.ptitle }</textarea>
+                        id="pTitle"
+                        name="pTitle"
+                        required>${sb.pTitle }</textarea>
                 </div>
                 <div class="sale-board-update__content">
                     <textarea
                         class="sale-board-update__content--textarea"
                         placeholder="내용가져오기"
-                        name="pcontent"
-                        id="pcontent"
-                        required>${sb.pcontent }</textarea>
+                        name="pContent"
+                        id="pContent"
+                        required>${sb.pContent }</textarea>
                 </div>
-                                
-				<input type="hidden" name="pnum" value="${sb.pnum}"/>
+                
+                              
+				<input type="hidden" name="pNum" value="${sb.pNum}"/>
                 
                 <div class="sale-board-update__btn-container">
                     <a href="list.do"

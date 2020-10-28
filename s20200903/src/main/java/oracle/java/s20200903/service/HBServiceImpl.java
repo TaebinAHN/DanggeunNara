@@ -37,7 +37,7 @@ public class HBServiceImpl implements HBService {
 	public HBSaleBoard HBSaleBoardRead(HBSaleBoard sb) {
 		// TODO Auto-generated method stub
 		System.out.println("HBServiceImpl HBSaleBoardRead sb ->" + sb);
-		hd.updateViewCnt(sb.getPnum());
+		hd.updateViewCnt(sb.getpNum());
 		return hd.HBSaleBoardRead(sb);
 	}
 	
@@ -79,6 +79,31 @@ public class HBServiceImpl implements HBService {
 		// TODO Auto-generated method stub
 		System.out.println("HBServiceImpl delete sb->"+sb);
 		return hd.delete(sb);
+	}
+
+	@Override
+	public int likeUpdate(HBSaleBoard sb) {
+		// TODO Auto-generated method stub
+		System.out.println("HBServiceImpl update....");
+		hd.likeUpdateCnt(sb.getpNum());
+		return hd.likeUpdate(sb);
+	}
+
+/*	@Override
+	public void like_checkupdate(HBSaleBoard sb) {
+		// TODO Auto-generated method stub
+		System.out.println("HBServiceImpl update....");
+		hd.like_checkupdate(sb.getPnum());
+		return;
+	}*/
+
+	@Override
+	public void dlike_checkUpdate(HBSaleBoard sb) {
+		// TODO Auto-generated method stub
+		System.out.println("HBServiceImpl update....");
+		hd.dlikeUpdateCnt(sb.getpNum());
+		hd.dlike_checkUpdate(sb);
+		return;
 	}
 
 
